@@ -1,0 +1,210 @@
+header
+{
+    width: 100%;
+    height: 15vh;
+}
+header #logo
+{
+    width: 16vw;
+    height: 8.08vw;
+    margin: calc(7.5vh - 4.04vw) 0 0 40.425vw;
+    float: left;
+}
+header img#carrito
+{
+    width: 3.85vw;
+    height: 3.85vw;
+    font-size: 3vw;
+    float: right;
+    margin-top: calc(7.5vh - 3.85vw/2);
+}
+header img#carrito:hover{cursor: pointer}
+header #perfilusr img
+{
+    width: 3.85vw;
+}
+header a img#perfil
+{
+    max-height: 15vh;
+    width: 5vw;
+    height: 5vw;
+    float: right;
+    margin: calc(7.5vh - 2.5vw) 4vw 0 4vw;
+}
+header #btnCat
+{
+    width: 4vw;
+    height: 4vw;
+    top: calc(7.5vh - 2vw);
+    left: 4vw;
+    z-index: 3;
+    position: absolute;
+    transition: transform 1.5s;
+    user-select: none;
+}
+header #btnCat:hover{cursor: pointer}
+div#categorias
+{
+    width: 35vw;
+    height: 100vh;
+    background-color: aqua;
+    position: absolute;
+    z-index: 2;
+    margin-left: -35vw;
+	transition: margin-left 1.5s;
+}
+div#categorias p
+{
+    height: 5vh;
+    text-align: center;
+    font-family: 'Jura', sans-serif;
+    font-weight: 300;
+    font-size: 1.8vw;
+    margin: 0;
+    user-select: none;
+}
+div#categorias p:hover
+{
+    cursor: pointer;
+    height: 6vh;
+    font-size: 2vw;
+}
+div#categorias p:first-of-type{margin-top: 30vh}
+
+/* Header escritorio */
+
+@media (min-width: 701px){
+    #btnCat{display: none}
+
+    header #logo{
+        margin-left: 4vw;
+    }
+    header div#buscador{
+        width: 20vw;
+        position: absolute;
+        margin: calc(7.5vh - 1vw) 0 0 40vw;
+    }
+    header div#buscador input{
+        width: 18vw;
+        height: 2vw;
+        border: 0;
+        float: left;
+        font-family: 'Jura', sans-serif;
+        font-weight: 400;
+        font-size: 100%;
+        text-indent: 12px;
+        padding: 0;
+        outline: 1px solid rgb(231, 226, 226);
+    }
+    header div#buscador input:focus{
+        outline: 1px solid black;
+    }
+    header div#buscador img{
+        width: 1.2vw;
+        height: 1.2vw;
+        padding: 0.4vw;
+        float: left;
+        cursor: pointer;
+        outline: 1px solid rgb(231, 226, 226);
+    }
+    header div#carrito, header div#perfil{
+        min-width: 15vw;
+        float: right;
+        height: 3vw;
+        margin: calc(7.5vh - 1.5vw) 2vw 0 0;
+    }
+    header div#carrito{min-width: 10vw;}
+    header div#carrito p, header div#perfil p{
+        margin: 0;
+        font-size: 1vw;
+        font-family: 'Jura', sans-serif;
+        font-weight: 300;
+        color: grey;
+        float: left;
+    }
+    header div#carrito h1, header div#perfil h1{
+        margin: 0;
+        /* display: inline-block; */
+        font-size: 1.4vw;
+        font-family: 'Jura', sans-serif;
+        font-weight: 300;
+        float: left;
+    }
+    header div#carrito img, header div#perfil img{
+        margin: 0;
+        width: 3vw;
+        height: 3vw;
+        float: left;
+        margin-right: 15px;
+    }
+    div#categorias{
+        width: 100%;
+        height: 5vh;
+        background-color: rgb(219, 211, 211);
+        margin-left: 0;
+        transition: none;
+        position: relative;
+        float: left;
+    }
+    div#categorias p{
+        display: inline-block;
+        font-family: 'Jura', sans-serif;
+        font-weight: 300;
+        font-size: 1.5vw;
+        line-height: 5vh;
+        margin-right: 1vw;
+    }
+    div#categorias p:first-of-type{
+        margin-left: 4vw;
+        margin-right: 4vw;
+        background-color: rgb(99, 92, 92);
+    }
+    div#categorias p:hover{
+        height: 5vh;
+        font-size: 1.5vw;
+    }
+
+
+    div#categorias p:first-of-type{margin-top: 0;}
+}
+
+/* Header movil */
+
+@media (max-width: 700px){
+    header #btnCat
+    {
+        width: 9.5vw;
+        height: 9.5vw;
+        top: calc(7.5vh - 4.75vw);
+    }
+    div#categorias span{display: none;}
+    header #logo
+    {
+        width: 40vw;
+        margin-left: 30vw;
+    }
+    header img#carrito, 
+    header a img#perfil
+    {
+        width: 9.5vw;
+        height: 9.5vw;
+        margin-top: calc(7.5vh - 4.75vw);                                                                                   
+    }
+    div#categorias
+    {
+        width: 100%;
+        top: 0;
+        margin-left: -100%;
+    }
+    div#categorias p
+    {
+        font-size: 8vw;
+        height: fit-content;
+        margin-top: 5px;
+    }
+    div#categorias p:hover
+    {
+        height: 8vh;
+        font-size: 10vw;
+    }
+}

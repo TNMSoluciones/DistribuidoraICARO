@@ -1,0 +1,65 @@
+body{margin: 0; padding: 0;}
+#registerDerecha
+{
+    width: 67%;
+    height: 100vh;
+    float: right;
+}
+#registerDerecha form
+{
+    width: 90%;
+    height: 90%;
+    margin: 5% 0 0 5%;
+    outline: 1px solid black;
+    display: inline-block;
+}
+
+#registerDerecha form label:first-of-type{margin-top: 10%}
+#registerDerecha form label
+{
+    display: block;
+    text-align: center;
+    font-size: 1.3vw;
+    font-family: 'Jura', sans-serif;
+    font-weight: 400;
+    margin-top: 3px;
+}
+#registerDerecha form label, #registerDerecha form input, #registerDerecha form select
+{
+    margin-left: calc(50% - 8vw);
+    width: 16vw;
+    font-family: 'Jura', sans-serif;
+    font-weight: 600;
+}
+
+#registerDerecha form button:last-of-type{
+    float: right;
+    margin: 3vw calc(50% - 8vw) 0 0;
+}
+#registerDerecha form button, #registerDerecha form a
+{
+    width: 7vw;
+    margin-left: calc(50% - 8vw);
+    margin-top: 3vw;
+}
+#registerDerecha form a
+{
+    display: inline-block;
+    text-align: center;
+    padding-top: 2px;
+    font-size: 13.3333px;
+    font-family: Arial;
+    font-weight: 400;
+    height: 21px;
+    background-color: rgb(239, 239, 239);
+    box-sizing: border-box;
+    border: 1px solid rgb(118, 118, 118);
+    color: #000;
+    text-decoration: none;
+    border-radius: 2px;
+}
+#registerDerecha form input[type=number]::-webkit-inner-spin-button,
+#registerDerecha form input[type=number]::-webkit-outer-spin-button
+{
+    appearance: none;
+}
