@@ -1,4 +1,4 @@
-<?php 
+<!-- <?php 
 session_start();
     if (isset($_SESSION["email"])) {
         ?><script>alert("Si")</script><?php
@@ -6,7 +6,7 @@ session_start();
         ?><script>alert("No")</script><?php
     }
 
-?>
+?> -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,6 +15,7 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jura&display=swap" rel="stylesheet">
     <title>Distribuidora ICARO</title>
 </head>
 <body>

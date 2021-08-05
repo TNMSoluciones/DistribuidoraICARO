@@ -4,10 +4,7 @@ document.getElementById('btnCat').addEventListener('click',()=>{
     if (menuBandera)
     {
         document.getElementById('btnCat').style.transform= 'rotate(0deg)';
-        if (screen.width<700){
-            document.getElementById('categorias').style.marginLeft = '-100vw';   
-        }else{document.getElementById('categorias').style.marginLeft = '-35vw'}
-    
+        document.getElementById('categorias').style.marginLeft = '-100vw';
     }
     else
     {

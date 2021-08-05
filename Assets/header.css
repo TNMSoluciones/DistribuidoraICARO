@@ -7,8 +7,8 @@ header #logo
 {
     width: 16vw;
     height: 8.08vw;
-    margin: calc(7.5vh - 4.04vw) 0 0 40.425vw;
-    float: left;
+    margin: calc(10vh - 4.04vw) 0 0 40.425vw;
+    position: absolute;
 }
 header img#carrito
 {
@@ -73,16 +73,19 @@ div#categorias p:first-of-type{margin-top: 30vh}
 
 /* Header escritorio */
 
-@media (min-width: 701px){
+@media (min-width: 876px){
     #btnCat{display: none}
 
     header #logo{
         margin-left: 4vw;
     }
     header div#buscador{
-        width: 20vw;
+        width: 33vw;
         position: absolute;
-        margin: calc(7.5vh - 1vw) 0 0 40vw;
+        margin: calc(7.5vh - 1vw) 0 0 33.5vw;
+    }
+    header div#buscador p:first-of-type{
+        width: 11vw;
     }
     header div#buscador input{
         width: 18vw;
@@ -95,17 +98,25 @@ div#categorias p:first-of-type{margin-top: 30vh}
         text-indent: 12px;
         padding: 0;
         outline: 1px solid rgb(231, 226, 226);
+        color: rgb(34, 32, 32);
     }
     header div#buscador input:focus{
         outline: 1px solid black;
     }
-    header div#buscador img{
-        width: 1.2vw;
-        height: 1.2vw;
-        padding: 0.4vw;
+    header div#buscador p{
+        width: 4vw;
+        height: 2vw;
+        margin: 0;
         float: left;
+        font-family: 'Jura', sans-serif;
         cursor: pointer;
         outline: 1px solid rgb(231, 226, 226);
+        line-height: 2vw;
+        text-align: center;
+        font-size: 1vw;
+    }
+    header div#buscador p:hover{
+        background: #D98851;
     }
     header div#carrito, header div#perfil{
         min-width: 15vw;
@@ -113,19 +124,19 @@ div#categorias p:first-of-type{margin-top: 30vh}
         height: 3vw;
         margin: calc(7.5vh - 1.5vw) 2vw 0 0;
     }
-    header div#carrito{min-width: 10vw;}
+    header div#carrito{min-width: 10vw}
+    header div#perfil{margin-right: 0}
     header div#carrito p, header div#perfil p{
         margin: 0;
-        font-size: 1vw;
+        font-size: 0.8vw;
         font-family: 'Jura', sans-serif;
         font-weight: 300;
-        color: grey;
-        float: left;
+        color: rgb(112, 101, 101);
     }
     header div#carrito h1, header div#perfil h1{
         margin: 0;
-        /* display: inline-block; */
-        font-size: 1.4vw;
+        padding-top: 0.7vw;
+        font-size: 1.2vw;
         font-family: 'Jura', sans-serif;
         font-weight: 300;
         float: left;
@@ -135,53 +146,121 @@ div#categorias p:first-of-type{margin-top: 30vh}
         width: 3vw;
         height: 3vw;
         float: left;
-        margin-right: 15px;
+        margin-right: 10px;
     }
     div#categorias{
         width: 100%;
         height: 5vh;
-        background-color: rgb(219, 211, 211);
+        background-color: rgb(0, 0, 0, 0);
         margin-left: 0;
         transition: none;
         position: relative;
         float: left;
+        text-align: center;
     }
     div#categorias p{
         display: inline-block;
         font-family: 'Jura', sans-serif;
-        font-weight: 300;
-        font-size: 1.5vw;
+        font-weight: 400;
+        font-size: 1.3vw;
         line-height: 5vh;
+        height: 5vh;
         margin-right: 1vw;
-    }
-    div#categorias p:first-of-type{
-        margin-left: 4vw;
-        margin-right: 4vw;
-        background-color: rgb(99, 92, 92);
     }
     div#categorias p:hover{
         height: 5vh;
-        font-size: 1.5vw;
+        font-size: 1.3vw;
+        background-color: #D98851;
     }
-
-
     div#categorias p:first-of-type{margin-top: 0;}
+}
+
+@media (max-width: 1200px){
+    header div#buscador{
+        width: 40vw;
+        margin-left: 30vw;
+    }
+    header div#buscador p:first-of-type{width: 13vw}
+    header div#buscador input{
+        width: 22vw;
+        height: 3vw;
+    }
+    header div#buscador p{
+        width: 5vw;
+        height: 3vw;
+        line-height: 3vw;
+        font-size: 1.3vw;
+    }
+    header div#carrito, header div#perfil{
+        min-width: 13vw;
+        margin-right: 1vw;
+    }
+    header div#carrito p, header div#perfil p{font-size: 1.1vw}
+    header div#carrito h1, header div#perfil h1{
+        font-size: 1.3vw;
+        font-weight: bolder;
+        padding-top: 0vw;
+    }
+    div#categorias p{font-size: 1.6vw}
+    div#categorias p:hover{font-size: 1.6vw}
+
+
 }
 
 /* Header movil */
 
-@media (max-width: 700px){
+@media (max-width: 875px){
+    header #logo
+    {
+        width: 40vw;
+        position: relative;
+        height: auto;
+        margin: 4vw 0 0 30vw;
+    }
+    header div#buscador{
+        width: 80vw;
+        height: 7vw;
+        margin-left: 10vw;
+    }
+    header div#buscador p:first-of-type{display: none}
+    header div#buscador input{
+        width: 75%;
+        height: 7vw;
+        border: 0;
+        float: left;
+        font-family: 'Jura', sans-serif;
+        font-weight: 400;
+        font-size: 100%;
+        text-indent: 12px;
+        padding: 0;
+        border: 1px solid rgb(231, 226, 226);
+        box-sizing: border-box;
+        color: rgb(34, 32, 32);
+    }
+    header div#buscador input:focus{
+        outline: 1px solid black;
+    }
+    header div#buscador p{
+        width: 25%;
+        height: 7vw;
+        margin: 0;
+        float: left;
+        font-family: 'Jura', sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1px solid rgb(231, 226, 226);
+        box-sizing: border-box;
+        line-height: 7vw;
+        text-align: center;
+        font-size: 100%;
+    }
+
+
     header #btnCat
     {
         width: 9.5vw;
         height: 9.5vw;
         top: calc(7.5vh - 4.75vw);
-    }
-    div#categorias span{display: none;}
-    header #logo
-    {
-        width: 40vw;
-        margin-left: 30vw;
     }
     header img#carrito, 
     header a img#perfil
