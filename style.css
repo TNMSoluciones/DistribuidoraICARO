@@ -69,7 +69,7 @@ div#section1
 {
     width: 100%;
     height: 13vw;
-    margin-top: 28.125vw;
+    display: inline-block;
 }
 div#section1 img:first-of-type{margin-left: 4vw ;}
 div#section1 img

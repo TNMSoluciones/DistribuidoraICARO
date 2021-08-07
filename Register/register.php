@@ -12,7 +12,7 @@
 </head>
 <body>
     <?php 
-        include 'http://localhost/codigo/Assets/zonaizquierda.php';
+        include '../Assets/zonaizquierda.php';
     ?>
     <div id="registerDerecha">
         <form action="comprobarRegister.php" method="POST">
@@ -58,5 +58,4 @@
     </div>
 </body>
 <link rel="stylesheet" href="styleRegister.css">
-<link rel="stylesheet" href="../Assets/zonaizquierda.css">
 </html>

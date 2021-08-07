@@ -21,15 +21,15 @@ body{margin: 0; padding: 0;}
 {
     display: block;
     text-align: center;
-    font-size: 1.3vw;
-    font-family: 'Jura', sans-serif;
+    font-size: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400;
 }
 #loginDerecha form label, #loginDerecha form input
 {
     margin-left: calc(50% - 8vw);
     width: 16vw;
-    font-family: 'Jura', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 600;
 }
 #loginDerecha form button:last-of-type{
@@ -47,7 +47,7 @@ body{margin: 0; padding: 0;}
     display: inline-block;
     text-align: center;
     padding-top: 2px;
-    font-size: 13.3333px;
+    font-size: 100%;
     font-family: Arial;
     font-weight: 400;
     height: 21px;
@@ -57,4 +57,24 @@ body{margin: 0; padding: 0;}
     color: #000;
     text-decoration: none;
     border-radius: 2px;
+}
+
+@media (max-width: 875px){
+    #loginDerecha{
+        width: 100%;
+        height: 82vh;
+    }
+    #loginDerecha form label, #loginDerecha form input{
+        width: 60%;
+        margin-left: 20%;
+        margin-top: 1vw;
+    }   
+    #loginDerecha form button:last-of-type,#loginDerecha form a{
+        width: 40%;
+        margin: 6vw 30% 0;
+        font-size: 100%;
+        height: 4vh;
+        padding: 0;
+    }
+    #loginDerecha form a{line-height: 4vh;}
 }

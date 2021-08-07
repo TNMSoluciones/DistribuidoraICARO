@@ -14,6 +14,7 @@
     div#slidervista, figure#slidercontenido img, figure#slidercontenido
     {
         height: 56.25vw;
+        margin-top: 3vw;
     }
     
     div#section1{display: none}

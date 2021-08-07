@@ -1,0 +1,73 @@
+body{
+	padding: 0;
+	margin: 0;
+}
+#section1{
+    width: 100%;
+    height: fit-content;
+    display: inline-block;
+}
+#section1 .articulos1{
+    width: 14vw;
+    height: 14vw;
+    display: inline-block;
+    margin: 3vw 0 0 1vw;
+
+
+    outline: 1px solid black;/*Temporal*/
+}
+#title{	
+    width: 30vw;
+    height: 2vw;
+    margin: 0 0 -2vw 5.5vw;
+}
+div#section1 .articulos1:first-of-type{margin-left: 5.5vw}
+div#section1 .articulos1:nth-of-type(7){margin-left: 5.5vw}
+.images{
+	width: 14vw;
+	height: 7.875vw;
+}
+.articulos1 h1{
+	font-size: 1vw;
+	margin: 0;
+	margin-left: 5px;
+}
+.articulos1 p{
+	font-size: 0.9vw;
+	margin: 0;
+	margin-left: 5px;
+}
+.articulos1 input{
+	width: 5vw;
+	margin-left: 4.5vw;
+	margin-top: 1.9vw;
+}
+.articulos1 input:hover{
+	color: white;
+	background-color: black;
+}
+#popup{
+	position: fixed;
+	width: 40vw;
+	height: 40vw;
+	margin-left: 30vw;
+	margin-top: -10vh;
+	background-color: black;
+}
+#popup img{
+	width: 40vw;
+	height: 22.5vw;
+}
+#popup h1{
+	color: white;
+	font-size: 1.3vw;
+	margin-left: 5px;
+}
+#popup p{
+	float: right;
+	width: 25vw;
+	height: 6vw;
+	color: white;
+	font-size: 1.2vw;
+	margin-left: 5px;
+}

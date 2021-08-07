@@ -6,7 +6,7 @@
     <title>Iniciar Sesion</title>
 </head>
 <body>
-    <?php include 'http://localhost/codigo/Assets/zonaizquierda.php';?>
+    <?php include '../Assets/zonaizquierda.php';?>
 
     <div id="loginDerecha">
         <div>
@@ -22,5 +22,4 @@
     </div>
 </body>
 <link rel="stylesheet" href="stylelogin.css">
-<link rel="stylesheet" href="http://localhost/codigo/Assets/zonaizquierda.css">
 </html>
