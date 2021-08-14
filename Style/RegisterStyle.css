@@ -41,13 +41,13 @@ body{margin: 0; padding: 0;}
     width: 7vw;
     margin-left: calc(50% - 8vw);
     margin-top: 3vw;
+    font-size: 100%;
 }
 #registerDerecha form a
 {
     display: inline-block;
     text-align: center;
     padding-top: 2px;
-    font-size: 100%;
     font-family: Arial;
     font-weight: 400;
     height: 21px;
@@ -58,6 +58,7 @@ body{margin: 0; padding: 0;}
     text-decoration: none;
     border-radius: 2px;
 }
+#registerDerecha form button{height: 21px;line-height: 15px}
 #registerDerecha form input[type=number]::-webkit-inner-spin-button,
 #registerDerecha form input[type=number]::-webkit-outer-spin-button
 {appearance: none;}

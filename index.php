@@ -1,24 +1,7 @@
-<!-- <?php 
-session_start();
-    if (isset($_SESSION["email"])) {
-        ?><script>alert("Si")</script><?php
-    }else{
-        ?><script>alert("No")</script><?php
-    }
-
-?> -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap" rel="stylesheet">
-    <title>Distribuidora ICARO</title>
-</head>
-<body>
-
+<?php 
+    session_start();
+    if (isset($_SESSION["email"])) {}
+?> 
     <?php include 'Assets/header.php';?>
 
     <div id="slidervista">
@@ -38,7 +21,7 @@ session_start();
     </div>
 
     <div id="section1">
-        <img src="http://localhost/codigo/img/3img.jpg"><img src="http://localhost/codigo/img/3img.jpg"><img src="http://localhost/codigo/img/3img.jpg">
+        <img src="img/3img.jpg"><img src="img/3img.jpg"><img src="img/3img.jpg">
     </div>
     
     <div id="section2">
@@ -63,8 +46,11 @@ session_start();
         <div class="articulos2"></div>
         <div class="articulos2"></div>
     </div>
+
+    
     <?php include 'Assets/footer.php';?>
+
 </body>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style_movil.css">
+    <link rel="stylesheet" href="Style/indexStyle.css">
+    <link rel="stylesheet" href="Style/indexStyleMovil.css">
 </html>

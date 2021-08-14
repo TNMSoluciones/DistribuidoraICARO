@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap" rel="stylesheet">
-    <title>Productos</title>
-</head>
-<body>
-<?php include '../Assets/header.php';?>
+<?php include 'Assets/header.php';?>
 <div id="popup">
     <img src="">
     <h1>Name product</h1>
@@ -104,9 +93,9 @@
         <input type="submit" value="Ver más">
     </div>
 </div>
-        <?php include '../Assets/footer.php';?>
+        <?php include 'Assets/footer.php';?>
 
 
 </body>
-<link rel="stylesheet" type="text/css" href="estilosprod.css">
+<link rel="stylesheet" type="text/css" href="Style/pagProductosStyle.css">
 </html>

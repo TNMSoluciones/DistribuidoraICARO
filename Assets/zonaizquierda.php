@@ -1,5 +1,5 @@
 <div id="zonaIzquierda">
-        <a href="../index.php"><img src="http://localhost/codigo/img/logoconfondochico.png" alt="Logo de empresa"></a>
+        <a href="/codigo"><img src="http://localhost/codigo/img/logoconfondochico.png" alt="Logo de empresa"></a>
 </div>
 <style type="text/css">
 #zonaIzquierda

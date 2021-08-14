@@ -12,7 +12,7 @@
 </head>
 <body>
     <?php 
-        include '../Assets/zonaizquierda.php';
+        include 'Assets/zonaizquierda.php';
     ?>
     <div id="registerDerecha">
         <form action="comprobarRegister.php" method="POST">
@@ -21,7 +21,7 @@
             <label for="correoEmpresa">Correo:</label>
             <input id="correoEmpresa" minlength="2" type="email" placeholder="Ingrese el Correo">
             <label for="passwordEmpresa">Contraseña:</label>
-            <input id="passwordEmpresa" type="password" placeholder="Ingrese una contraseña">
+            <input id="passwordEmpresa" autocomplete="off" type="password" placeholder="Ingrese una contraseña">
             <label for="ciudadEmpresa">Ciudad:</label>
             <input id="ciudadEmpresa" type="text" placeholder="Ingrese la ciudad donde se ubica">
             <label for="direccionEmpresa">Direccion:</label>
@@ -32,7 +32,22 @@
             <input id="postalEmpresa" type="number" min="0" placeholder="Ingrese codigo postal">
             <label for="departamentoEmpresa">Departamento:</label>
             <select name="departamentos" id="departamentoEmpresa">
-                <option value="Artigas">Artigas</option>
+                <?php  
+                    try {
+                        include 'BD/conBD.php';
+                        $res = $db->prepare('SELECT Nombre FROM departamento ORDER BY Nombre ASC');
+                        $res->execute();
+                        while ($val=$res->fetch(PDO::FETCH_ASSOC)) {
+                            ?>
+                            <option value="<?php echo $val['Nombre'] ?>"><?php echo $val['Nombre'] ?></option>
+                            <?php
+                        }
+                    } catch (Exception $e) {
+                        echo $e;
+                    }finally{$res=null;$db=null;}
+
+                ?>
+                <!-- <option value="Artigas">Artigas</option>
                 <option value="Canelones">Canelones</option>
                 <option value="Cerro Largo">Cerro Largo</option>
                 <option value="Colonia">Colonia</option>
@@ -50,12 +65,12 @@
                 <option value="San Jose">San José</option>
                 <option value="Soriano">Soriano</option>
                 <option value="Tacuarembo">Tacuarembó</option>
-                <option value="Treinta y Tres">Treinta y Tres</option>
+                <option value="Treinta y Tres">Treinta y Tres</option> -->
             </select>
-            <a href="http://localhost/codigo/Login/login.php">Ir a Iniciar Sesion</a>
+            <a href="login.php">Ir a Iniciar Sesion</a>
             <button id="btn" name="btnReg" type="submit">Registrarse</button>
         </form>
     </div>
 </body>
-<link rel="stylesheet" href="styleRegister.css">
+<link rel="stylesheet" href="Style/RegisterStyle.css">
 </html>

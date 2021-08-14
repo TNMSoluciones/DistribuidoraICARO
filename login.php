@@ -6,7 +6,7 @@
     <title>Iniciar Sesion</title>
 </head>
 <body>
-    <?php include '../Assets/zonaizquierda.php';?>
+    <?php include 'Assets/zonaizquierda.php';?>
 
     <div id="loginDerecha">
         <div>
@@ -15,11 +15,11 @@
                 <input id="email" type="text" name="emailLogin" placeholder="Ingrese su correo">
                 <label for="password">Contraseña:</label>
                 <input id="password" type="password" name="passwdLogin" placeholder="Ingrese su contraseña">
-                <a href="http://localhost/codigo/Register/register.php">Ir a Registrarse</a>
+                <a href="register.php">Ir a Registrarse</a>
                 <button name="botonLg" id="" type="submit">Iniciar Sesion</button>
             </form>
         </div>
     </div>
 </body>
-<link rel="stylesheet" href="stylelogin.css">
+<link rel="stylesheet" href="Style/LoginStyle.css">
 </html>

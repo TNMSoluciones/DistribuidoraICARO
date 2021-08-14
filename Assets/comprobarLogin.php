@@ -9,14 +9,14 @@
                 ?>
                 <script>alert("Sesion inciada correctamente")</script>
                 <?php
-                header("Location: http://localhost/codigo/index.php");
+                header("Location: /codigo");
                 die();
             }
             else{
                 ?>
                 <script>alert("Error al iniciar la Sesion")</script>
                 <?php
-                header("Location: http://localhost/codigo/Login/login.php");
+                header("Location: /codigo/login.php");
             }    
 
         }
