@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Assets/header.css">
+    <link rel="stylesheet" href="Style/header.css">
     <title>Distribuidora ICARO</title>
 </head>
 <body>
@@ -35,16 +35,16 @@
 <div id="categorias">
     <a href="login.php"><p>Iniciar Sesion</p></a>
     <a href=""><p>Carrito</p></a>
-    <a href="/codigo"><p>Inicio</p></a>
+    <a href="index.php"><p>Inicio</p></a>
     <a href=""><p>Contactanos</p></a>
     <a href=""><p>Sobre Nosotros</p></a>
     <a href="productos.php"><p>Producto</p></a>
-    <a href=""><p>Servicios</p></a>
     <a href="pagempleado.php"><p>Empleados</p></a>
 </div>
 
 
-<?php include 'Assets/menuDesplegable.php';
+<?php 
+    include 'Assets/menuDesplegable.php';
     if (isset($_SESSION["email"])) {
         ?><script>
             document.querySelector('header #perfil p').innerHTML= "<?php echo $_SESSION['email']?>";

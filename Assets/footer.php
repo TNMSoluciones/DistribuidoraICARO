@@ -25,7 +25,6 @@ footer div
     width: 20vw;
     height: 100px;
     text-align: center;
-    font-family: 'Roboto Condensed', sans-serif;
     font-size: 1vw;
 }
 footer div:first-of-type{margin-left: 20vw}
@@ -54,7 +53,6 @@ footer div p{margin: 0;}
     }
     footer div p{
         font-size: 2.5vw;
-        font-family: 'Roboto Condensed', sans-serif;
         margin: 0;
     }
 }
