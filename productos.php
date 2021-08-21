@@ -1,4 +1,3 @@
-<?php include 'Assets/header.php';?>
 <div id="popup">
     <img src="">
     <h1>Name product</h1>
@@ -6,6 +5,8 @@
     <h1>Stock</h1>
     <p>Descripción:</p>
 </div>
+<main>
+<?php include 'Assets/header.php';?>
 <div id="section1">
     <h1 id="title">Articulos</h1>
 
@@ -93,7 +94,10 @@
         <input type="submit" value="Ver más">
     </div>
 </div>
-        <?php include 'Assets/footer.php';?>
+<?php include 'Assets/footer.php';?>
+</main>
+
+        
 
 
 </body>

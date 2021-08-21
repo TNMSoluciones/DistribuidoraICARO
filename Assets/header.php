@@ -12,7 +12,7 @@
 <body>
 <header>
     <img id="btnCat" src="img/menu.png">
-    <a href="/codigo"><img src="img/logoconfondochico.png" id="logo" alt="Foto de Logo"></a>
+    <a href="index.php"><img src="img/logoconfondochico.png" id="logo" alt="Foto de Logo"></a>
     
     <div id="buscador">
         <p>Todas las categorias</p>

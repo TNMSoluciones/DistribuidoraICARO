@@ -67,8 +67,8 @@
                 <option value="Tacuarembo">Tacuarembó</option>
                 <option value="Treinta y Tres">Treinta y Tres</option> -->
             </select>
-            <a href="login.php">Ir a Iniciar Sesion</a>
-            <button id="btn" name="btnReg" type="submit">Registrarse</button>
+            <a class="btnRegister btnRegisterA" href="login.php">Ir a Iniciar Sesion</a>
+            <button class="btnRegister" name="btnReg" type="submit">Registrarse</button>
         </form>
     </div>
 </body>

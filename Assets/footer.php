@@ -17,7 +17,7 @@ footer
     height: 100px;
     float: left;
     margin-top: 60px;
-    background-color: grey;
+    background: radial-gradient(circle, rgba(197,115,68,1) 30%, rgba(229,143,83,1) 70%, rgba(255,175,101,1) 100%);
 }
 footer div
 {

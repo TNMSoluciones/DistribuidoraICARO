@@ -7,15 +7,15 @@
         width: 33%;
         height: 100vh;
         float: left;
-        border-right: 1px solid black;
-        box-sizing: border-box;
     }
-    #zonaIzquierda img
+    #zonaIzquierda img, #zonaIzquierda a
     {
+        float: left;
         width: 20vw;
         height: 11.25vw;
         margin: calc(50vh - 5.625vw) 0 0 6.5vw;
     }
+    #zonaIzquierda img{margin: 0;}
 
     /* Header movil */
 
