@@ -35,6 +35,7 @@
                 <?php  
                     try {
                         include 'BD/conBD.php';
+                        $db=pdo_conectar_mysql();
                         $res = $db->prepare('SELECT Nombre FROM departamento ORDER BY Nombre ASC');
                         $res->execute();
                         while ($val=$res->fetch(PDO::FETCH_ASSOC)) {

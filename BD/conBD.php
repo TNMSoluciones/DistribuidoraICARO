@@ -1,6 +1,19 @@
 <?php
-try {
-    $db = new PDO('mysql:host=localhost;dbname=icaro1.0','root','');
-} catch (MySQLException $e) {echo $e->getMessage();}
-
+    function pdo_conectar_mysql() {
+        $DATABASE_HOST = 'localhost';
+        $DATABASE_USER = 'root';
+        $DATABASE_PASS = '';
+        $DATABASE_NAME = 'icaro1.0';
+        try {
+            return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
+        } catch (PDOException $exception) {
+            ?>
+                <script>
+                    alert('Error conectando a la base de datos!')
+                    window.location="index.php"
+                </script>
+            <?php 
+            
+        }
+    }
 ?>

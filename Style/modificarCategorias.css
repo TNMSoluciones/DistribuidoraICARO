@@ -1,0 +1,59 @@
+#actualizarCats{
+    width: 25vw;
+    margin: 5vw 0 0 37.5vw;
+    font-family: 'Roboto Condensed', sans-serif
+}
+#actualizarCats h2{
+    margin: 0;
+    padding: 15px 0;
+    font-size: 1.6vw;
+    border-bottom: 1px solid #e6dfdf;
+}
+#actualizarCats form{
+    padding: 15px 0;
+}
+#actualizarCats form label{
+    display: inline-block;
+    width: 10vw;
+    margin: 10px 2vw 5px 0;
+    font-size: 1.2vw;
+}
+#actualizarCats form input{
+    padding: 5px 0;
+    text-indent: 10px;
+    width: 10vw;
+    font-size: 100%;
+    border: 1px solid #b1acac;
+    margin-right: 2vw;
+    box-sizing: border-box;
+    font-weight: 300;
+}
+#actualizarCats form input:first-of-type:focus-visible{
+    outline: 0;
+}
+#actualizarCats form input[type=submit], #actualizarCats form button {
+    display: inline-block;
+    background-color: #38b673;
+    border: 0;
+    font-weight: 700;
+    font-size: 1vw;
+    color: #FFFFFF;
+    cursor: pointer;
+    width: 10vw;
+    height: 2vw;
+    margin-top: 15px;
+}
+#actualizarCats form input[type="submit"]:hover, #actualizarCats form button:hover {
+background-color: #32a367;
+}
+
+.divEmergente{
+    width: 25vw;
+    height: 2vw;
+    line-height: 2vw;
+    margin: 30px 0 0 0;
+    text-indent: 10px;
+    color: white;
+}
+.eCorrecto{background: #32a367}
+.eIncorrecto{background: red}

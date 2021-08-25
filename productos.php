@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    include_once 'Assets/header.php';
+?>
 <div id="popup">
     <img src="">
     <h1>Name product</h1>
@@ -6,7 +10,6 @@
     <p>Descripción:</p>
 </div>
 <main>
-<?php include 'Assets/header.php';?>
 <div id="section1">
     <h1 id="title">Articulos</h1>
 
