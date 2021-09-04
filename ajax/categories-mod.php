@@ -8,7 +8,7 @@
             $nameCategoria = !empty($data->categoria)? $data->categoria : '';
             $sql=$pdo->prepare('UPDATE categorias SET idCategoria=?, Categoria=? WHERE idCategoria=?');
             $sql->execute([$idCategoria, $nameCategoria, $idCategoria]);
-            $res = $sql==true ? true : false;
+            $res = $sql ? true : false;
             echo $res;
         }else{
             $nameCategoria = !empty($data->categoria)? $data->categoria : '';

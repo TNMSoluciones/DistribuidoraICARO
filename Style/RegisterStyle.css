@@ -1,3 +1,4 @@
+*{font-family: 'Roboto Condensed', sans-serif}
 body{margin: 0; padding: 0;}
 #registerDerecha
 {
@@ -14,21 +15,19 @@ body{margin: 0; padding: 0;}
     display: block;
     text-align: center;
     font-size: 130%;
-    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 400;
 }
 
 #registerDerecha form input, #registerDerecha form select{
     font-size: 14px;
     text-indent: 10px;
-    color: rgb(118, 118, 118);
+    color: black;
 }
 #registerDerecha form label, #registerDerecha form input, #registerDerecha form select
 {
     width: 16vw;
     height: 1.5vw;
     line-height: 1.5vw;
-    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 700;
     box-sizing: border-box;
 }
@@ -60,7 +59,17 @@ body{margin: 0; padding: 0;}
 .btnRegisterA{float: left}
 #registerDerecha form input[type=number]::-webkit-inner-spin-button,
 #registerDerecha form input[type=number]::-webkit-outer-spin-button{appearance: none;}
-
+.divEmergente{
+    width: 16vw;
+    line-height: 3vw;
+    font-size: 110%;
+    margin: 30px 0 30px 0;
+    text-align: center;
+    color: white;
+}
+.eCorrecto{background: #32a367}
+.eIncorrecto{background: red}
+.ePrecaucion{background: #5564eb}
 
 
 

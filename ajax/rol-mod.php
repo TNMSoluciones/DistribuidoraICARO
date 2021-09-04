@@ -6,22 +6,19 @@
         if(!$data->insert){
             $idRol = $data->idRol;
             $nameRol = !empty($data->rol)? $data->rol : '';
-            $sql=$pdo->prepare('UPDATE roles SET idRol=?, Rol=? WHERE idRol=?');
-            $sql->execute([$idRol, $nameRol, $idRol]);
-            $res = $sql==true ? true : false;
-            echo $res;
+            $sql=$pdo->prepare('UPDATE roles SET Rol=? WHERE idRol=?');
+            $sql->execute([$nameRol, $idRol]);
+            echo $sql ? true : false;
         }else{
             $nameRol = !empty($data->rol)? $data->rol : '';
             $sqlInsert=$pdo->prepare("INSERT INTO roles(Rol) VALUES('$nameRol')");
             $sqlInsert->execute();
-            $resInsert = $sqlInsert ? true : false;
-            echo $resInsert;
+            echo $sqlInsert ? true : false;
         }
     }else{
         $idRol = $data->idRol;
         $sqlDelete=$pdo->prepare("DELETE FROM roles WHERE idRol=?");
         $sqlDelete->execute([$idRol]);
-        $resDelete = $sqlDelete ? true : false;
-        echo $resDelete;
+        echo $sqlDelete ? true : false;
     }
 ?>

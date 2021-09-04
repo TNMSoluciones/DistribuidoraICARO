@@ -12,8 +12,7 @@
                     alert('Error conectando a la base de datos!')
                     window.location="index.php"
                 </script>
-            <?php 
-            
+            <?php    
         }
     }
 ?>

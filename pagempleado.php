@@ -1,73 +1,18 @@
-<script>
-    document.addEventListener('DOMContentLoaded',()=>{
-        //Cosas necesarias para crear y mostrar las categorias
-        const divCategorias = document.querySelector('#categoriasProduct');
-        const templateCategoria = document.querySelector('#templateCategoria').content;
-        const fragmentCategorias = document.createDocumentFragment();
-        //Cosas necesarias para crear y mostrar los roles
-        const divRoles = document.querySelector('#roles');
-        const templateRol = document.querySelector('#templateRol').content;
-        const fragmentRol = document.createDocumentFragment();
-
-
-
-        mostrarCategorias();
-        mostrarRoles();
-        
-        function mostrarRoles(){
-            let xmlRol = new XMLHttpRequest();
-            xmlRol.overrideMimeType('text/xml');
-            xmlRol.onreadystatechange = function()
-            {
-                if (this.readyState== 4 && this.status ==200)
-                {
-                    let rolesEmpleado = JSON.parse(this.response);
-                    rolesEmpleado.forEach(roles =>
-                    {
-                        templateRol.querySelector('.rolesParaEmpleado div h3').textContent=roles.Rol;
-                        templateRol.querySelector('.rolesParaEmpleado div a.btnModificarRol').setAttribute('href', `modificarRoles.php?idRol=${roles.idRol}`);
-                        templateRol.querySelector('.rolesParaEmpleado div a.btnEliminarRol').setAttribute('href', `modificarRoles.php?idRol=${roles.idRol}&delete=true`);
-                        const clon = templateRol.cloneNode(true);
-                        fragmentRol.appendChild(clon);
-                    });
-                    divRoles.appendChild(fragmentRol);
-                }
-            };
-            xmlRol.open('GET', 'ajax/rol-mostrar.php', true);
-            xmlRol.send();
-        }
-
-        function mostrarCategorias(){
-            let xmlCat = new XMLHttpRequest();
-            xmlCat.overrideMimeType('text/xml');
-            xmlCat.onreadystatechange = function()
-            {
-                if (this.readyState== 4 && this.status ==200)
-                {
-                    let categoriasProducto = JSON.parse(this.response);
-                    categoriasProducto.forEach(categoria =>
-                    {
-                        templateCategoria.querySelector('.categoriaProduct div h3').textContent=categoria.Categoria;
-                        templateCategoria.querySelector('.categoriaProduct div a.btnModificarCategoria').setAttribute('href', `modificarCategorias.php?idCategoria=${categoria.idCategoria}`);
-                        templateCategoria.querySelector('.categoriaProduct div a.btnEliminarCategoria').setAttribute('href', `modificarCategorias.php?idCategoria=${categoria.idCategoria}&delete=true`);
-                        const clon = templateCategoria.cloneNode(true);
-                        fragmentCategorias.appendChild(clon);
-                    });
-                    divCategorias.appendChild(fragmentCategorias);
-                }
-            };
-            xmlCat.open('GET', 'ajax/product-mostrar.php', true);
-            xmlCat.send();
-        }
-    });
-
-
-
-</script>
+<!DOCTYPE html>
 <main>
 <?php 
     session_start();
     include_once 'Assets/header.php';
+    include_once 'BD/conBD.php';
+    $pdo=pdo_conectar_mysql();
+    $sqlCantidadCategorias=$pdo->query('SELECT COUNT(idCategoria) FROM categorias')->fetch(PDO::FETCH_ASSOC);
+    $sqlCantidadCategorias=$sqlCantidadCategorias['COUNT(idCategoria)'];
+    $sqlCantidadPersonal=$pdo->query('SELECT COUNT(idPersonal) FROM personal')->fetch(PDO::FETCH_ASSOC);
+    $sqlCantidadPersonal=$sqlCantidadPersonal['COUNT(idPersonal)'];
+    $sqlCantidadRoles=$pdo->query('SELECT COUNT(idRol) FROM roles')->fetch(PDO::FETCH_ASSOC);
+    $sqlCantidadRoles=$sqlCantidadRoles['COUNT(idRol)'];
+    $sqlCantidadCliente=$pdo->query('SELECT COUNT(idCliente) FROM cliente')->fetch(PDO::FETCH_ASSOC);
+    $sqlCantidadCliente=$sqlCantidadCliente['COUNT(idCliente)'];
 ?>
     <div id="encargado">
         <div>
@@ -90,7 +35,7 @@
     <div id="productos">
         <div>
             <h1>Encargado de Productos</h1>
-            <input type="submit" value="Agregar" id="agrProduct" class="btnAdd">
+            <a href="modificarProductos.php?idProducto=0" class="btnDerecha">Agregar</a>
         </div>
         <!-- Este div se cambiara por un template -->
         <div class="productosEncargado">
@@ -107,22 +52,36 @@
         <!-- Este div acabara un template --> 
     </div>
 
+    <div id="cliente">
+        <div>
+            <h1>Clientes</h1>
+        </div>
+        <div>
+
+
+            <!-- Se utilizara el template correspondiente con los datos desde la BD -->
+        </div>
+        <div class="pagination">
+            <li><p id="btnPagClienteI">❮</p></li>
+            <li><p id="btnPagClienteD">❯</p></li>
+        </div>
+    </div>
+
+
+
+
     <div id="personal">
         <div>
             <h1>Empleados</h1>
-            <input type="submit" value="Agregar" id="agrEmpleado" class="btnAdd">
+            <a href="modificarEmpleados.php?idPersonal=0" class="btnDerecha">Agregar</a>
         </div>
-        <!-- Este div se cambiara por un template -->
-        <div class="empleados">
-            <div>
-                <h3>NombreDelEmpleado</h3>
-                <h3>CorreoDelEmpleado</h3>
-                <input type="submit" value="Eliminar" class="btnDerecha">
-                <input type="submit" value="Modificar" class="btnDerecha">
-                <h3 class="txtDerecha">Rol del empleado</h3>
-            </div>
-        </div>  
-        <!-- Este div acabara un template --> 
+        <div>
+            <!-- Se utilizara el template correspondiente con los datos desde la BD -->
+        </div>
+        <div class="pagination">
+            <li><p id="btnPagPersonalI">❮</p></li>
+            <li><p id="btnPagPersonalD">❯</p></li>
+        </div>
     </div>
 
     <div id="roles">
@@ -130,7 +89,13 @@
             <h1>Roles</h1>
             <a href="modificarRoles.php?idRol=0" class="btnDerecha">Agregar</a>
         </div>
-        <!-- Se utilizara el template correspondiente con los datos desde la BD -->
+        <div>
+            <!-- Se utilizara el template correspondiente con los datos desde la BD -->
+        </div>
+        <div class="pagination">
+            <li><p id="btnPagRolesI">❮</p></li>
+            <li><p id="btnPagRolesD">❯</p></li>
+        </div>
     </div>
 
     <div id="categoriasProduct">
@@ -138,7 +103,13 @@
             <h1>Categorias</h1>
             <a href="modificarCategorias.php?idCategoria=0" class="btnDerecha">Agregar</a>
         </div>
-        <!-- Se utilizara el template correspondiente con los datos desde la BD -->
+        <div id="cats">
+            <!-- Se utilizara el template correspondiente con los datos desde la BD -->
+        </div>
+        <div class="pagination">
+            <li><p id="btnPagCatI">❮</p></li>
+            <li><p id="btnPagCatD">❯</p></li>
+        </div>
     </div>
 
 
@@ -147,6 +118,32 @@
 
 
 <!-- Seccion de los Template -->
+
+    <template id="templateClientes">
+        <div class="clientesEncargado">
+            <div>
+                <h3></h3>
+                <h3></h3>
+                <h3></h3>
+                <a class="btnDerecha btnEliminarCliente">Eliminar</a>
+                <a class="btnDerecha btnModificarCliente">Modificar</a>
+                <h3 class="txtDerecha"></h3>
+            </div>
+        </div>
+    </template>
+
+
+    <template id="templatePersonal">
+        <div class="empleados">
+            <div>
+                <h3></h3>
+                <h3></h3>
+                <a class="btnDerecha btnEliminarPersonal">Eliminar</a>
+                <a class="btnDerecha btnModificarPersonal">Modificar</a>
+                <h3 class="txtDerecha"></h3>
+            </div>
+        </div>  
+    </template>
 
     <template id="templateRol">
         <div class="rolesParaEmpleado">
@@ -169,4 +166,11 @@
     </template> 
 </body>
 <link rel="stylesheet" href="Style/pagEmpleadosStyle.css">
+<script src="JavaScript/pagEmpleado.js"></script>
+<script>
+    let cantidadDeCategorias=`<?=$sqlCantidadCategorias?>`;
+    let cantidadDePersonal=`<?=$sqlCantidadPersonal?>`;
+    let cantidadDeRoles=`<?=$sqlCantidadRoles?>`;
+    let cantidadDeCliente=`<?=$sqlCantidadCliente?>`;
+</script>
 </html>

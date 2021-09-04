@@ -1,8 +1,8 @@
 <?php 
     session_start();
     if (isset($_SESSION["email"])) {}
+    include_once 'Assets/header.php';
 ?> 
-    <?php include 'Assets/header.php';?>
 
     <div id="slidervista">
         <figure id="slidercontenido">
@@ -48,7 +48,7 @@
     </div>
 
     
-    <?php include 'Assets/footer.php';?>
+    <?php include_once 'Assets/footer.php';?>
 
 </body>
     <link rel="stylesheet" href="Style/indexStyle.css">

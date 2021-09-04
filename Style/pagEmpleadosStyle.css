@@ -5,7 +5,7 @@ body
     min-height: 100vh;
     position: relative;
 }
-#encargado, #productos, #personal, #roles, #categoriasProduct
+#encargado, #productos, #personal, #roles, #categoriasProduct, #cliente
 {
     width: 70%;
     height: auto;
@@ -13,8 +13,8 @@ body
     float: left;
     /* outline: 1px solid black; */
 }
-#encargado div, #productos div, #personal div, #roles div, #categoriasProduct div{outline: 1px solid black}
-#encargado div h1, #productos div h1, #personal div h1, #roles div h1, #categoriasProduct div h1{
+#encargado div, #productos div, #personal div, #roles div, #categoriasProduct div, #cliente div{outline: 1px solid black}
+#encargado div h1, #productos div h1, #personal div h1, #roles div h1, #categoriasProduct div h1, #cliente div h1{
     height: 60px;
     margin: 0;
     line-height: 60px;
@@ -24,7 +24,7 @@ body
 }
 #roles, #categoriasProduct{width: 35%}
 #categoriasProduct{margin-left: 0;}
-.comprasEncargado div, .productosEncargado div, .empleados div, .rolesParaEmpleado div, .categoriaProduct div
+.comprasEncargado div, .productosEncargado div, .empleados div, .rolesParaEmpleado div, .categoriaProduct div, .clientesEncargado div
 {
     width: 100%;
     height: 50px;
@@ -40,7 +40,7 @@ body
     margin-left: 1vw;
     user-select: none;
 }
-.comprasEncargado div h3, .productosEncargado div h3, .empleados div h3, .rolesParaEmpleado div h3, .categoriaProduct div h3{
+.comprasEncargado div h3, .productosEncargado div h3, .empleados div h3, .rolesParaEmpleado div h3, .categoriaProduct div h3, .clientesEncargado div h3{
     display: inline-block;
     font-size: 1vw;
     font-weight: 300;
@@ -59,7 +59,6 @@ body
     margin: calc(30px - 0.75vw) 30px 0 0;
     font-size: 85%;
     border: 0;
-    text-indent: 3px;
     line-height: 1.5vw;
     padding: 0;
     background-color: rgb(239, 239, 239);
@@ -99,6 +98,29 @@ body
     color: white;
     text-align: center;
     font-size: 1.5vw;
+}
+.pagination{
+    display: inline-block;
+    width: 86.5px;
+    padding: 0;
+    margin: 1px 0 0 30px;
+    outline: 0 !important;
+}
+.pagination li {display: inline;}
+.pagination li p{
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    margin: 0;
+    border: 1px solid #ddd; 
+    font-size: 18px;
+    user-select: none;
+}
+.pagination li p:hover{
+    background-color: #ddd;
+    cursor: pointer;
 }
 @media (max-width: 700px){
     
