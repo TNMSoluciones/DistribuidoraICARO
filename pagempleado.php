@@ -13,6 +13,8 @@
     $sqlCantidadRoles=$sqlCantidadRoles['COUNT(idRol)'];
     $sqlCantidadCliente=$pdo->query('SELECT COUNT(idCliente) FROM cliente')->fetch(PDO::FETCH_ASSOC);
     $sqlCantidadCliente=$sqlCantidadCliente['COUNT(idCliente)'];
+    $sqlCantidadProductos=$pdo->query('SELECT COUNT(idProducto) FROM producto')->fetch(PDO::FETCH_ASSOC);
+    $sqlCantidadProductos=$sqlCantidadProductos['COUNT(idProducto)'];
 ?>
     <div id="encargado">
         <div>
@@ -38,18 +40,14 @@
             <a href="modificarProductos.php?idProducto=0" class="btnDerecha">Agregar</a>
         </div>
         <!-- Este div se cambiara por un template -->
-        <div class="productosEncargado">
-            <div>
-                <img src="img/usuario.png" class="imgproducto" alt="fotoproducto">
-                <h3>Nombre del producto</h3>
-                <h3>Categoria del producto</h3>
-                <input type="submit" value="Eliminar" class="btnDerecha">
-                <a href="" class="btnDerecha">Modificar</a>
-                <h3 class="txtDerecha">CostoPorUnidad</h3>
-                <h3 class="txtDerecha">Cantidad</h3>
-            </div>
-        </div>  
+        <div>
+
+        </div>
         <!-- Este div acabara un template --> 
+        <div class="pagination">
+            <li><p id="btnPagProductoI">❮</p></li>
+            <li><p id="btnPagProductoD">❯</p></li>
+        </div>
     </div>
 
     <div id="cliente">
@@ -57,8 +55,6 @@
             <h1>Clientes</h1>
         </div>
         <div>
-
-
             <!-- Se utilizara el template correspondiente con los datos desde la BD -->
         </div>
         <div class="pagination">
@@ -119,6 +115,22 @@
 
 <!-- Seccion de los Template -->
 
+
+    <template id="templateProductos">
+        <div class="productosEncargado">
+            <div>
+                <img src="img/usuario.png" class="imgproducto" alt="fotoproducto">
+                <h3>Nombre del producto</h3>
+                <h3>Categoria del producto</h3>
+                <a class="btnDerecha btnEliminarProducto">Eliminar</a>
+                <a class="btnDerecha btnModificarProducto">Modificar</a>
+                <a href="" class="btnDerecha">Modificar</a>
+                <h3 class="txtDerecha">CostoPorUnidad</h3>
+                <h3 class="txtDerecha">Cantidad</h3>
+            </div>
+        </div>  
+    </template>
+
     <template id="templateClientes">
         <div class="clientesEncargado">
             <div>
@@ -172,5 +184,6 @@
     let cantidadDePersonal=`<?=$sqlCantidadPersonal?>`;
     let cantidadDeRoles=`<?=$sqlCantidadRoles?>`;
     let cantidadDeCliente=`<?=$sqlCantidadCliente?>`;
+    let cantidadDeProductos=`<?=$sqlCantidadProductos?>`;
 </script>
 </html>

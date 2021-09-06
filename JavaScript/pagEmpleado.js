@@ -16,23 +16,70 @@ document.addEventListener('DOMContentLoaded',()=>{
     const divCliente = document.querySelector('#cliente div:nth-of-type(2)');
     const templateCliente = document.getElementById('templateClientes').content;
     const fragmentCliente = document.createDocumentFragment();
+    //Cosas necesarias para crear y mostrar los productos
+    const divProductos = document.querySelector('#productos div:nth-of-type(2)');
+    const templateProductos = document.getAnimations('templateProductos');
+    const fragmentProductos = document.createDocumentFragment();
     //Variables
     let paginaActualCategorias = cantidadDeCategorias>0?1:0;
     let paginaActualPersonal = cantidadDePersonal>0?1:0;
     let paginaActualRoles = cantidadDeRoles>0?1:0;
     let paginaActualCliente = cantidadDeCliente>0?1:0;
+    let paginaActualProducto = cantidadDeProductos>0?1:0;
     let cantidadPorPagina = 4;
     
     let paginaTotalCategorias=cantidadDeCategorias/cantidadPorPagina;
     let paginaTotalPersonal=cantidadDePersonal/cantidadPorPagina;
     let paginaTotalRoles=cantidadDeRoles/cantidadPorPagina;
     let paginaTotalCliente=cantidadDeCliente/cantidadPorPagina;
+    let paginaTotalProducto=cantidadDeProductos/cantidadPorPagina;
     //Llamar a las funciones necesarias cuando carga la pagina
     mostrarCategorias();
     mostrarRoles();
     mostrarPersonal();
     mostrarClientes();
-    
+    mostrarProductos();
+
+
+    function mostrarProductos(){
+        let btnPaginacionProductoIzquierda = document.querySelector('#productos div.pagination li:first-of-type');
+        let btnPaginacionProductoDerecha = document.querySelector('#productos div.pagination li:last-of-type');
+        paginaActualProducto==1?btnPaginacionProductoIzquierda.style.display='none':btnPaginacionProductoIzquierda.style.display='inline';
+        paginaActualProducto==Math.ceil(paginaTotalProducto)?btnPaginacionProductoDerecha.style.display='none':btnPaginacionProductoDerecha.style.display='inline';
+        if (paginaActualProducto==0) {
+            btnPaginacionProductoIzquierda.style.display='none';
+            btnPaginacionProductoDerecha.style.display='none';
+        }
+        if(paginaActualProducto!=0){
+            let xmlProducto = new XMLHttpRequest();
+            xmlProducto.overrideMimeType('text/xml');
+            const  data = {
+                datosPorPagina: cantidadPorPagina,
+                paginaActual: (paginaActualProducto-1)*cantidadPorPagina
+            };
+            xmlProducto.onreadystatechange = function(){
+                if (this.readyState==4 && this.status==200) {
+                    let productos = JSON.parse(this.response);
+                    productos.forEach(producto=>{
+                        templateProductos.querySelector('.productosEncargado div img').setAttribute('src', `imgProductos/${producto.urlImagen}`);
+                        templateProductos.querySelector('.productosEncargado div h3:first-of-type').textContent=producto.nombre;
+                        templateProductos.querySelector('.productosEncargado div h3:nth-of-type(2)').textContent=producto.Categoria;
+                        templateProductos.querySelector('.productosEncargado div h3:nth-of-type(3)').textContent=producto.precio;
+                        templateProductos.querySelector('.productosEncargado div h3:nth-of-type(4)').textContent=producto.stock;
+                        templateProductos.querySelector('.productosEncargado div a.btnEliminarProducto').setAttribute('href', `modificarProducto.php?idProducto=${producto.idProducto}&delete=true`);
+                        templateProductos.querySelector('.productosEncargado div a.btnModificarProducto').setAttribute('href', `modificarProducto.php?idProducto=${producto.idProducto}`);
+                        const clon = templateProductos.cloneNode(true);
+                        fragmentProductos.appendChild(clon);
+                    });
+                    divProductos.innerHTML=``;
+                    divProductos.appendChild(fragmentProductos)
+                }
+            }
+            xmlProducto.open('POST', 'ajax/producto-mostrar.php', true);
+            xmlProducto.send(JSON.stringify(data));
+        }
+    }
+
     function mostrarClientes(){
         let btnPaginacionClienteIzquierda=document.querySelector('#cliente div.pagination li:first-of-type');
         let btnPaginacionClienteDerecha=document.querySelector('#cliente div.pagination li:last-of-type');
