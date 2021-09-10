@@ -1,4 +1,3 @@
-'use strict';
 let XML = new XMLHttpRequest();
 XML.overrideMimeType('text/xml');
 const re=/^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
@@ -18,6 +17,16 @@ const mostrarMensaje = function(msg, claseCss){
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
+    if (document.querySelector('.ingresarProducto')!=null) {
+        document.getElementById('imgProduct').addEventListener('change',()=>{
+            document.getElementById('inputFileShow').innerHTML = document.getElementById('imgProduct').files[0]!=undefined?document.getElementById('imgProduct').files[0].name:`Adjuntar Archivo`})
+        document.getElementById('form').addEventListener('submit',(e)=>{
+            e.preventDefault();
+            agregarProducto();
+        });
+    }
+
+
     if (document.querySelector('.actualizarCliente')!=null) {
         document.getElementById('btnEnviar').addEventListener('click',e=>{
             e.preventDefault();
@@ -52,7 +61,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 
     if (document.querySelector('.ingresarEmpleado')!=null) {
-        mostrarRolesEnEmpleados();
         document.getElementById('form').addEventListener('submit',(e)=>{
             e.preventDefault();
             agregarEmpleado();
@@ -71,6 +79,63 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })
 
 
+const agregarProducto = function(){
+    let nameProduct = document.getElementById('nameProduct').value.trim();
+    let stockProduct = document.getElementById('stockProduct').value;
+    let priceProduct = document.getElementById('priceProduct').value;
+    let imgProduct = document.getElementById('imgProduct').files[0];
+    if(nameProduct!=''&&stockProduct!=''&&priceProduct!='')
+    {
+        if(!isNaN(stockProduct))
+        {
+            if(!isNaN(priceProduct))
+            {
+                if(imgProduct!=undefined)
+                {
+                    let extension = imgProduct.name.split('.').pop().toLowerCase();
+                    if(extension=='jpg' || extension=='png' || extension=='jpeg')
+                    {
+                        if(imgProduct.size<50000000)
+                        {
+                            console.log('Si');
+                            let form = document.getElementById('form');
+                            XML.onreadystatechange = function()
+                            {
+                                if(this.readyState==4 && this.status==200)
+                                {
+
+                                }
+                            }
+                            XML.open('POST', 'ajax/producto-mod.php', true);
+                            XML.send(new FormData(form));                  
+                        }else{mostrarMensaje('El archivo no debe pesar mas de 5MB.')}
+                    }else{mostrarMensaje('La extension de la imagen es incorrecta', 'eIncorrecto')}
+                }else{mostrarMensaje('No ha seleccionado ninguna imagen', 'ePrecaucion')}
+            }else{mostrarMensaje('El precio no es un valor numerico','ePrecaucion')}
+        }else{mostrarMensaje('El stock no es un valor numerico','ePrecaucion')}
+    }else{mostrarMensaje('Los campos no pueden estar vacios!', 'eIncorrecto')}
+}
+
+const agregarRol= function(){
+    let name = document.getElementById('Name').value;
+    name = name.trim();
+    if (name!='') {
+        const data = {
+            rol: name,
+            insert: true
+        };
+        XML.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.response) {
+                    mostrarMensaje('Insertado Correctamente', 'eCorrecto');
+                }else{mostrarMensaje('Error al momento de Insertar', 'eIncorrecto')}
+            }
+        };
+        XML.open('POST', 'ajax/rol-mod.php');
+        XML.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        XML.send(JSON.stringify(data));
+    }else{mostrarMensaje('El texto no puede estar vacio!', 'eIncorrecto')}
+}
 const actualizarCliente = function(){
     let activoActual = document.getElementById('activo').value;
     activoActual = activoActual==1?true:false;
@@ -123,29 +188,6 @@ const enviarMail = function(nombreEmpresaMail, emailEmpresaMail){
     xmlMail.open('POST', 'Assets/mail.php', true);
     xmlMail.send(JSON.stringify(dataMail));
 }
-
-
-const agregarRol= function(){
-    let name = document.getElementById('Name').value;
-    name = name.trim();
-    if (name!='') {
-        const data = {
-            rol: name,
-            insert: true
-        };
-        XML.onreadystatechange = function(){
-            if (this.readyState == 4 && this.status == 200) {
-                if (this.response) {
-                    mostrarMensaje('Insertado Correctamente', 'eCorrecto');
-                }else{mostrarMensaje('Error al momento de Insertar', 'eIncorrecto')}
-            }
-        };
-        XML.open('POST', 'ajax/rol-mod.php');
-        XML.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        XML.send(JSON.stringify(data));
-    }else{mostrarMensaje('El texto no puede estar vacio!', 'eIncorrecto')}
-}
-
 const actualizarRol = function(){
     let name = document.getElementById('Name').value;
     name = name.trim();
@@ -305,32 +347,6 @@ const agregarEmpleado = function(){
 
 
     }else{mostrarMensaje('Los campos no pueden estar vacios!', 'eIncorrecto')}
-}
-
-const mostrarRolesEnEmpleados = function(){
-    const divRoles = document.querySelector('#rolPersonal');
-    const templateRol = document.querySelector('#templateRol').content;
-    const fragmentRol = document.createDocumentFragment();
-    let xmlRol = new XMLHttpRequest();
-    xmlRol.overrideMimeType('text/xml');
-    xmlRol.onreadystatechange = function()
-    {
-        if (this.readyState== 4 && this.status ==200)
-        {
-            
-            let rolesEmpleado = JSON.parse(this.response);
-            rolesEmpleado.forEach(roles =>
-            {
-                templateRol.querySelector('option').value=roles.idRol;
-                templateRol.querySelector('option').textContent=roles.Rol;
-                const clon = templateRol.cloneNode(true);
-                fragmentRol.appendChild(clon);
-            });
-            divRoles.appendChild(fragmentRol);
-        }
-    };
-    xmlRol.open('GET', 'ajax/rol-mostrar.php', true);
-    xmlRol.send();
 }
 
 const actualizarEmpleado = function(){

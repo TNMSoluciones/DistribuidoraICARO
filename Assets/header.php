@@ -37,7 +37,6 @@
     <a href=""><p>Carrito</p></a>
     <a href="index.php"><p>Inicio</p></a>
     <a href=""><p>Contactanos</p></a>
-    <a href=""><p>Sobre Nosotros</p></a>
     <a href="productos.php"><p>Producto</p></a>
     <a href="pagempleado.php"><p>Empleados</p></a>
 </div>

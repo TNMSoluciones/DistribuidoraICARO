@@ -3,6 +3,8 @@
     session_start();
     include_once 'Assets/header.php';
     include_once 'BD/conBD.php';
+    $pdo=pdo_conectar_mysql();
+    $sqlRol='SELECT * FROM roles ORDER BY Rol';
     $idEmpleadoSeleccionado=isset($_GET['idPersonal']) ? $_GET['idPersonal'] : 0;
     //Comprobar si le dio al boton de agregar
     if ($idEmpleadoSeleccionado==0) {
@@ -24,7 +26,14 @@
                         <input id="passwd" autocomplete="new-password" type="password" placeholder="Ingrese la contraseña">
                         <input id="passwdConfirm" autocomplete="new-password" type="password" placeholder="Confirme la contraseña">
                         <label for="rolPersonal" style="margin-top: 20px;">¿A cual rol pertenecera?</label>
-                        <select id="rolPersonal"></select>
+                        <select id="rolPersonal">
+                        <?php 
+                            foreach($pdo->query($sqlRol) as $rol)
+                            {
+                                echo '<option value="'.$rol['idRol'].'">'.$rol['Rol'].'</option>';
+                            }
+                        ?>
+                        </select>
                         <input id="btnEnviar" type="submit" value="Agregar">
                     </form>
                 </div>
@@ -38,11 +47,9 @@
             </div>
         <?php
     }else{
-        $pdo=pdo_conectar_mysql();
         $sql=$pdo->prepare('SELECT personal.idPersonal, personal.PrimerNombre, personal.SegundoNombre, personal.Apellido, personal.Correo, personal.Password, roles.idRol, roles.Rol FROM personal JOIN roles ON roles.idRol=personal.idRol WHERE idPersonal=?');
         $sql->execute([$idEmpleadoSeleccionado]);
         $empleado=$sql->fetch(PDO::FETCH_ASSOC);
-        $sqlRol='SELECT * FROM roles';
         if (!isset($_GET['delete'])) { 
             //Cuando quiere actualizar
             ?>
