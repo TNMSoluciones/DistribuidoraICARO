@@ -2,6 +2,7 @@
 <?php
     session_start();
     include_once 'Assets/header.php';
+    mostrarHeader('Modificar Clientes');
     include_once 'BD/conBD.php';
     $pdo=pdo_conectar_mysql();
     $idClienteSeleccionada=isset($_GET['idCliente']) ? $_GET['idCliente'] : 0;

@@ -9,11 +9,10 @@
         $passwd = $data->password;
         $sqlLoginClientes=$pdo->query("SELECT COUNT(idCliente) FROM cliente WHERE CorreoCliente='$email'")->fetch(PDO::FETCH_ASSOC);
         $sqlLoginClientes=$sqlLoginClientes['COUNT(idCliente)'];
-        if ($sqlLoginClientes==1) {
-            
+        if ($sqlLoginClientes==1)
+        {
             $sqlClientes=$pdo->prepare("SELECT idCliente, NombreEmpresa, CorreoCliente, RUT, Activo, Password FROM cliente WHERE CorreoCliente=?");
             $sqlClientes->execute([$email]);
-            $json = array();
             $usuario=$sqlClientes->fetch(PDO::FETCH_ASSOC);
             if ($usuario)
             {
@@ -32,7 +31,6 @@
         }else if($sqlLoginClientes==0){
             $sqlPersonal=$pdo->prepare("SELECT personal.*, roles.Rol FROM personal JOIN roles ON roles.idRol=personal.idRol WHERE Correo=?");
             $sqlPersonal->execute([$email]);
-            $json = array();
             $usuario=$sqlPersonal->fetch(PDO::FETCH_ASSOC);
             if ($usuario)
             {

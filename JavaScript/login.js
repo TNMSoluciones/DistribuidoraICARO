@@ -38,7 +38,8 @@ const login = function(){
             xml.onreadystatechange = function(){
                 if (this.status==200 && this.readyState==4) {
                     if (this.response==1) {
-                        mostrarMensaje('Inicio Sesion', 'eCorrecto');
+                        location.href='index.php';
+                        // mostrarMensaje('Inicio Sesion', 'eCorrecto');
                         document.getElementById('loginDerecha').style.pointerEvents='none';
                         setTimeout(function() {window.location="index.php";}, 4000);
                     }else if(this.response==2){

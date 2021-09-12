@@ -2,6 +2,7 @@
 <?php
     session_start();
     include_once 'Assets/header.php';
+    mostrarHeader('Modificar Empleados');
     include_once 'BD/conBD.php';
     $pdo=pdo_conectar_mysql();
     $sqlRol='SELECT * FROM roles ORDER BY Rol';

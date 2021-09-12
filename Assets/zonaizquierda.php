@@ -22,16 +22,16 @@
     @media (max-width: 875px)
     {
         #zonaIzquierda{
-            width: 100%;
-            height: 18vh;
+            width: 100vw;
+            height: 50.81vw;
             border-right: none;
             border-bottom: 1px solid black;
             box-sizing: border-box;
         }
-        #zonaIzquierda img{
-            width: fit-content;
-            height: 16vh;
-            margin: 1vh 0;
+        #zonaIzquierda a, #zonaIzquierda img{
+            width: 100%;    
+            height: 50.81vw;
+            margin: 0;
             display:block;
             margin-left:auto;
             margin-right:auto;

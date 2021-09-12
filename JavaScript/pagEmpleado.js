@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const fragmentCliente = document.createDocumentFragment();
     //Cosas necesarias para crear y mostrar los productos
     const divProductos = document.querySelector('#productos div:nth-of-type(2)');
-    const templateProductos = document.getAnimations('templateProductos');
+    const templateProductos = document.getElementById('templateProductos').content;
     const fragmentProductos = document.createDocumentFragment();
     //Variables
     let paginaActualCategorias = cantidadDeCategorias>0?1:0;
@@ -60,14 +60,14 @@ document.addEventListener('DOMContentLoaded',()=>{
             xmlProducto.onreadystatechange = function(){
                 if (this.readyState==4 && this.status==200) {
                     let productos = JSON.parse(this.response);
-                    productos.forEach(producto=>{
-                        templateProductos.querySelector('.productosEncargado div img').setAttribute('src', `imgProductos/${producto.urlImagen}`);
+                    productos.forEach(producto =>{
+                        templateProductos.querySelector('.productosEncargado div img').setAttribute('src', producto.urlImagen);
                         templateProductos.querySelector('.productosEncargado div h3:first-of-type').textContent=producto.nombre;
                         templateProductos.querySelector('.productosEncargado div h3:nth-of-type(2)').textContent=producto.Categoria;
-                        templateProductos.querySelector('.productosEncargado div h3:nth-of-type(3)').textContent=producto.precio;
-                        templateProductos.querySelector('.productosEncargado div h3:nth-of-type(4)').textContent=producto.stock;
-                        templateProductos.querySelector('.productosEncargado div a.btnEliminarProducto').setAttribute('href', `modificarProducto.php?idProducto=${producto.idProducto}&delete=true`);
-                        templateProductos.querySelector('.productosEncargado div a.btnModificarProducto').setAttribute('href', `modificarProducto.php?idProducto=${producto.idProducto}`);
+                        templateProductos.querySelector('.productosEncargado div h3:nth-of-type(3)').textContent='$'+producto.precio;
+                        templateProductos.querySelector('.productosEncargado div h3:nth-of-type(4)').textContent='Stock disponible: '+producto.stock;
+                        templateProductos.querySelector('.productosEncargado div a.btnEliminarProducto').setAttribute('href', `modificarProductos.php?idProducto=${producto.idProducto}&delete=true`);
+                        templateProductos.querySelector('.productosEncargado div a.btnModificarProducto').setAttribute('href', `modificarProductos.php?idProducto=${producto.idProducto}`);
                         const clon = templateProductos.cloneNode(true);
                         fragmentProductos.appendChild(clon);
                     });
@@ -271,6 +271,22 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.querySelector('#btnPagCatI').addEventListener('click', ()=>{
         paginaActualCategorias--;
         mostrarCategorias();
+    });
+    document.querySelector('#btnPagClienteD').addEventListener('click', ()=>{
+        paginaActualCliente++;
+        mostrarClientes();
+    });
+    document.querySelector('#btnPagClienteI').addEventListener('click', ()=>{
+        paginaActualCliente--;
+        mostrarClientes();
+    });
+    document.querySelector('#btnPagProductoD').addEventListener('click', ()=>{
+        paginaActualProducto++;
+        mostrarProductos();
+    });
+    document.querySelector('#btnPagProductoI').addEventListener('click', ()=>{
+        paginaActualProducto--;
+        mostrarProductos();
     });
 
     

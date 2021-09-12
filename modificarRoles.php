@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<script src="JavaScript/functionCRUD.js"></script>
 <?php 
     session_start();
     include_once 'Assets/header.php';
+    mostrarHeader('Modificar Roles');
     include_once 'BD/conBD.php';
     $idRolSeleccionada=$_GET['idRol']!=0 ? $_GET['idRol'] : 0;
     //Comprobar si se le dio al boton de agregar
@@ -17,13 +17,13 @@
                 </div>
                 <div class="insertarAca"></div>
             </div>
-        <?php
+            <?php
     }else if($idRolSeleccionada<0){
         ?>
             <div id="actualizar">
                 <h2 style="text-align:center">ID Inexistente</h2>
             </div>
-        <?php
+            <?php
     }else{
         $pdo=pdo_conectar_mysql();
         $sql=$pdo->prepare('SELECT * FROM roles WHERE idRol=?');
@@ -61,5 +61,6 @@
             <?php
         }
     }
-?>
+    ?>
 <link rel="stylesheet" href="Style/CRUDStyles.css">
+<script src="JavaScript/functionCRUD.js"></script>

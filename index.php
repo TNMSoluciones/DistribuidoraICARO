@@ -1,8 +1,18 @@
 <?php 
     session_start();
-    if (isset($_SESSION["email"])) {}
+    if (isset($_SESSION)) {
+        ?>
+        <script>
+            console.log('<?=$_SESSION['idUsuario']?>');
+            console.log('<?=$_SESSION['nombre']?>')
+            console.log('<?=$_SESSION['correo']?>')
+            console.log('<?=$_SESSION['rut']?>')
+        </script>
+        <?php
+    }
     include_once 'Assets/header.php';
-?> 
+    mostrarHeader('Distribuidora ICARO');
+?>
 
     <div id="slidervista">
         <figure id="slidercontenido">

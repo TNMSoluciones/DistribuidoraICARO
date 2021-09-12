@@ -97,13 +97,23 @@ const agregarProducto = function(){
                     {
                         if(imgProduct.size<50000000)
                         {
-                            console.log('Si');
                             let form = document.getElementById('form');
                             XML.onreadystatechange = function()
                             {
                                 if(this.readyState==4 && this.status==200)
                                 {
-
+                                    console.log(this.response);
+                                    if (this.response==1) {
+                                        mostrarMensaje('Insertado Correctamente', 'eCorrecto');
+                                    }else if(this.response==2){
+                                        mostrarMensaje('Error al momento de Insertar', 'eIncorrecto')
+                                    }else if(this.response==3){
+                                        mostrarMensaje('Error al subir el archivo', 'eIncorrecto');
+                                    }else if(this.response==4){
+                                        mostrarMensaje('Error con el archivo, ya creado', 'ePrecaucion')
+                                    }else if(this.response==5){
+                                        mostrarMensaje('Producto ya registrado', 'eIncorrecto');
+                                    }else{mostrarMensaje('Error Desconocido', 'eIncorrecto')}
                                 }
                             }
                             XML.open('POST', 'ajax/producto-mod.php', true);

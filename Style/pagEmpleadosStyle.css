@@ -14,6 +14,10 @@ body
     /* outline: 1px solid black; */
 }
 #encargado div, #productos div, #personal div, #roles div, #categoriasProduct div, #cliente div{outline: 1px solid black}
+#productos div:nth-child(2){
+    display: flex;
+    align-items: stretch;
+}
 #encargado div h1, #productos div h1, #personal div h1, #roles div h1, #categoriasProduct div h1, #cliente div h1{
     height: 60px;
     margin: 0;
@@ -24,34 +28,6 @@ body
 }
 #roles, #categoriasProduct{width: 35%}
 #categoriasProduct{margin-left: 0;}
-.comprasEncargado div, .productosEncargado div, .empleados div, .rolesParaEmpleado div, .categoriaProduct div, .clientesEncargado div
-{
-    width: 100%;
-    height: 50px;
-    padding: 10px 0;
-    outline: 1px solid black;
-    float: left;
-}
-.comprasEncargado div .imgproducto, .productosEncargado div .imgproducto
-{
-    width: 50px;
-    height: 50px;
-    float: left;
-    margin-left: 1vw;
-    user-select: none;
-}
-.comprasEncargado div h3, .productosEncargado div h3, .empleados div h3, .rolesParaEmpleado div h3, .categoriaProduct div h3, .clientesEncargado div h3{
-    display: inline-block;
-    font-size: 1vw;
-    font-weight: 300;
-    height: 2vh;
-    margin: calc(30px - 1vh) 0 0 20px;
-}
-.txtDerecha{
-    float: right;
-    margin-right: 30px !important;
-}
-
 .btnDerecha, .btnAdd{
     width: 4vw;
     height: 1.5vw;
@@ -75,6 +51,68 @@ body
     outline-color: rgb(120, 120, 120);
     color: white;
 }
+.comprasEncargado div, .empleados div, .rolesParaEmpleado div, .categoriaProduct div, .clientesEncargado div
+{
+    width: 100%;
+    height: 50px;
+    padding: 10px 0;
+    outline: 1px solid black;
+    float: left;
+}
+.comprasEncargado div .imgproducto
+{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 1vw;
+    user-select: none;
+}
+.comprasEncargado div h3, .empleados div h3, .rolesParaEmpleado div h3, .categoriaProduct div h3, .clientesEncargado div h3{
+    display: inline-block;
+    font-size: 1vw;
+    font-weight: 300;
+    height: 2vh;
+    margin: calc(30px - 1vh) 0 0 20px;
+}
+.txtDerecha{
+    float: right;
+    margin-right: 30px !important;
+}
+.productosEncargado{
+    width: 25%;
+    float: left;
+}
+.productosEncargado div:first-of-type{height: 20vw;}
+.productosEncargado div img{
+    width: 99%;
+    max-height: 20vw;
+}
+.productosEncargado div .imgDiv{
+    width: 100%;
+    height: 20vw;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnProductos{
+    float: left;
+    width:45%;
+    margin: 0;
+}
+.btnProductos:nth-child(2){margin: 0 0 0 10%;}
+.aDiv{
+    float: left;
+    width: 70%;
+    outline: none !important;
+    margin: 1vw 0 1vw 15%;
+}
+.productosEncargado div h3{
+    font-size: 1vw;
+    font-weight: 300;
+    height: 2vh;
+    text-indent: 6px;
+}
+
 #eliminarCategoria{
     width: 15vw;
     height: 13vw;

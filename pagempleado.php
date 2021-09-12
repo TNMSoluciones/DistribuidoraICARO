@@ -3,6 +3,7 @@
 <?php 
     session_start();
     include_once 'Assets/header.php';
+    mostrarHeader('Empleados');
     include_once 'BD/conBD.php';
     $pdo=pdo_conectar_mysql();
     $sqlCantidadCategorias=$pdo->query('SELECT COUNT(idCategoria) FROM categorias')->fetch(PDO::FETCH_ASSOC);
@@ -119,14 +120,17 @@
     <template id="templateProductos">
         <div class="productosEncargado">
             <div>
-                <img src="img/usuario.png" class="imgproducto" alt="fotoproducto">
+                <div class="imgDiv">
+                    <img src="" class="imgproducto" alt="fotoproducto">
+                </div>
                 <h3>Nombre del producto</h3>
                 <h3>Categoria del producto</h3>
-                <a class="btnDerecha btnEliminarProducto">Eliminar</a>
-                <a class="btnDerecha btnModificarProducto">Modificar</a>
-                <a href="" class="btnDerecha">Modificar</a>
-                <h3 class="txtDerecha">CostoPorUnidad</h3>
-                <h3 class="txtDerecha">Cantidad</h3>
+                <h3>CostoPorUnidad</h3>
+                <h3>Cantidad</h3>
+                <div class="aDiv">
+                    <a class="btnDerecha btnProductos btnModificarProducto">Modificar</a>
+                    <a class="btnDerecha btnProductos btnEliminarProducto">Eliminar</a>
+                </div>
             </div>
         </div>  
     </template>

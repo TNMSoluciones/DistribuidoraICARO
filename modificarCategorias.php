@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<script src="JavaScript/functionCRUD.js"></script>
 <?php 
     session_start();    
     include_once 'Assets/header.php';
+    mostrarHeader('Modificar Categorias');
     include_once 'BD/conBD.php';
     $idCatSeleccionada=$_GET['idCategoria']!=0 ? $_GET['idCategoria'] : 0;
     //Comprobar si se le dio al boton de agregar
@@ -17,13 +17,13 @@
                 </div>
                 <div class="insertarAca"></div>
             </div>
-        <?php
+            <?php
     }else if($idCatSeleccionada<0){
         ?>
             <div id="actualizar">
                 <h2 style="text-align:center">ID Inexistente</h2>
             </div>
-        <?php
+            <?php
     }else{
         $pdo=pdo_conectar_mysql();
         $sql=$pdo->prepare('SELECT * FROM categorias WHERE idCategoria=?');
@@ -61,5 +61,6 @@
             <?php
         }
     }
-?>
+    ?>
 <link rel="stylesheet" href="Style/CRUDStyles.css">
+<script src="JavaScript/functionCRUD.js"></script>

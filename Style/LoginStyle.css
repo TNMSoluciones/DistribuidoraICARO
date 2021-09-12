@@ -70,15 +70,26 @@ body{margin: 0; padding: 0;}
 
 @media (max-width: 875px){
     #loginDerecha{
+        width: 100%;    
+        display: inline-block;
+        height: calc(100vh - 50.81vw);
+    }
+    #loginDerecha form{
+        display: inline-block;
         width: 100%;
-        height: 82vh;
+        height: max-content;
+    }
+    #loginDerecha form label{
+        text-align: left;
     }
     #loginDerecha form label, #loginDerecha form input{
-        width: 60%;
-        margin-left: 20%;
-        margin-top: 1vw;
+        width: 80%;
+        margin: 2vw 10%;
+        height: 6vw;
+        line-height: 6vw;
     }   
     #loginDerecha form button:last-of-type,#loginDerecha form a{
+        float: left;
         width: 40%;
         margin: 6vw 30% 0;
         font-size: 100%;

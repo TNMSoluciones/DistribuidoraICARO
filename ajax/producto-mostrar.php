@@ -22,22 +22,5 @@
         }
         $jsonString = json_encode($json);
         echo $jsonString;
-    }else{
-        $sql=$pdo->prepare('SELECT * FROM producto');
-        $sql->execute();
-        $json = array();
-        while ($fila = $sql->fetch(PDO::FETCH_ASSOC)) {
-            $json[]= array(
-                'idProducto' => $fila['idProducto'],
-                'nombre' => $fila['Nombre'],
-                'precio' => $fila['Precio'],
-                'destacado' => $fila['Destacado']==1?true:false,
-                'Categoria' => $fila['Categoria'],
-                'stock' => $fila['Stock'],
-                'urlImagen' => $fila['Imagen']
-            );
-        }
-        $jsonString = json_encode($json);
-        echo $jsonString;
     }
 ?>

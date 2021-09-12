@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once 'Assets/header.php';
+    mostrarHeader('Productos');
 ?>
 <div id="popup">
     <img src="">
