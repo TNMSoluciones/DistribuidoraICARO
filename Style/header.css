@@ -21,6 +21,9 @@ header img#carrito
     margin-top: calc(7.5vh - 3.85vw/2);
 }
 header img#carrito:hover{cursor: pointer}
+
+    header #perfil a:visited{color: black}
+    header #perfil a:active{color: rgb(229,143,83)}
 header #perfilusr img
 {
     width: 3.85vw;
@@ -49,7 +52,6 @@ div#categorias
 {
     width: 35vw;
     height: 100vh;
-    background-color: aqua;
     position: absolute;
     z-index: 2;
     margin-left: -35vw;
@@ -157,6 +159,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
         transition: none;
         position: relative;
         float: left;
+        
     }
     div#categorias a{
         text-decoration: none;
@@ -269,11 +272,11 @@ div#categorias p:first-of-type{margin-top: 30vh}
         width: 100%;
         top: 0;
         margin-left: -100%;
+        background-color: #D98851;
     }
     div#categorias a{
         text-decoration: none;
         text-align: center;
-        
     }
     div#categorias p:first-of-type{
         margin: 0;
@@ -295,6 +298,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
     div#categorias a:nth-of-type(3) p{
         margin-top: 20vh;
     }
+    div#categorias a:first-of-type p, div#categorias a:nth-of-type(2) p{font-weight: 600;}
     div#categorias a:first-of-type img,div#categorias a:nth-child(2) img{
         width: 4vh;
         padding: 1vh;

@@ -41,16 +41,16 @@ function mostrarHeader($title){
                 <a href="index.php"><p>Inicio</p></a>
                 <a href="contactanos.php"><p>Contactanos</p></a>
                 <a href="productos.php"><p>Producto</p></a>
-                <a href="pagempleado.php"><p>Empleados</p></a>
-            </div>
-    ';
+        ';
+        echo isset($_SESSION['rol'])?'<a href="pagempleado.php"><p>Empleados</p></a>':'';
+        echo '</div>';
     if (isset($_SESSION["nombre"])) {
         ?><script>
             document.querySelector('header #perfil p').innerHTML= "<?php echo $_SESSION['nombre']?>";
             document.querySelector('header #perfil h1').innerHTML= "Cerrar Sesion";
             document.querySelector('header #perfil a:first-of-type').setAttribute('href', 'Assets/logout.php');
             document.querySelector('header #perfil a:last-of-type').setAttribute('href', 'Assets/logout.php');
-            document.querySelector('div#categorias a:first-of-type').innerHTML = "Cerrar Sesion";
+            document.querySelector('div#categorias a:first-of-type').innerHTML = "<p>Cerrar Sesion</p>";
             document.querySelector('div#categorias a:first-of-type').setAttribute('href','Assets/logout.php');
         </script><?php
     }

@@ -5,7 +5,7 @@ body
     min-height: 100vh;
     position: relative;
 }
-#encargado, #productos, #personal, #roles, #categoriasProduct, #cliente
+#encargado, #productos, #personal, #categoriasProduct, #cliente
 {
     width: 70%;
     height: auto;
@@ -13,12 +13,15 @@ body
     float: left;
     /* outline: 1px solid black; */
 }
-#encargado div, #productos div, #personal div, #roles div, #categoriasProduct div, #cliente div{outline: 1px solid black}
+#encargado div, #productos div, #personal div, #categoriasProduct div, #cliente div{outline: 1px solid black}
 #productos div:nth-child(2){
     display: flex;
     align-items: stretch;
 }
-#encargado div h1, #productos div h1, #personal div h1, #roles div h1, #categoriasProduct div h1, #cliente div h1{
+#productos div:nth-child(2) div:nth-child(2){
+    display: block;
+}
+#encargado div h1, #productos div h1, #personal div h1, #categoriasProduct div h1, #cliente div h1{
     height: 60px;
     margin: 0;
     line-height: 60px;
@@ -26,8 +29,6 @@ body
     display: inline-block;
     font-weight: 700;
 }
-#roles, #categoriasProduct{width: 35%}
-#categoriasProduct{margin-left: 0;}
 .btnDerecha, .btnAdd{
     width: 4vw;
     height: 1.5vw;
@@ -51,7 +52,7 @@ body
     outline-color: rgb(120, 120, 120);
     color: white;
 }
-.comprasEncargado div, .empleados div, .rolesParaEmpleado div, .categoriaProduct div, .clientesEncargado div
+.comprasEncargado div, .empleados div, .categoriaProduct div, .clientesEncargado div
 {
     width: 100%;
     height: 50px;
@@ -67,15 +68,20 @@ body
     margin-left: 1vw;
     user-select: none;
 }
-.comprasEncargado div h3, .empleados div h3, .rolesParaEmpleado div h3, .categoriaProduct div h3, .clientesEncargado div h3{
-    display: inline-block;
-    font-size: 1vw;
-    font-weight: 300;
-    height: 2vh;
-    margin: calc(30px - 1vh) 0 0 20px;
+.comprasEncargado div h3, .empleados div h3, .categoriaProduct div h3, .clientesEncargado div h3{
+    float: left;
+    width:20%;
+    height: 3vh;
+    font: normal normal normal 1vw/3vh 'Roboto Condensed', sans-serif;
+    text-indent: 5px;
+    margin: calc(30px - 1.5vh) 0 0 0;
+    overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 .txtDerecha{
-    float: right;
+    width: auto !important;
+    float: right !important;
     margin-right: 30px !important;
 }
 .productosEncargado{

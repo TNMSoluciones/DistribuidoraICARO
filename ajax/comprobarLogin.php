@@ -29,7 +29,7 @@
                 }else{echo 3;}
             }else{echo 4;}
         }else if($sqlLoginClientes==0){
-            $sqlPersonal=$pdo->prepare("SELECT personal.*, roles.Rol FROM personal JOIN roles ON roles.idRol=personal.idRol WHERE Correo=?");
+            $sqlPersonal=$pdo->prepare("SELECT personal.*, roles.* FROM personal JOIN roles ON roles.idRol=personal.idRol WHERE Correo=?");
             $sqlPersonal->execute([$email]);
             $usuario=$sqlPersonal->fetch(PDO::FETCH_ASSOC);
             if ($usuario)
@@ -40,6 +40,7 @@
                     $_SESSION['idUsuario'] = $usuario['idPersonal'];
                     $_SESSION['nombre']=$nombreCompleto;
                     $_SESSION['correo']=$usuario['Correo'];
+                    $_SESSION['idRol']=$usuario['idRol'];
                     $_SESSION['rol']=$usuario['Rol'];
                     echo 1;
                 }else{echo 3;}

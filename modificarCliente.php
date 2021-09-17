@@ -62,6 +62,7 @@
             <?php
         }
     }
+    include_once 'Assets/footer.php';
 ?>
 
 

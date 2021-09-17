@@ -1,5 +1,5 @@
 *{font-family: 'Roboto Condensed', sans-serif}
-body{margin: 0; padding: 0;}
+body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
 #registerDerecha
 {
     width: 67%;
@@ -76,17 +76,26 @@ body{margin: 0; padding: 0;}
 @media (max-width: 875px){
     #registerDerecha{
         width: 100%;
-        height: 82vh;
+        display: inline-block;
+        height: fit-content;
     }
-    #registerDerecha form label:first-of-type{
-        margin-top: 5vw;
+    #registerDerecha form{
+        float: left;
+        width: 100%;
+        height: max-content;
+        margin-top: 3vw;
+    }
+    #registerDerecha form label{
+        text-align: left;
     }
     #registerDerecha form label, #registerDerecha form input, #registerDerecha form select{
-        width: 60%;
-        margin-left: 20%;
-        margin-top: 1vw;
-    }   
-    #registerDerecha form button:last-of-type,#registerDerecha form a{
+        width: 80%;
+        height: 6vw;
+        margin: 2vw 10%;
+        line-height: 6vw;
+    }
+    #registerDerecha form button, #registerDerecha form a{
+        float: left;
         width: 40%;
         margin: 6vw 30% 0;
         font-size: 100%;
@@ -94,4 +103,5 @@ body{margin: 0; padding: 0;}
         padding: 0;
     }
     #registerDerecha form a{line-height: 4vh;}
+    #registerDerecha form button{margin-bottom: 5vw;}
 }

@@ -12,8 +12,13 @@
             $email = $data->email;
             $passwd = $data->passwd;
             $rolPersonal = $data->rolPersonal;
-            $sql=$pdo->prepare('UPDATE personal SET PrimerNombre=?, SegundoNombre=?, Apellido=?, Correo=?, Password=?, idRol=? WHERE idPersonal=?');
-            $sql->execute([$fName, $sName, $lastName, $email, $passwd, $rolPersonal, $idPersonal]);
+            if($passwd==''){
+                $sql=$pdo->prepare("UPDATE personal SET PrimerNombre='$fName', SegundoNombre='$sName', Apellido='$lastName', Correo='$email', idRol='$rolPersonal' WHERE idPersonal='$idPersonal'");
+            }else{
+                $passwdCifrada = password_hash($passwd, PASSWORD_DEFAULT);
+                $sql=$pdo->prepare("UPDATE personal SET PrimerNombre='$fName', SegundoNombre='$sName', Apellido='$lastName', Correo='$email', Password='$passwdCifrada', idRol='$rolPersonal' WHERE idPersonal='$idPersonal'");
+            }
+            $sql->execute();
             $res = $sql ? true : false;
             echo $res;
         }else{
@@ -26,8 +31,9 @@
                 $sName = isset($data->sName)?$data->sName:NULL;
                 $lastName = $data->lastName;
                 $passwd = $data->passwd;
+                $passwdCifrada = password_hash($passwd, PASSWORD_DEFAULT);
                 $rolPersonal = $data->rolPersonal;
-                $sqlInsert = $pdo->prepare("INSERT INTO personal(PrimerNombre, SegundoNombre, Apellido, Correo, Password, idRol) VALUES('$fName', '$sName', '$lastName', '$email', '$passwd', '$rolPersonal')");
+                $sqlInsert = $pdo->prepare("INSERT INTO personal(PrimerNombre, SegundoNombre, Apellido, Correo, Password, idRol) VALUES('$fName', '$sName', '$lastName', '$email', '$passwdCifrada', '$rolPersonal')");
                 $sqlInsert->execute();
                 echo 1;
             }else{echo 2;}

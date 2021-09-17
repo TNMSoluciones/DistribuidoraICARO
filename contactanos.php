@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once 'Assets/header.php';
     mostrarHeader('Contactanos');
 ?>
@@ -22,3 +23,4 @@
         </div>
     </div>
 </div>
+<?php include_once 'Assets/footer.php'; ?>

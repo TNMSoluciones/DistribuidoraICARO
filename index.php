@@ -1,15 +1,5 @@
 <?php 
     session_start();
-    if (isset($_SESSION)) {
-        ?>
-        <script>
-            console.log('<?=$_SESSION['idUsuario']?>');
-            console.log('<?=$_SESSION['nombre']?>')
-            console.log('<?=$_SESSION['correo']?>')
-            console.log('<?=$_SESSION['rut']?>')
-        </script>
-        <?php
-    }
     include_once 'Assets/header.php';
     mostrarHeader('Distribuidora ICARO');
 ?>
@@ -37,24 +27,72 @@
     <div id="section2">
         <h1>Articulos</h1>
         <div class="articulos">
-
+            <img src="" alt="">
+            <h1>Nombre Producto</h1>
+            <p>$Precio</p>
+            <p>Stock Si/No</p>
+            <a href="">Ver Mas</a>
         </div>
         <div class="articulos">
-        
+            <img src="" alt="">
+            <h1>Nombre Producto</h1>
+            <p>$Precio</p>
+            <p>Stock Si/No</p>
+            <a href="">Ver Mas</a>
         </div>
         <div class="articulos">
-
+            <img src="" alt="">
+            <h1>Nombre Producto</h1>
+            <p>$Precio</p>
+            <p>Stock Si/No</p>
+            <a href="">Ver Mas</a>
         </div>
     </div>
 
     <div id="section3">
         <h1>Articulos</h1>
-        <div class="articulos2"></div>
-        <div class="articulos2"></div>
-        <div class="articulos2"></div>
-        <div class="articulos2"></div>
-        <div class="articulos2"></div>
-        <div class="articulos2"></div>
+        <div class="articulos2">
+            <img src="" alt="">
+            <h1>Nombre Producto</h1>
+            <p>$Precio</p>
+            <p>Stock Si/No</p>
+            <a href="">Ver Mas</a>
+        </div>
+        <div class="articulos2">
+            <img src="" alt="">
+            <h1>Nombre Producto</h1>
+            <p>$Precio</p>
+            <p>Stock Si/No</p>
+            <a href="">Ver Mas</a>
+        </div>
+        <div class="articulos2">
+            <img src="" alt="">
+            <h1>Nombre Producto</h1>
+            <p>$Precio</p>
+            <p>Stock Si/No</p>
+            <a href="">Ver Mas</a>
+        </div>
+        <div class="articulos2">
+            <img src="" alt="">
+            <h1>Nombre Producto</h1>
+            <p>$Precio</p>
+            <p>Stock Si/No</p>
+            <a href="">Ver Mas</a>
+        </div>
+        <div class="articulos2">
+            <img src="" alt="">
+            <h1>Nombre Producto</h1>
+            <p>$Precio</p>
+            <p>Stock Si/No</p>
+            <a href="">Ver Mas</a>
+        </div>
+        <div class="articulos2">
+            <img src="" alt="">
+            <h1>Nombre Producto</h1>
+            <p>$Precio</p>
+            <p>Stock Si/No</p>
+            <a href="">Ver Mas</a>
+        </div>
     </div>
 
     

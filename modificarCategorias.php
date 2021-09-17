@@ -61,6 +61,7 @@
             <?php
         }
     }
-    ?>
+    include_once 'Assets/footer.php';
+?>
 <link rel="stylesheet" href="Style/CRUDStyles.css">
 <script src="JavaScript/functionCRUD.js"></script>

@@ -17,9 +17,12 @@ const mostrarMensaje = function(msg, claseCss){
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
-    if (document.querySelector('.ingresarProducto')!=null) {
+    if (document.querySelector('.ingresarProducto')!=null || document.querySelector('.actualizarProducto')!=null) {
         document.getElementById('imgProduct').addEventListener('change',()=>{
-            document.getElementById('inputFileShow').innerHTML = document.getElementById('imgProduct').files[0]!=undefined?document.getElementById('imgProduct').files[0].name:`Adjuntar Archivo`})
+            document.getElementById('inputFileShow').innerHTML = document.getElementById('imgProduct').files[0]!=undefined?document.getElementById('imgProduct').files[0].name:`Adjuntar Archivo`;
+        })
+    }
+    if (document.querySelector('.ingresarProducto')!=null) {
         document.getElementById('form').addEventListener('submit',(e)=>{
             e.preventDefault();
             agregarProducto();
@@ -38,16 +41,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
         document.getElementById('btnEliminarCliente').addEventListener('click', eliminarCliente);
     }
 
-    if (document.querySelector('.ingresarRol')!=null) {
-        document.getElementById('btnEnviar').addEventListener('click',agregarRol);
-    }
-    if (document.querySelector('.actualizarRol')!=null) {
-        document.getElementById('btnEnviar').addEventListener('click',actualizarRol);
-    }
-    if (document.querySelector('.eliminarRol')!=null) {
-        document.getElementById('btnCancelarEliminar').addEventListener('click',()=>{window.location="pagempleado.php";});
-        document.getElementById('btnEliminarRol').addEventListener('click',eliminarRol);
-    }
 
     if (document.querySelector('.ingresarCategoria')!=null) {
         document.getElementById('btnEnviar').addEventListener('click',agregarCategoria);
@@ -125,27 +118,6 @@ const agregarProducto = function(){
         }else{mostrarMensaje('El stock no es un valor numerico','ePrecaucion')}
     }else{mostrarMensaje('Los campos no pueden estar vacios!', 'eIncorrecto')}
 }
-
-const agregarRol= function(){
-    let name = document.getElementById('Name').value;
-    name = name.trim();
-    if (name!='') {
-        const data = {
-            rol: name,
-            insert: true
-        };
-        XML.onreadystatechange = function(){
-            if (this.readyState == 4 && this.status == 200) {
-                if (this.response) {
-                    mostrarMensaje('Insertado Correctamente', 'eCorrecto');
-                }else{mostrarMensaje('Error al momento de Insertar', 'eIncorrecto')}
-            }
-        };
-        XML.open('POST', 'ajax/rol-mod.php');
-        XML.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        XML.send(JSON.stringify(data));
-    }else{mostrarMensaje('El texto no puede estar vacio!', 'eIncorrecto')}
-}
 const actualizarCliente = function(){
     let activoActual = document.getElementById('activo').value;
     activoActual = activoActual==1?true:false;
@@ -197,54 +169,6 @@ const enviarMail = function(nombreEmpresaMail, emailEmpresaMail){
     }
     xmlMail.open('POST', 'Assets/mail.php', true);
     xmlMail.send(JSON.stringify(dataMail));
-}
-const actualizarRol = function(){
-    let name = document.getElementById('Name').value;
-    name = name.trim();
-    if (name!='') {
-        let namePlaceholder = document.getElementById('Name').placeholder;
-        if (name!=namePlaceholder) {
-            const data = {
-                idRol: document.getElementById('idRol').value,
-                rol: name,
-                insert: false
-            };
-            XML.onreadystatechange = function(){
-                if(this.readyState == 4 && this.status == 200){
-                    if (this.response) {
-                        mostrarMensaje('Actualizacion Correcta', 'eCorrecto');
-                        document.getElementById('Name').placeholder = document.getElementById('Name').value;
-                    }else{mostrarMensaje('Actualizacion Incorrecta', 'eIncorrecto')}
-                }
-            };
-            XML.open('POST', 'ajax/rol-mod.php');
-            XML.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            XML.send(JSON.stringify(data));
-        }else{
-            mostrarMensaje('Intenta guardar el mismo texto que el actual', 'ePrecaucion');
-        }
-    }else{
-        mostrarMensaje('El texto no puede estar vacio!', 'eIncorrecto');
-    }
-}
-
-const eliminarRol = function(){
-    const data = {
-        idRol: document.getElementById('idRol').value,
-        delete: true
-    };
-    XML.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            if (this.response) {
-                mostrarMensaje('Eliminado Correctamente', 'eCorrecto')
-                document.getElementById('actualizar').style.pointerEvents='none';
-                setTimeout(()=>{window.location="pagempleado.php";}, 4000);
-            }else{mostrarMensaje('No se pudo eliminar', 'eIncorrecto')}
-        }
-    };
-    XML.open('POST', 'ajax/rol-mod.php');
-    XML.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    XML.send(JSON.stringify(data));   
 }
 
 const agregarCategoria = function(){
@@ -367,14 +291,14 @@ const actualizarEmpleado = function(){
     let passwd = document.getElementById('passwd').value.trim();
     let rolPersonal = document.getElementById('rolPersonal');
     if (fName!=''&&lastName!=''&&email!='') {
-        if (passwd.length>7) {
+        if (passwd.length>7 || passwd.length==0) {
             const data = {
                 idPersonal: document.getElementById('idPersonal').value,
                 fName: fName,
                 sName: sName,
                 lastName: lastName,
                 email: email,
-                passwd: passwd,
+                passwd: passwd.length==0?'':passwd,
                 rolPersonal: rolPersonal.value,
                 insert: false
             };

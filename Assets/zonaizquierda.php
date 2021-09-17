@@ -4,6 +4,7 @@
 <style type="text/css">
     #zonaIzquierda
     {
+        background-color: white;
         width: 33%;
         height: 100vh;
         float: left;

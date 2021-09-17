@@ -48,15 +48,15 @@ body
     position: relative;
     /* overflow-x: hidden;No quiero, me rehuso */
 }
-div#slidervista, figure#slidercontenido img
+#slidervista, #slidercontenido img
 {
     width: 50vw;
     height: 28.125vw;
     float: left;
     overflow: hidden;
 }
-div#slidervista{width: 100%}
-figure#slidercontenido
+#slidervista{width: 100%}
+#slidercontenido
 {
     width: 550vw;
     height: 28.125vw;
@@ -65,14 +65,14 @@ figure#slidercontenido
     position: relative;
 }
 
-div#section1
+#section1
 {
     width: 100%;
     height: 13vw;
     display: inline-block;
 }
-div#section1 img:first-of-type{margin-left: 4vw ;}
-div#section1 img
+#section1 img:first-of-type{margin-left: 4vw ;}
+#section1 img
 {
     width: 30vw;
     height: 9.85vw;
@@ -87,22 +87,48 @@ div#section1 img
 }
 #section2 h1, #section3 h1
 {
-    width: 30vw;
-    height: 2vw;
     margin: 3vw 0 0 4vw;
+    width: 30vw;
+    height: fit-content;
 }
 #section2 .articulos
 {
     width: 30vw;
-    height: 37vw;
-    display: inline-block;
-    margin: 3vw 0 0 1vw ;
-
+    height: auto;
+    float: left;
+    margin: 3vw 0 0 1vw;
 
     outline: 1px solid black;/*Temporal*/
 }
 #section2 .articulos:first-of-type{margin-left: 4vw}
-
+#section2 .articulos img{
+    width: 30vw;
+    height: 30vw;
+    border-bottom: 1px solid black;
+    box-sizing: border-box;
+}
+#section2 .articulos a{
+    border: none;
+    outline: 2px solid black;
+    height: 3vw;
+    width: 50%;
+    margin: 2vw 0 3vw 25%;
+    background-color: #D98851;
+    color: black;
+    line-height: 3vw;
+    text-decoration: none;
+    text-align: center;
+    float: left;
+    font-size: 1vw;
+}
+#section2 .articulos h1{
+    font-size: 1.6vw;
+    margin: 0;
+}
+#section2 .articulos p{
+    font-size: 1vw;
+    margin: 2vw 0;
+}
 
 #section3
 {
@@ -110,15 +136,25 @@ div#section1 img
     height: fit-content; 
 }
 
+#section3 .articulos2:first-of-type{margin-left: 4vw}
+#section3 .articulos2:last-of-type{display: none}
 #section3 .articulos2
 {
     width: 17.6vw;
-    height: 30vw;
-    display: inline-block;
+    height: auto;
+    float: left;
     margin: 3vw 0 0 1vw;
 
 
     outline: 1px solid black;/*Temporal*/
 }
-div#section3 .articulos2:first-of-type{margin-left: 4vw}
-div#section3 .articulos2:last-of-type{display: none}
+#section3 .articulos2 img{
+    width: 17.6vw;
+    height: 17.6vw;
+}
+#section3 .articulos2 h1{
+    font-size: 1.6vw;
+    width: fit-content;
+}
+
+

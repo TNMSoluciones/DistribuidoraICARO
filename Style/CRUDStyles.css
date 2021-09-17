@@ -13,7 +13,8 @@
 #actualizar div label, #actualizar div p{
     display: inline-block;
     width: 12vw;
-    margin: 10px 2vw 5px 0;
+    line-height: 1.6vw;
+    margin: 10px 2vw 10px 0;
     font-size: 1vw;
 }
 #actualizar div p{border-bottom: 1px solid black;}
@@ -44,35 +45,30 @@
 }
 #actualizar div input[type="submit"]:hover, #actualizar div button:hover {background-color: #32a367}
 #actualizar div input[type="checkbox"]{display: none}
-#actualizar div .checkbox{
-    position: relative;
-}
+#actualizar div .checkbox{position: relative}
 .checkbox:before{
     content: ' ';
     position: absolute;
     right: 0;
-    top: -50%;
     border: solid 1px #9e9e9e;
     border-radius: 3px;
-    width: 2vw;
-    height: 2vw;
+    width: 1.6vw;
+    height: 1.6vw;
     user-select: none;
 }
 
 #actualizar div input[type="checkbox"]:checked + .checkbox:before{
     content: '✔';
-    color: white;
+    color: rgb(23, 163, 23);
     text-align: center;
-    font-size: 1.6vw;
-    line-height: 2vw;
-    background-color: #00AAE4;
+    font-size: 1.3vw;
+    line-height: 1.6vw;
+    background-color: #aedeee;
 }
 #actualizar div input[type="file"]{
     display: none;
 }
-.labelFile:nth-child(2){
-    border: 1px solid black;
-}
+.labelFileSecond{border-bottom: 1px solid black}
 .divEmergente{
     width: 25vw;
     height: 2vw;

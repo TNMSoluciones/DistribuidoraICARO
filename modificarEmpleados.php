@@ -5,7 +5,6 @@
     mostrarHeader('Modificar Empleados');
     include_once 'BD/conBD.php';
     $pdo=pdo_conectar_mysql();
-    $sqlRol='SELECT * FROM roles ORDER BY Rol';
     $idEmpleadoSeleccionado=isset($_GET['idPersonal']) ? $_GET['idPersonal'] : 0;
     //Comprobar si le dio al boton de agregar
     if ($idEmpleadoSeleccionado==0) {
@@ -29,7 +28,7 @@
                         <label for="rolPersonal" style="margin-top: 20px;">¿A cual rol pertenecera?</label>
                         <select id="rolPersonal">
                         <?php 
-                            foreach($pdo->query($sqlRol) as $rol)
+                            foreach($pdo->query('SELECT * FROM roles ORDER BY Rol') as $rol)
                             {
                                 echo '<option value="'.$rol['idRol'].'">'.$rol['Rol'].'</option>';
                             }
@@ -68,21 +67,19 @@
                             <label for="email">Correo</label>
                             <input id="apellidoEmpleado" type="text" placeholder="<?=$empleado['Apellido']?>" value="<?=$empleado['Apellido']?>">
                             <input id="email" autocomplete="username" type="email" placeholder="<?=$empleado['Correo']?>" value="<?=$empleado['Correo']?>">
-                            <label for="passwd">Escriba la contraseña</label>
+                            <label for="passwd">Escriba la nueva contraseña</label>
                             <label for="rolPersonal">¿A cual rol pertenecera?</label>
-                            <input id="passwd" autocomplete="new-password" type="password" placeholder="Ingrese su contraseña" value="<?=$empleado['Password']?>">
+                            <input id="passwd" autocomplete="new-password" type="password" placeholder="Ingrese su nueva contraseña">
                             <select id="rolPersonal">
                                 <option value="<?=$empleado['idRol']?>"><?=$empleado['Rol']?></option>
                                 <?php 
-                                    foreach($pdo->query($sqlRol) as $rol)
+                                    foreach($pdo->query("SELECT * FROM roles WHERE idRol!='".$empleado['idRol']."' ORDER BY Rol ") as $rol)
                                     {
-                                        if ($rol['idRol']!=$empleado['idRol']) {
-                                            echo '<option value="'.$rol['idRol'].'">'.$rol['Rol'].'</option>';
-                                        }
+                                        echo '<option value="'.$rol['idRol'].'">'.$rol['Rol'].'</option>'; 
                                     }
                                 ?>
                             </select>
-                            <input id="btnEnviar" type="submit" value="Agregar">
+                            <input id="btnEnviar" type="submit" value="Actualizar">
                         </form>
                     </div>
                 </div>
@@ -106,6 +103,7 @@
             <?php
         }
     }
+    include_once 'Assets/footer.php';
 ?>
 <template id="templateRol">
     <option value=""></option>
