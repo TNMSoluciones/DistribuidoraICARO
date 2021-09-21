@@ -37,7 +37,6 @@
                 $sqlInsert->execute();
                 echo 1;
             }else{echo 2;}
-
         }
     }else{
         //Si se desea eliminar

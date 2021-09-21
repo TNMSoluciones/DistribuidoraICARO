@@ -1,4 +1,4 @@
-*{font-family: 'Roboto Condensed', sans-serif}
+*{font-family: 'Roboto Condensed', sans-serif;box-sizing: border-box;}
 body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
 #loginDerecha
 {
@@ -10,25 +10,25 @@ body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
     background: radial-gradient(circle, rgba(197,115,68,1) 30%, rgba(229,143,83,1) 70%, rgba(255,175,101,1) 100%);
 }
 #loginDerecha form{width: 16vw}
+#loginDerecha form label, #loginDerecha form input
+{
+    width: 16vw;
+    height: 1.7vw;
+    line-height: 1.7vw;
+    font-size: 16px;
+    margin: 5px 0;
+}
 #loginDerecha form label
 {
     display: block;
     text-align: left;
-    font-size: 1.2vw;
-}
-#loginDerecha form label, #loginDerecha form input
-{
-    width: 16vw;
-    height: 1.6vw;
-    line-height: 1.6vw;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 700;
-    box-sizing: border-box;
-    margin: 5px 0;
+    font-weight: 400;
+    font-size: 28px;
 }
 #loginDerecha form input{
     text-indent: 10px;
-    font-size: 14px;
+    height: 1.3vw;
+    line-height: 1.3vw;
 }
 #loginDerecha form input:focus-visible{outline: 0}
 .btnLogin{
@@ -36,7 +36,7 @@ body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
     height: 2vh;
     float: right;
     margin-top: 30px;
-    font-size: 90%;
+    font-size: 16px;
     border: 0;
     line-height: 2vh;
     padding: 0;
@@ -75,14 +75,13 @@ body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
         height: calc(100vh - 50.81vw);
     }
     #loginDerecha form{
-        display: inline-block;
+        float: left;
         width: 100%;
         height: max-content;
         margin-top: 18vw;
     }
-    #loginDerecha form label{
-        text-align: left;
-    }
+    #loginDerecha form label{font-size: 22px}
+    #loginDerecha form input, #loginDerecha form select{font-size: 15px}
     #loginDerecha form label, #loginDerecha form input{
         width: 80%;
         margin: 2vw 10%;

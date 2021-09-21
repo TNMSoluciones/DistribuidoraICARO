@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    include_once 'BD/conBD.php';
     include_once 'Assets/header.php';
     mostrarHeader('Distribuidora ICARO');
 ?>

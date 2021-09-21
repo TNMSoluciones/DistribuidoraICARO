@@ -5,29 +5,32 @@ body
     min-height: 100vh;
     position: relative;
 }
-#encargado, #productos, #personal, #categoriasProduct, #cliente
+.divPrincipal
 {
     width: 70%;
     height: auto;
     margin: 3vw 0 0 15%;
     float: left;
-    /* outline: 1px solid black; */
 }
-#encargado div, #productos div, #personal div, #categoriasProduct div, #cliente div{outline: 1px solid black}
-#productos div:nth-child(2){
-    display: flex;
-    align-items: stretch;
+.divPrincipal div{outline: 1px solid lightgrey; }
+.divPrincipal > div{
+    float: left;
+    width: 100%;
 }
-#productos div:nth-child(2) div:nth-child(2){
-    display: block;
-}
-#encargado div h1, #productos div h1, #personal div h1, #categoriasProduct div h1, #cliente div h1{
+.divPrincipal > div h1{
     height: 60px;
     margin: 0;
+    width: 40%;
     line-height: 60px;
     padding-left: 1vw;
-    display: inline-block;
+    float: left;
     font-weight: 700;
+}
+.searchEmpleados{
+    width: 20vw;
+    height: 1vw;
+    margin-left: 4vw;
+    margin-top: 1.5vw;
 }
 .btnDerecha, .btnAdd{
     width: 4vw;
@@ -57,7 +60,6 @@ body
     width: 100%;
     height: 50px;
     padding: 10px 0;
-    outline: 1px solid black;
     float: left;
 }
 .comprasEncargado div .imgproducto
@@ -150,7 +152,7 @@ body
     margin: 1px 0 0 30px;
     outline: 0 !important;
 }
-.pagination li {display: inline;}
+.pagination li {display: none;}
 .pagination li p{
     color: black;
     float: left;
@@ -166,6 +168,7 @@ body
     background-color: #ddd;
     cursor: pointer;
 }
+
 @media (max-width: 700px){
     
 }

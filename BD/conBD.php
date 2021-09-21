@@ -1,9 +1,9 @@
 <?php
+    define('DATABASE_HOST','localhost');
+    define('DATABASE_USER','root');
+    define('DATABASE_PASS','');
+    define('DATABASE_NAME','icaro1.0');
     function pdo_conectar_mysql() {
-        define('DATABASE_HOST','localhost');
-        define('DATABASE_USER','root');
-        define('DATABASE_PASS','');
-        define('DATABASE_NAME','icaro1.0');
         try {
             return new PDO('mysql:host=' . DATABASE_HOST . ';dbname=' . DATABASE_NAME . ';charset=utf8', DATABASE_USER, DATABASE_PASS);
         } catch (PDOException $exception) {

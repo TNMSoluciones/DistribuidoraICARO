@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
     session_start();
-    include_once 'Assets/header.php';
-    mostrarHeader('Modificar Clientes');
     include_once 'BD/conBD.php';
+    include_once 'Assets/header.php';
+    mostrarHeader('Modificar Clientes');  
     $pdo=pdo_conectar_mysql();
     $idClienteSeleccionada=isset($_GET['idCliente']) ? $_GET['idCliente'] : 0;
     if ($idClienteSeleccionada>0) {

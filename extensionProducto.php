@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include_once 'Assets/header.php';
     include_once 'BD/conBD.php';
+    include_once 'Assets/header.php';
     $pdo=pdo_conectar_mysql();
     //$idProductoSeleccionado = isset($_GET['idProducto']) && $_GET['idProducto']>0?$_GET
     isset($_GET['idProducto']) && $_GET['idProducto']>0?$idProductoSeleccionado=$_GET['idProducto']:header('Location: index.php');

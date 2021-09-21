@@ -1,44 +1,26 @@
 'use strict';
 document.addEventListener('DOMContentLoaded',()=>{
-
-
-
-
     //Variables
-    let paginaActualCategorias = cantidadDeCategorias>0?1:0;
-    let paginaActualPersonal = cantidadDePersonal>0?1:0;
-    let paginaActualCliente = cantidadDeCliente>0?1:0;
-    let paginaActualProducto = cantidadDeProductos>0?1:0;
+    let paginaActualCategorias = actCantidadDeCategorias()>0?1:0;
+    let paginaActualPersonal = actCantidadDePersonal()>0?1:0;
+    let paginaActualCliente = actCantidadDeCliente()>0?1:0;
+    let paginaActualProducto = actCantidadDeProductos()>0?1:0;
     let cantidadPorPagina = 4;
     
     let paginaTotalCategorias=cantidadDeCategorias/cantidadPorPagina;
     let paginaTotalPersonal=cantidadDePersonal/cantidadPorPagina;
     let paginaTotalCliente=cantidadDeCliente/cantidadPorPagina;
     let paginaTotalProducto=cantidadDeProductos/cantidadPorPagina;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     if (document.getElementById('encargado')) {
         //Cuando esten programados los eventListener de encargado de ventas
     }
+    
+    
     if (document.getElementById('productos'))
     {
         //Cosas necesarias para crear y mostrar los productos
-        const divProductos = document.querySelector('#productos div:nth-of-type(2)');
+        const divProductos = document.getElementById('product');
         const templateProductos = document.getElementById('templateProductos').content;
         const fragmentProductos = document.createDocumentFragment();
         const mostrarProductos = function()
@@ -55,12 +37,17 @@ document.addEventListener('DOMContentLoaded',()=>{
                 let xmlProducto = new XMLHttpRequest();
                 xmlProducto.overrideMimeType('text/xml');
                 const  data = {
+                    texto: document.querySelector('#productos > div > input[type=text]').value,
                     datosPorPagina: cantidadPorPagina,
                     paginaActual: (paginaActualProducto-1)*cantidadPorPagina
                 };
                 xmlProducto.onreadystatechange = function(){
                     if (this.readyState==4 && this.status==200) {
                         let productos = JSON.parse(this.response);
+                        if (productos[0]==undefined || productos[0]['cantidad']<5) {
+                            btnPaginacionProductoIzquierda.style.display='none';
+                            btnPaginacionProductoDerecha.style.display='none';
+                        }
                         productos.forEach(producto =>{
                             templateProductos.querySelector('.productosEncargado div img').setAttribute('src', producto.urlImagen);
                             templateProductos.querySelector('.productosEncargado div h3:first-of-type').textContent=producto.nombre;
@@ -73,7 +60,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                             fragmentProductos.appendChild(clon);
                         });
                         divProductos.innerHTML=``;
-                        divProductos.appendChild(fragmentProductos)
+                        divProductos.appendChild(fragmentProductos);
                     }
                 }
                 xmlProducto.open('POST', 'ajax/producto-mostrar.php', true);
@@ -89,11 +76,17 @@ document.addEventListener('DOMContentLoaded',()=>{
             mostrarProductos();
         });
         mostrarProductos();
+        document.querySelector("#productos > div:nth-child(1) > input").addEventListener('input',()=>{
+            paginaActualProducto = actCantidadDeProductos()>0?1:0;
+            mostrarProductos();   
+        })
     }
+
+
     if (document.getElementById('cliente'))
     {
         //Cosas necesarias para crear y mostrar los clientes
-        const divCliente = document.querySelector('#cliente div:nth-of-type(2)');
+        const divCliente = document.getElementById('client');
         const templateCliente = document.getElementById('templateClientes').content;
         const fragmentCliente = document.createDocumentFragment();
         const mostrarClientes = function()
@@ -110,12 +103,17 @@ document.addEventListener('DOMContentLoaded',()=>{
                 let xmlCliente = new XMLHttpRequest();
                 xmlCliente.overrideMimeType('text/xml');
                 const data = {
+                    texto: document.querySelector("#cliente > div:nth-child(1) > input").value,
                     datosPorPagina: cantidadPorPagina,
                     paginaActual: (paginaActualCliente-1)*cantidadPorPagina
                 };
                 xmlCliente.onreadystatechange = function(){
                     if (this.readyState==4 && this.status==200) {
                         let clientes = JSON.parse(this.response);
+                        if (clientes[0]==undefined || clientes[0]['cantidad']<5) {
+                            btnPaginacionClienteIzquierda.style.display='none';
+                            btnPaginacionClienteDerecha.style.display='none';
+                        }
                         clientes.forEach(cliente =>
                             {
                                 templateCliente.querySelector('.clientesEncargado div h3:first-of-type').textContent=cliente.nombreEmpresa;
@@ -144,11 +142,17 @@ document.addEventListener('DOMContentLoaded',()=>{
             mostrarClientes();
         });
         mostrarClientes();
+        document.querySelector("#cliente > div:nth-child(1) > input").addEventListener('input', ()=>{
+            paginaActualCliente = actCantidadDeCliente()>0?1:0;
+            mostrarClientes();
+        })
     }
+
+
     if (document.getElementById('personal'))
     {
         //Cosas necesarias para crear y mostrar los Empleados
-        const divPersonal = document.querySelector('#personal div:nth-of-type(2)');
+        const divPersonal = document.getElementById('empleados');
         const templatePersonal = document.querySelector('#templatePersonal').content;
         const fragmentPersonal = document.createDocumentFragment();
         const mostrarPersonal = function()
@@ -158,13 +162,14 @@ document.addEventListener('DOMContentLoaded',()=>{
             paginaActualPersonal==1?btnPaginacionPersonalIzquierda.style.display='none':btnPaginacionPersonalIzquierda.style.display='inline';
             paginaActualPersonal==Math.ceil(paginaTotalPersonal)?btnPaginacionPersonalDerecha.style.display='none':btnPaginacionPersonalDerecha.style.display='inline';
             if (paginaActualPersonal==0) {
-                btnPaginacionPersonalIzquierda.style.display="none";
+                btnPaginacionPersonalIzquierda.style.display='none';
                 btnPaginacionPersonalDerecha.style.display='none';
             }
             if (paginaActualPersonal!=0) {
                 let xmlPersonal = new XMLHttpRequest();
                 xmlPersonal.overrideMimeType('text/xml');
                 const data={
+                    texto: document.querySelector('#personal > div > input[type=text]').value,
                     datosPorPagina: cantidadPorPagina,
                     paginaActual: (paginaActualPersonal-1)*cantidadPorPagina
                 };
@@ -173,8 +178,11 @@ document.addEventListener('DOMContentLoaded',()=>{
                     if (this.readyState==4 && this.status==200)
                     {
                         let empleados = JSON.parse(this.response);
-                        empleados.forEach(empleados =>
-                        {
+                        if (empleados[0]==undefined || empleados[0]['cantidad']<5) {
+                            btnPaginacionPersonalIzquierda.style.display='none';
+                            btnPaginacionPersonalDerecha.style.display='none';
+                        }
+                        empleados.forEach(empleados =>{
                             let nombreCompleto = empleados.sName=='NULL'?empleados.fName + ' ' + empleados.lastName:empleados.fName + ' ' + empleados.sName + ' '+ empleados.lastName;
                             templatePersonal.querySelector('.empleados div h3:first-of-type').textContent=nombreCompleto;
                             templatePersonal.querySelector('.empleados div h3:nth-of-type(2)').textContent=empleados.email;
@@ -191,8 +199,8 @@ document.addEventListener('DOMContentLoaded',()=>{
                 xmlPersonal.open('POST', 'ajax/personal-mostrar.php', true);
                 xmlPersonal.send(JSON.stringify(data));
             }
-    
         }
+
         document.querySelector('#btnPagPersonalD').addEventListener('click', ()=>{
             paginaActualPersonal++;
             mostrarPersonal();
@@ -202,11 +210,17 @@ document.addEventListener('DOMContentLoaded',()=>{
             mostrarPersonal();
         });
         mostrarPersonal();
+        document.querySelector('#personal > div > input').addEventListener('input',()=>{
+            paginaActualPersonal = actCantidadDePersonal()>0?1:0;
+            mostrarPersonal();   
+        });
     }
+
+
     if (document.getElementById('categoriasProduct'))
     {
         //Cosas necesarias para crear y mostrar las Categorias
-        const divCategorias = document.querySelector('#cats');
+        const divCategorias = document.getElementById('catProduct');
         const templateCategoria = document.querySelector('#templateCategoria').content;
         const fragmentCategorias = document.createDocumentFragment();
         const mostrarCategorias = function()
@@ -215,26 +229,27 @@ document.addEventListener('DOMContentLoaded',()=>{
             let btnPaginacionCategoriasDerecha=document.querySelector('#categoriasProduct div.pagination li:last-of-type');
             paginaActualCategorias==1?btnPaginacionCategoriasIzquierda.style.display="none":btnPaginacionCategoriasIzquierda.style.display="inline";
             paginaActualCategorias==Math.ceil(paginaTotalCategorias)?btnPaginacionCategoriasDerecha.style.display='none':btnPaginacionCategoriasDerecha.style.display='inline';
-            if (paginaActualCategorias==0)
-            {
+            if (paginaActualCategorias==0){
                 btnPaginacionCategoriasIzquierda.style.display="none";
                 btnPaginacionCategoriasDerecha.style.display='none';
             }
-            if (paginaActualCategorias!=0)
-            {
+            if (paginaActualCategorias!=0){
                 let xmlCat = new XMLHttpRequest();
                 xmlCat.overrideMimeType('text/xml');
                 const data={
+                    texto: document.querySelector('#categoriasProduct > div > input[type=text]').value,
                     datosPorPagina: cantidadPorPagina,
                     paginaActual: (paginaActualCategorias-1)*cantidadPorPagina
                 };
                 xmlCat.onreadystatechange = function()
                 {
-                    if (this.readyState== 4 && this.status ==200)
-                    {
+                    if (this.readyState== 4 && this.status ==200){
                         let categoriasProducto = JSON.parse(this.response);
-                        categoriasProducto.forEach(categoria =>
-                        {
+                        if (categoriasProducto[0]==undefined || categoriasProducto[0]['cantidad']<5) {
+                            btnPaginacionCategoriasIzquierda.style.display='none';
+                            btnPaginacionCategoriasDerecha.style.display='none';
+                        }
+                        categoriasProducto.forEach(categoria =>{
                             templateCategoria.querySelector('.categoriaProduct div h3').textContent=categoria.Categoria;
                             templateCategoria.querySelector('.categoriaProduct div a.btnModificarCategoria').setAttribute('href', `modificarCategorias.php?idCategoria=${categoria.idCategoria}`);
                             templateCategoria.querySelector('.categoriaProduct div a.btnEliminarCategoria').setAttribute('href', `modificarCategorias.php?idCategoria=${categoria.idCategoria}&delete=true`);
@@ -258,6 +273,10 @@ document.addEventListener('DOMContentLoaded',()=>{
             mostrarCategorias();
         });
         mostrarCategorias();
+        document.querySelector('#categoriasProduct > div > input[type=text]').addEventListener('input', ()=>{
+            paginaActualCategorias = actCantidadDeCategorias()>0?1:0;
+            mostrarCategorias();
+        })
     }
     
 });//Fin de DOMContentLoaded

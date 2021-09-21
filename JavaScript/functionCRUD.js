@@ -28,6 +28,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
             agregarProducto();
         });
     }
+    if (document.querySelector('.actualizarProducto')!=null) {
+        document.getElementById('form').addEventListener('submit', (e)=>{
+            e.preventDefault();
+            actualizarProducto();
+        });
+    }
+    if(document.querySelector('.eliminarProducto')!=null) {
+        document.getElementById('form').addEventListener('submit', e =>{
+            e.preventDefault();
+            e.submitter.id=='btnCancelarEliminar'?window.location="pagempleado.php":'';
+            e.submitter.id=='btnEliminarProducto'?eliminarProducto():'';
+        });
+    }
 
 
     if (document.querySelector('.actualizarCliente')!=null) {
@@ -71,6 +84,47 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 })
 
+const eliminarProducto = function(){
+    XML.onreadystatechange = function(){
+        if(this.status==200 && this.readyState==4)
+        {
+            if(this.response)
+            {
+                mostrarMensaje('Eliminado Correctamente', 'eCorrecto');
+                document.getElementById('actualizar').style.pointerEvents='none';
+                setTimeout(()=>{window.location="pagempleado.php";}, 4000);
+            }else{mostrarMensaje('No se pudo eliminar', 'eIncorrecto')}
+        }
+    };
+    const form = document.getElementById('form');
+    XML.open('POST', 'ajax/producto-mod.php', true);
+    XML.send(new FormData(form));
+}
+const actualizarProducto = function(){
+    let nameProduct = document.getElementById('nameProduct').value.trim();
+    let stockProduct = document.getElementById('stockProduct').value;
+    let priceProduct = document.getElementById('priceProduct').value;
+    if(nameProduct!=''&&stockProduct!=''&&priceProduct!='') {
+        if(!isNaN(stockProduct)) {
+            if (!isNaN(priceProduct)) {
+                const form = document.getElementById('form');
+                XML.onreadystatechange = function() {
+                    if(this.readyState==4 && this.status==200) {
+                        if (this.response==1) {
+                            mostrarMensaje('Actualizado correctamente','eCorrecto');
+                        }else if(this.response==2){
+                            mostrarMensaje('Error al actualizar','eIncorrecto');
+                        }else if(this.response==3){
+                            mostrarMensaje('No existe un articulo con dicha id','ePrecaucion');
+                        }else{mostrarMensaje('Error desconocido','eIncorrecto')}
+                    }
+                }
+                XML.open('POST', 'ajax/producto-mod.php', true);
+                XML.send(new FormData(form));
+            }else{mostrarMensaje('El precio debe ser un valor numerico','ePrecaucion')}
+        }else{mostrarMensaje('El stock debe ser un valor numerico','ePrecaucion')}
+    }else{mostrarMensaje('Los campos no pueden estar vacios','eIncorrecto')}
+}
 
 const agregarProducto = function(){
     let nameProduct = document.getElementById('nameProduct').value.trim();
@@ -90,21 +144,16 @@ const agregarProducto = function(){
                     {
                         if(imgProduct.size<50000000)
                         {
-                            let form = document.getElementById('form');
+                            const form = document.getElementById('form');
                             XML.onreadystatechange = function()
                             {
                                 if(this.readyState==4 && this.status==200)
                                 {
-                                    console.log(this.response);
                                     if (this.response==1) {
                                         mostrarMensaje('Insertado Correctamente', 'eCorrecto');
                                     }else if(this.response==2){
-                                        mostrarMensaje('Error al momento de Insertar', 'eIncorrecto')
+                                        mostrarMensaje('Error al insertar','eIncorrecto');
                                     }else if(this.response==3){
-                                        mostrarMensaje('Error al subir el archivo', 'eIncorrecto');
-                                    }else if(this.response==4){
-                                        mostrarMensaje('Error con el archivo, ya creado', 'ePrecaucion')
-                                    }else if(this.response==5){
                                         mostrarMensaje('Producto ya registrado', 'eIncorrecto');
                                     }else{mostrarMensaje('Error Desconocido', 'eIncorrecto')}
                                 }

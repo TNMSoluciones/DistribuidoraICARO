@@ -1,4 +1,6 @@
 <?php
+$pdoCats=pdo_conectar_mysql();
+$sqlCats=$pdoCats->query("SELECT idCategoria, Categoria FROM categorias");
 function mostrarHeader($title){
     echo '
         <!DOCTYPE html>
@@ -16,14 +18,22 @@ function mostrarHeader($title){
             <header>
                 <img id="btnCat" src="img/menu.png">
                 <a href="index.php"><img src="img/logoconfondochico.png" id="logo" alt="Foto de Logo"></a>
-                
                 <div id="buscador">
-                    <p>Todas las categorias</p>
-                    <input type="text" placeholder="Busca tu producto!" autocomplete="off">
-                    <img src="img/lupa.png" alt="Lupa">
-                    <p>Buscar</p>
+                    <form id="formSearch" action="productos.php" method="GET" onSubmit="return comprobarInput()">
+                        <select onchange="location = this.value">
+                            <option value="productos.php">Todas las Categorias</option>
+                            ';
+                        while($cat = $GLOBALS['sqlCats']->fetch(PDO::FETCH_ASSOC)){
+                            ?>
+                            <option value="productos.php?query_cat=<?=$cat['idCategoria']?>"><?=$cat['Categoria']?></option>
+                            <?php
+                        }
+                    echo '</select>    
+                        <input name="query_search" type="text" placeholder="Busca tu producto!" autocomplete="off">
+                        <img src="img/lupa.png" alt="Lupa">
+                        <input id="search" type="submit" value="Buscar">
+                    </form>
                 </div>
-                
                 <div id="carrito">
                     <img id="carrito" src="img/carrito-de-compras.png">    	
                     <p>aaaaaa</p>
@@ -56,6 +66,9 @@ function mostrarHeader($title){
     }
     ?>
         <script>
+            const comprobarInput = function(){
+                return document.querySelector('#buscador form input[type=text]').value.length>0? true:false ;
+            }
             let estadoLogin = `<?php if(isset($_SESSION['email'])){echo "1";}else{echo "0";}?>`;
             document.querySelector('header #perfil h1').addEventListener('click', ()=>{
                 if (estadoLogin==0) {
@@ -64,9 +77,9 @@ function mostrarHeader($title){
                     location.href = "Assets/Logout.php";    
                 }
             });
+
         </script>
     <?php
-
     include_once 'Assets/menuDesplegable.php';
 }
 

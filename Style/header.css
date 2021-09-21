@@ -22,8 +22,8 @@ header img#carrito
 }
 header img#carrito:hover{cursor: pointer}
 
-    header #perfil a:visited{color: black}
-    header #perfil a:active{color: rgb(229,143,83)}
+header #perfil a:visited{color: black}
+header #perfil a:active{color: rgb(229,143,83)}
 header #perfilusr img
 {
     width: 3.85vw;
@@ -80,7 +80,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
     #btnCat{display: none}
     header div#buscador img{display: none}
     #categoriasMovil{display: none}
-
+    #formSearch{float: left;}
 
     header #logo{
         margin-left: 4vw;
@@ -90,10 +90,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
         position: absolute;
         margin: calc(7.5vh - 1vw) 0 0 33.5vw;
     }
-    header div#buscador p:first-of-type{
-        width: 11vw;
-    }
-    header div#buscador input{
+    header div#buscador input[type=text]{
         width: 18vw;
         height: 2vw;
         border: 0;
@@ -105,21 +102,26 @@ div#categorias p:first-of-type{margin-top: 30vh}
         outline: 1px solid rgb(231, 226, 226);
         color: rgb(34, 32, 32);
     }
-    header div#buscador input:focus{
+    header div#buscador input[type=text]:focus{
         outline: 1px solid black;
     }
-    header div#buscador p{
+    header div#buscador #search, header div#buscador select{
         width: 4vw;
         height: 2vw;
         margin: 0;
         float: left;
+        border: none;
         cursor: pointer;
         outline: 1px solid rgb(231, 226, 226);
         line-height: 2vw;
         text-align: center;
         font-size: 1vw;
+        transition: background 0.2s ease-in;
     }
-    header div#buscador p:hover{
+    header div#buscador select{
+        width: 11vw;
+    }
+    header div#buscador #search:hover, header div#buscador select:hover{
         background: #D98851;
     }
     header div#carrito, header div#perfil{
@@ -192,12 +194,12 @@ div#categorias p:first-of-type{margin-top: 30vh}
         width: 40vw;
         margin-left: 30vw;
     }
-    header div#buscador p:first-of-type{width: 13vw}
-    header div#buscador input{
+    header div#buscador select{width: 13vw}
+    header div#buscador input[type=text]{
         width: 22vw;
         height: 3vw;
     }
-    header div#buscador p{
+    header div#buscador input[type=submit]{
         width: 5vw;
         height: 3vw;
         line-height: 3vw;
@@ -217,7 +219,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
     div#categorias p:hover{font-size: 1.6vw}
 
 
-}
+} 
 
 /* Header movil */
 
@@ -237,7 +239,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
         margin-top: 2vw;
     }
     header div#buscador p:first-of-type{display: none}
-    header div#buscador input{
+    header div#buscador input[type=text]{
         width: 83vw;
         height: 7vw;
         border: 0;
@@ -249,7 +251,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
         outline: 1px solid rgb(231, 226, 226);
         color: rgb(34, 32, 32);
     }
-    header div#buscador input:focus{
+    header div#buscador input[type=text]:focus{
         outline: 1px solid black;
     }
     header div#buscador p{display: none}
@@ -303,5 +305,5 @@ div#categorias p:first-of-type{margin-top: 30vh}
         width: 4vh;
         padding: 1vh;
         float: left;
-    }
-}
+    } 
+} 

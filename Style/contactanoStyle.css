@@ -1,14 +1,22 @@
-.StyleContactanos p{
+.StyleContactanos p:first-child{
     margin-top: 5vw;
     margin-left: 17.5vw;
     font-size: 2.5vw;
     color: rgb(229,143,83);
+}
+#formContacto > p{
+    display: inline-block;
+    height: 2.5vw;
+    line-height: 2.5vw;
+    font-size: 1.2vw;
+    margin: 1.5vw 0 0 2.5vw;
 }
 .StyleContactanos input{
     text-indent: 10px; 
     box-sizing: border-box;
     margin-left: 2.5vw;
     border: none;
+    font-size: 100%;
     border-radius: 10px;
     width: 20vw;
     height: 4vw;
@@ -30,6 +38,7 @@
     margin-left: 2.5vw;
     margin-top: 2.5vw;
     width: 42.5vw;
+    font-size: 100%;
     height: 16vw;
     border: none;
     border-radius: 10px;
@@ -53,11 +62,17 @@ form.FormContact{
     float: right;
     margin-right: 13vw;
 }
+.ContactoContactanos div{
+    width: 100%;
+    float: left;
+    height: 2vw;
+    line-height: 2vw;
+}
 .IconoContacto{
     color: rgb(229,143,83);
     width: 1.3vw;
     float: left;
-    margin: 0.5vw 0.5vw 0 0.5vw;
+    margin: calc(1vw - 0.65vw) 0.6vw 0;
     transform: rotate(95deg);
 }
 .noRotate{
@@ -73,9 +88,9 @@ form.FormContact{
     text-align: justify;
     display: inline-block;
 }
-.ContactoContactanos div:first-of-type{height: 2vw;}
+.formContactoError::placeholder{color: rgb(216, 18, 18);font-size: 120%;}
 @media (max-width: 875px){
-    .StyleContactanos p{
+    .StyleContactanos p:first-child{
         font-size: 10vw;
         width: 100%;
         text-align: center;
@@ -97,6 +112,13 @@ form.FormContact{
         margin: 5% 0 0 5%;
         min-width: 90%;
         max-width: 90%;
+    }
+    .StyleContactanos textarea::before{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        content: '0';
+        color: black;
     }
     .StyleContactanos input[type=submit]{
         width: 20%;

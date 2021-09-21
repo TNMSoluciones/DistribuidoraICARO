@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
     session_start();
+    include_once 'BD/conBD.php';
     include_once 'Assets/header.php';
     mostrarHeader('Modificar Empleados');
-    include_once 'BD/conBD.php';
     $pdo=pdo_conectar_mysql();
     $idEmpleadoSeleccionado=isset($_GET['idPersonal']) ? $_GET['idPersonal'] : 0;
     //Comprobar si le dio al boton de agregar
