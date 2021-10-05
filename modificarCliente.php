@@ -3,7 +3,8 @@
     session_start();
     include_once 'BD/conBD.php';
     include_once 'Assets/header.php';
-    mostrarHeader('Modificar Clientes');  
+    mostrarHeader('Modificar Clientes');
+    echo '<main>'; 
     $pdo=pdo_conectar_mysql();
     $idClienteSeleccionada=isset($_GET['idCliente']) ? $_GET['idCliente'] : 0;
     if ($idClienteSeleccionada>0) {
@@ -62,6 +63,7 @@
             <?php
         }
     }
+    echo '</main>';
     include_once 'Assets/footer.php';
 ?>
 

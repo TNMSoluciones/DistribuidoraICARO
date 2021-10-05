@@ -10,7 +10,7 @@ function mostrarHeader($title){
                 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
                 <link rel="preconnect" href="https://fonts.googleapis.com">
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;700&display=swap" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
                 <link rel="stylesheet" href="Style/header.css">
                 <title>'.$title.'</title>
             </head>
@@ -35,9 +35,9 @@ function mostrarHeader($title){
                     </form>
                 </div>
                 <div id="carrito">
-                    <img id="carrito" src="img/carrito-de-compras.png">    	
+                    <a href="carrito.php" id="perfilusr"><img id="carrito" src="img/carrito-de-compras.png"></a> 	
                     <p>aaaaaa</p>
-                    <h1>Carrito</h1>
+                    <a href="carrito.php"><h1>Carrito</h1></a>
                 </div>
                 <div id="perfil">
                     <a href="login.php" id="perfilusr"><img src="img/usuario.png" id="perfil"></a>
@@ -47,10 +47,10 @@ function mostrarHeader($title){
             </header>
             <div id="categorias">
                 <a href="login.php"><p>Iniciar Sesion</p></a>
-                <a href=""><p>Carrito</p></a>
+                <a href="carrito.php"><p>Carrito</p></a>
                 <a href="index.php"><p>Inicio</p></a>
                 <a href="contactanos.php"><p>Contactanos</p></a>
-                <a href="productos.php"><p>Producto</p></a>
+                <a href="productos.php"><p>Productos</p></a>
         ';
         echo isset($_SESSION['rol'])?'<a href="pagempleado.php"><p>Empleados</p></a>':'';
         echo '</div>';
@@ -77,7 +77,20 @@ function mostrarHeader($title){
                     location.href = "Assets/Logout.php";    
                 }
             });
-
+            const lastSlash = window.location.pathname.lastIndexOf('/');
+            const url = window.location.pathname.slice(lastSlash+1);
+            switch(url) {
+                case 'index.php': document.querySelector("#categorias > a:nth-child(3) > p").classList.add('selected');
+                    break;
+                case 'contactanos.php': document.querySelector("#categorias > a:nth-child(4) > p").classList.add('selected');
+                    break;
+                case 'productos.php': document.querySelector("#categorias > a:nth-child(5) > p").classList.add('selected');
+                    break;
+                case 'pagempleado.php': document.querySelector("#categorias > a:nth-child(6) > p").classList.add('selected');
+                    break;
+                case '': document.querySelector("#categorias > a:nth-child(3) > p").classList.add('selected');
+                    break;
+                }
         </script>
     <?php
     include_once 'Assets/menuDesplegable.php';

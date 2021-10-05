@@ -81,21 +81,25 @@ div#categorias p:first-of-type{margin-top: 30vh}
     header div#buscador img{display: none}
     #categoriasMovil{display: none}
     #formSearch{float: left;}
-
+    .selected{
+        background-color: #D98851;
+        font-weight: 400 !important;
+        color: rgb(232, 232, 232);
+    }
     header #logo{
         margin-left: 4vw;
     }
     header div#buscador{
         width: 33vw;
-        position: absolute;
-        margin: calc(7.5vh - 1vw) 0 0 33.5vw;
+        float: left;
+        margin: calc(7.5vh - 1vw) 0 0 calc(32vw - 16.5vw);
     }
     header div#buscador input[type=text]{
         width: 18vw;
         height: 2vw;
         border: 0;
         float: left;
-        font-weight: 400;
+        font-weight: 300;
         font-size: 100%;
         text-indent: 12px;
         padding: 0;
@@ -127,7 +131,6 @@ div#categorias p:first-of-type{margin-top: 30vh}
     header div#carrito, header div#perfil{
         min-width: 8vw;
         float: right;
-        height: 2vw;
         margin: calc(7.5vh - 0.75vw) 2vw 0 0;
     }
     header div#carrito{min-width: 6vw}
@@ -142,7 +145,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
         margin: 0;
         padding-top: 0.4vw;
         font-size: 0.8vw;
-        font-weight: 600;
+        font-weight: 400;
         float: left;
     }
     header div#carrito h1:hover, header div#perfil h1:hover{cursor: pointer;}
@@ -169,7 +172,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
     }
     div#categorias p{
         display: inline-block;
-        font-weight: 400;
+        font-weight: 300;
         font-size: 1vw;
         line-height: 5vh;
         height: 5vh;
@@ -192,7 +195,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
 @media (max-width: 1200px){
     header div#buscador{
         width: 40vw;
-        margin-left: 30vw;
+        margin-left: 12vw;
     }
     header div#buscador select{width: 13vw}
     header div#buscador input[type=text]{
@@ -205,8 +208,9 @@ div#categorias p:first-of-type{margin-top: 30vh}
         line-height: 3vw;
         font-size: 1.3vw;
     }
+    header div#buscador #search, header div#buscador select{height: 3vw;}
     header div#carrito, header div#perfil{
-        min-width: 13vw;
+        min-width: 12vw;
         margin-right: 1vw;
     }
     header div#carrito p, header div#perfil p{font-size: 1.1vw}
@@ -244,7 +248,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
         height: 7vw;
         border: 0;
         float: left;
-        font-weight: 400;
+        font-weight: 300;
         font-size: 100%;
         text-indent: 12px;
         padding: 0;

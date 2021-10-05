@@ -1,3 +1,7 @@
+main{
+    display: inline-block;
+    min-height: calc(100vh - 100px - 20vh);
+}
 #actualizarCats{
     width: 25vw;
     margin: 5vw 0 0 37.5vw;

@@ -17,6 +17,14 @@ const mostrarMensaje = function(msg, claseCss){
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
+    if(document.querySelector('.eliminarSugerencia')!=null) {
+        document.getElementById('form').addEventListener('submit', e =>{
+            e.preventDefault();
+            e.submitter.id=='btnCancelarEliminar'?window.location="pagempleado.php":'';
+            e.submitter.id=='btnEliminarSugerencia'?eliminarSugerencia():'';
+        })
+    }
+
     if (document.querySelector('.ingresarProducto')!=null || document.querySelector('.actualizarProducto')!=null) {
         document.getElementById('imgProduct').addEventListener('change',()=>{
             document.getElementById('inputFileShow').innerHTML = document.getElementById('imgProduct').files[0]!=undefined?document.getElementById('imgProduct').files[0].name:`Adjuntar Archivo`;
@@ -82,7 +90,25 @@ document.addEventListener('DOMContentLoaded', ()=>{
         document.getElementById('btnCancelarEliminar').addEventListener('click',()=>{window.location="pagempleado.php";});
         document.getElementById('btnEliminarPersonal').addEventListener('click', eliminarEmpleado);
     }
-})
+});
+
+const eliminarSugerencia = function() {
+    XML.onreadystatechange = function() {
+        if (this.status==200 && this.readyState==4) {
+            if (this.response) {
+                mostrarMensaje('Eliminado Correctamente', 'eCorrecto');
+                document.getElementById('actualizar').style.pointerEvents='none';
+                setTimeout(()=>{window.location="pagempleado.php";}, 4000);
+            }else{mostrarMensaje('No se pudo eliminar', 'eIncorrecto')}
+        }
+    };
+    const data = {
+        delete: true,
+        idSugerencia: document.getElementById('idSugerencia').textContent
+    };
+    XML.open('POST', 'ajax/sugerencias-mod.php', true);
+    XML.send(JSON.stringify(data));
+}
 
 const eliminarProducto = function(){
     XML.onreadystatechange = function(){
@@ -273,7 +299,7 @@ const actualizarCategoria = function(){
 
 const eliminarCategoria = function(){
     const data = {
-        idCategoria: document.getElementById('idCategoria').value,
+        idCategoria: document.getElementById('idCategoria').textContent,
         delete: true
     };
     XML.onreadystatechange = function(){

@@ -5,20 +5,78 @@ document.addEventListener('DOMContentLoaded',()=>{
     let paginaActualPersonal = actCantidadDePersonal()>0?1:0;
     let paginaActualCliente = actCantidadDeCliente()>0?1:0;
     let paginaActualProducto = actCantidadDeProductos()>0?1:0;
-    let cantidadPorPagina = 4;
+    let paginaActualSugerencias = actCantidadDeSugerencias()>0?1:0;
+    const cantidadPorPagina = 4;
     
     let paginaTotalCategorias=cantidadDeCategorias/cantidadPorPagina;
     let paginaTotalPersonal=cantidadDePersonal/cantidadPorPagina;
     let paginaTotalCliente=cantidadDeCliente/cantidadPorPagina;
     let paginaTotalProducto=cantidadDeProductos/cantidadPorPagina;
+    let paginaTotalSugerencias=cantidadDeSugerencias/cantidadPorPagina;
     
     if (document.getElementById('encargado')) {
         //Cuando esten programados los eventListener de encargado de ventas
     }
+    if (document.getElementById('sugerencias')) {
+        const divSugerencias = document.getElementById('sugerencia');
+        const templateSugerencias = document.getElementById('templateSugerencias').content;
+        const fragmentSugerencias = document.createDocumentFragment();
+        const mostrarSugerencias = function(){
+            let btnPaginacionSugerenciasIzquierda = document.querySelector('#sugerencias div.pagination li:first-of-type');
+            let btnPaginacionSugerenciasDerecha = document.querySelector('#sugerencias div.pagination li:last-of-type');
+            paginaActualSugerencias==1?btnPaginacionSugerenciasIzquierda.style.display='none':btnPaginacionSugerenciasIzquierda.style.display='inline';
+            paginaActualSugerencias==Math.ceil(paginaTotalSugerencias)?btnPaginacionSugerenciasDerecha.style.display='none':btnPaginacionSugerenciasDerecha.style.display='inline';
+            if(paginaActualSugerencias==0) {
+                btnPaginacionSugerenciasIzquierda.style.display='none';
+                btnPaginacionSugerenciasDerecha.style.display='none';
+            }
+            if (paginaActualSugerencias!=0) {
+                let xmlSugerencias = new XMLHttpRequest();
+                xmlSugerencias.overrideMimeType('text/xml');
+                const data = {
+                    texto: document.querySelector('#sugerencias > div > input[type=text]').value,
+                    datosPorPagina: cantidadPorPagina,
+                    paginaActual: (paginaActualSugerencias-1)*cantidadPorPagina
+                };
+                xmlSugerencias.onreadystatechange = function() {
+                    if(this.readyState==4 && this.status==200) {
+                        let sugerencias = JSON.parse(this.response);
+                        if(sugerencias[0]==undefined || sugerencias[0]['cantidad']<5){
+                            btnPaginacionSugerenciasIzquierda.style.display='none';
+                            btnPaginacionSugerenciasDerecha.style.display='none';
+                        }
+                        sugerencias.forEach(sugerencia => {
+                            templateSugerencias.querySelector('.sugerenciasEncargado div h3:first-of-type').textContent = sugerencia.nombreOpinion;
+                            templateSugerencias.querySelector('.sugerenciasEncargado div h3:nth-of-type(2)').textContent = sugerencia.correoOpinion; 
+                            templateSugerencias.querySelector('.sugerenciasEncargado div h3:last-of-type').textContent = sugerencia.fecha;  
+                            templateSugerencias.querySelector('.sugerenciasEncargado div a.btnModificarSugerencia').setAttribute('href', `modificarSugerencias.php?idSugerencia=${sugerencia.idOpinion}`);
+                            const clon = templateSugerencias.cloneNode(true);
+                            fragmentSugerencias.appendChild(clon);
+                        });
+                        divSugerencias.innerHTML=``;
+                        divSugerencias.appendChild(fragmentSugerencias);
+                    }
+                }
+                xmlSugerencias.open('POST', 'ajax/sugerencias-mostrar.php', true);
+                xmlSugerencias.send(JSON.stringify(data));
+            }
+        }
+        document.querySelector('#btnPagSugD').addEventListener('click', ()=>{
+            paginaActualSugerencias++;
+            mostrarSugerencias();
+        });
+        document.querySelector('#btnPagSugI').addEventListener('click', ()=>{
+            paginaActualSugerencias--;
+            mostrarSugerencias();
+        });
+        mostrarSugerencias();
+        document.querySelector("#sugerencias > div:nth-child(1) > input").addEventListener('input',()=>{
+            paginaActualSugerencias = actCantidadDeSugerencias()>0?1:0;
+            mostrarSugerencias();   
+        })
+    }
     
-    
-    if (document.getElementById('productos'))
-    {
+    if (document.getElementById('productos')) {
         //Cosas necesarias para crear y mostrar los productos
         const divProductos = document.getElementById('product');
         const templateProductos = document.getElementById('templateProductos').content;
@@ -36,7 +94,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             if(paginaActualProducto!=0){
                 let xmlProducto = new XMLHttpRequest();
                 xmlProducto.overrideMimeType('text/xml');
-                const  data = {
+                const data = {
                     texto: document.querySelector('#productos > div > input[type=text]').value,
                     datosPorPagina: cantidadPorPagina,
                     paginaActual: (paginaActualProducto-1)*cantidadPorPagina

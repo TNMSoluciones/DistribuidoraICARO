@@ -28,7 +28,7 @@
 </div>
 <main>
     <div id="section1">
-        <h1 class="title">Articulos</h1>
+        <!-- <h1 class="title">Ver productos</h1> -->
         
         <?php
         if ($sql->rowCount()>0)

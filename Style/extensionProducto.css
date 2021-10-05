@@ -1,0 +1,74 @@
+@keyframes error {
+    0%{transform: translatex(0px);}
+    25%{transform: translatex(5px);}
+    50%{transform: translatex(-5px);}
+    75%{transform: translatex(5px);}
+    100%{transform: translatex(0px);}
+}
+main{
+    display: inline-block;
+    min-height: calc(100vh - 100px - 20vh);
+}
+.producto {
+    width: 40vw;
+    margin-left: 30vw;
+    float: left;
+}
+.producto div.divImg {
+    width: 18vw;
+    height: 14vw;
+    display:flex;
+    float: left;
+    justify-content: center;
+    align-items: center;
+}
+.producto div.divImg img{
+    height: 14vw;
+    max-width: 18vw;
+}
+
+.producto div.divInfo {
+    width: 55%;
+    display: inline-block;
+}
+.producto input[type=number] {
+    width: 5vw;
+}
+.producto input[type=submit] {
+    padding: 0;
+    background-color: #38b673;
+    border: 0;
+    font-weight: 700;
+    font-size: 1vw;
+    color: #FFFFFF;
+    cursor: pointer;
+    width: 10vw;
+    height: 2vw;
+    line-height: 2vw;
+    transition: background-color 0.2s ease;
+}
+.producto input[type=submit]:hover {
+    background-color: #32a367
+}
+.producto h1 {
+    display: inline-block;
+}
+.producto p:last-of-type {
+    text-align: justify;
+    max-width: 100% ;
+}
+.errorCantidad {
+    outline: 1px solid red;
+    animation: error 0.4s ease;
+}
+.divEmergente{
+    width: 40vw;
+    height: 3vw;
+    line-height: 3vw;
+    font-size: 1.3vw;
+    margin: 0 0 30px 0;
+    text-indent: 10px;
+    color: white;
+}
+.eCorrecto{background: #32a367}
+.eIncorrecto{background: red}

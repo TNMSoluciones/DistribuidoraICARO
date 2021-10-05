@@ -1,3 +1,7 @@
+main{
+    display: inline-block;
+    min-height: calc(100vh - 100px - 20vh);
+}
 #actualizar{
     width: 30vw;
     margin: 5vw 0 0 37.5vw;
@@ -11,6 +15,7 @@
 }
 #actualizar div{padding: 15px 0}
 #actualizar div label, #actualizar div p{
+    font-weight: 300;
     display: inline-block;
     width: 12vw;
     line-height: 1.6vw;
@@ -34,7 +39,7 @@
     padding: 0;
     background-color: #38b673;
     border: 0;
-    font-weight: 700;
+    font-weight: 400;
     font-size: 1vw;
     color: #FFFFFF;
     cursor: pointer;
@@ -46,6 +51,25 @@
 #actualizar div input[type="submit"]:hover, #actualizar div button:hover {background-color: #32a367}
 #actualizar div input[type="checkbox"]{display: none}
 #actualizar div .checkbox{position: relative}
+#actualizar div textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    font-size: 0.9vw;
+    font-weight: 300;
+    height: 12vw;
+    min-height: 12vw;
+    max-height: 40vw;
+    border: none;
+    box-sizing: border-box;
+    border: 2px solid rgb(179, 177, 177);
+    border-radius: 3px;
+    transition: border 0.5s ease;
+}
+#actualizar div textarea:focus-visible {
+    border: 2px solid rgb(0, 0, 0);
+    outline: none;
+}
 .checkbox:before{
     content: ' ';
     position: absolute;

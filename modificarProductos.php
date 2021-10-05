@@ -4,11 +4,11 @@
     include_once 'BD/conBD.php';
     include_once 'Assets/header.php';
     mostrarHeader('Modificar Productos');
+    echo '<main>';
     $pdo=pdo_conectar_mysql();
     $idProductoSeleccionado=isset($_GET['idProducto']) ? $_GET['idProducto']:0;
     $sqlCategorias = $pdo->query('SELECT * FROM categorias');
-    if ($idProductoSeleccionado==0)
-    {
+    if ($idProductoSeleccionado==0) {
         ?>
         <div id="actualizar" class="ingresarProducto">
             <h2>Ingresar un nuevo producto</h2>
@@ -31,6 +31,8 @@
                     <label class="labelFile" for="imgProduct">Seleccione una imagen</label>
                     <input type="file" name="imgProduct" id="imgProduct" accept="image/*">
                     <label id="inputFileShow" class="labelFile labelFileSecond" for="imgProduct">Adjuntar Archivo</label>
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" placeholder="Ingrese la descripción del producto" readonly></textarea>
                     <input id="btnEnviar" type="submit" value="Actualizar">
                     <input type="hidden" name="accion" value="insertar">
                 </form>
@@ -85,6 +87,8 @@
                             <label id="inputFileShow" class="labelFile labelFileSecond" for="imgProduct">Adjuntar Archivo</label>
                             <input name="activo" id="activo" type="checkbox" value="<?=$producto['Destacado']?>" <?=$producto['Destacado']==1? 'checked': ''?>>
                             <label class="checkbox" for="activo">Producto Destacado:</label>
+                            <label for="descripcion" style="width: 100%;">Descripción:</label>
+                            <textarea id="descripcion" placeholder="Ingrese la descripción del producto" readonly></textarea>
                             <input id="btnEnviar" type="submit" value="Actualizar">
                             <input type="hidden" name="accion" value="actualizar">
                         </form>
@@ -111,6 +115,7 @@
             <?php
         }
     }
+    echo '</main>';
     include_once 'Assets/footer.php';
 ?>
 <template id="templateRol">

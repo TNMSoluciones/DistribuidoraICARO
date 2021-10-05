@@ -4,7 +4,7 @@
     include_once 'Assets/header.php';
     mostrarHeader('Distribuidora ICARO');
 ?>
-
+<main>
     <div id="slidervista">
         <figure id="slidercontenido">
             <img src="imgSlider/1.jpg">
@@ -95,11 +95,10 @@
             <a href="">Ver Mas</a>
         </div>
     </div>
-
+</main>
     
     <?php include_once 'Assets/footer.php';?>
 
 </body>
     <link rel="stylesheet" href="Style/indexStyle.css">
-    <link rel="stylesheet" href="Style/indexStyleMovil.css">
 </html>

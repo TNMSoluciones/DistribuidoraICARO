@@ -4,6 +4,7 @@
     include_once 'BD/conBD.php';
     include_once 'Assets/header.php';
     mostrarHeader('Modificar Categorias');
+    echo '<main>';
     $idCatSeleccionada=$_GET['idCategoria']!=0 ? $_GET['idCategoria'] : 0;
     //Comprobar si se le dio al boton de agregar
     if ($idCatSeleccionada==0) { 
@@ -61,6 +62,7 @@
             <?php
         }
     }
+    echo '</main>';
     include_once 'Assets/footer.php';
 ?>
 <link rel="stylesheet" href="Style/CRUDStyles.css">
