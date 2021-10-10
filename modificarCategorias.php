@@ -36,9 +36,9 @@
             <div id="actualizar" class="actualizarCategoria">
                 <h2>Actualizar Categoria <?=$categoria['idCategoria']?></h2>
                 <div>
-                    <label for="idCategoria">ID</label>
-                    <label for="Name">Nombre</label>
+                    <label for="idCategoria">ID:</label>
                     <input type="text" name="idCategoria" placeholder="<?=$categoria['idCategoria']?>" value="<?=$categoria['idCategoria']?>" id="idCategoria" readonly>
+                    <label for="Name">Nombre:</label>
                     <input type="text" name="Categoria" placeholder="<?=$categoria['Categoria']?>" value="<?=$categoria['Categoria']?>" id="Name">
                     <input id="btnEnviar" type="submit" value="Actualizar">
                 </div>
@@ -50,9 +50,9 @@
             <div id="actualizar" class="eliminarCategoria">
                 <h2>¿Esta seguro que desea eliminar <u><?=$categoria['Categoria']?></u>?</h2>
                 <div>
-                    <label for="idCategoria">ID</label>
-                    <label for="nameCategoria">Nombre</label>
+                    <label for="idCategoria">ID:</label>
                     <p id="idCategoria"><?=$categoria['idCategoria']?></p>
+                    <label for="nameCategoria">Nombre:</label>
                     <p id="nameCategoria"><?=$categoria['Categoria']?></p>
                     <input type="submit" value="Eliminar" id="btnEliminarCategoria">
                     <button id="btnCancelarEliminar">No</button>

@@ -5,13 +5,9 @@
     75%{transform: translatex(5px);}
     100%{transform: translatex(0px);}
 }
-main{
-    display: inline-block;
-    min-height: calc(100vh - 100px - 20vh);
-}
 .producto {
     width: 40vw;
-    margin-left: 30vw;
+    margin: 3vw 0 0 30vw;
     float: left;
 }
 .producto div.divImg {
@@ -60,6 +56,12 @@ main{
 .errorCantidad {
     outline: 1px solid red;
     animation: error 0.4s ease;
+}
+.producto a {
+    display: block;
+    color: rgb(128, 128, 128);
+    height: 2vw;
+    line-height: 2vw;
 }
 .divEmergente{
     width: 40vw;

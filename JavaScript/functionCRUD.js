@@ -130,7 +130,8 @@ const actualizarProducto = function(){
     let nameProduct = document.getElementById('nameProduct').value.trim();
     let stockProduct = document.getElementById('stockProduct').value;
     let priceProduct = document.getElementById('priceProduct').value;
-    if(nameProduct!=''&&stockProduct!=''&&priceProduct!='') {
+    let desc = document.getElementById('descripcion').value;
+    if(nameProduct!=''&&stockProduct!=''&&priceProduct!=''&&desc!='') {
         if(!isNaN(stockProduct)) {
             if (!isNaN(priceProduct)) {
                 const form = document.getElementById('form');
@@ -157,7 +158,8 @@ const agregarProducto = function(){
     let stockProduct = document.getElementById('stockProduct').value;
     let priceProduct = document.getElementById('priceProduct').value;
     let imgProduct = document.getElementById('imgProduct').files[0];
-    if(nameProduct!=''&&stockProduct!=''&&priceProduct!='')
+    let desc = document.getElementById('descripcion').value;
+    if(nameProduct!=''&&stockProduct!=''&&priceProduct!=''&&desc!='')
     {
         if(!isNaN(stockProduct))
         {
@@ -173,8 +175,7 @@ const agregarProducto = function(){
                             const form = document.getElementById('form');
                             XML.onreadystatechange = function()
                             {
-                                if(this.readyState==4 && this.status==200)
-                                {
+                                if(this.readyState==4 && this.status==200) {
                                     if (this.response==1) {
                                         mostrarMensaje('Insertado Correctamente', 'eCorrecto');
                                     }else if(this.response==2){

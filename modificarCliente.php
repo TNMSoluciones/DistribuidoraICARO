@@ -22,20 +22,20 @@
                             <label for="idEmpresa">ID:</label>
                             <p id="idEmpresa"><?=$cliente['idCliente']?></p>
                             <label for="nombreEmpresa">Nombre de la Empresa:</label>
-                            <label for="correoEmpresa">Correo de la empresa:</label>
                             <p id="nombreEmpresa"><?=$cliente['NombreEmpresa']?></p>
+                            <label for="correoEmpresa">Correo de la empresa:</label>
                             <p id="correoEmpresa"><?=$cliente['CorreoCliente']?></p>
                             <label for="rut">RUT:</label>
-                            <label for="codigoPostal">Codigo Postal:</label>
                             <p id="rut"><?=$cliente['RUT']?></p>
+                            <label for="codigoPostal">Codigo Postal:</label>
                             <p id="codigoPostal"><?=$cliente['CodigoPostal']?></p>
                             <label for="calleDir">Nombre de Calle:</label>
-                            <label for="calleNumero">Numero de Calle:</label>
                             <p id="calleDir"><?=$cliente['CalleDir']?></p>
+                            <label for="calleNumero">Numero de Calle:</label>
                             <p id="calleNumero"><?=$cliente['NumeroDir']?></p>
                             <label for="departamento">Departamento:</label>
-                            <label for="ciudad">Ciudad:</label>
                             <p id="departamento"><?=$cliente['Departamento']?></p>
+                            <label for="ciudad">Ciudad:</label>
                             <p id="ciudad"><?=$cliente['Ciudad']?></p>
                             <input id="activo" type="checkbox" value="<?=$cliente['Activo']?>" <?=$cliente['Activo']==1? 'checked': ''?>>
                             <label class="checkbox" for="activo">Cuenta Activa:</label>
@@ -52,9 +52,9 @@
             <div id="actualizar" class="eliminarCliente">
                 <h2>¿Esta seguro que desea eliminar <u><?=$cliente['NombreEmpresa']?></u>?</h2>
                 <div>
-                    <label for="idCliente">ID</label>
-                    <label for="nameCliente">Nombre</label>
+                    <label for="idCliente">ID:</label>
                     <p id="idCliente"><?=$cliente['idCliente']?></p>
+                    <label for="nameCliente">Nombre:</label>
                     <p id="nameCliente"><?=$cliente['NombreEmpresa']?></p>
                     <input type="submit" value="Eliminar" id="btnEliminarCliente">
                     <button id="btnCancelarEliminar">No</button>

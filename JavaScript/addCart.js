@@ -25,9 +25,10 @@ if (document.getElementById('btnAddCart')!=undefined) {
             XML.overrideMimeType('text/xml');
             XML.onreadystatechange = function(){
                 if(this.status==200 && this.readyState==4) {
-                    console.log(this.response);
                     switch(this.response){
                         case '1':
+                            let cantidad = document.querySelector("#carrito > p").textContent.split(' ')[0] = parseInt(document.querySelector("#carrito > p").textContent.split(' ')[0])+1;
+                            document.querySelector("#carrito > p").textContent = ''+cantidad + (cantidad==1?' item':' items')
                             mostrarMensaje('Producto agregado correctamente', 'eCorrecto');
                             break;
                         case '2':

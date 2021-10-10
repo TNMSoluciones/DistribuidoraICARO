@@ -38,8 +38,10 @@
             $clave = array_search($idProducto, array_column($_SESSION['carrito'], 'idProducto'));
             if ($clave!='') {
                 unset($_SESSION['carrito'][$clave]);
-                $_SESSION['carrito'] = array_values($_SESSION['carrito']);
             }
+        }
+        if (isset($_SESSION['carrito'])) {
+            $_SESSION['carrito'] = array_values($_SESSION['carrito']);
         }
         header("Location: ../carrito.php");
     }

@@ -14,6 +14,7 @@
         ?>
         <main>
             <div class="producto" id="<?=$producto['idProducto']?>">
+            <a href="javascript:history.go(-1);">Volver Atrás</a>
                 <div class="divImg">
                     <img src="data:image/png;base64,<?=base64_encode($producto['Imagen'])?>" alt="<?=$producto['Nombre']?>">
                 </div>
@@ -23,9 +24,9 @@
                     <input min="0" max="100" type="text" placeholder="Cantidad" oninput="comprobarChar()" id="cantidad">
                     <p>$ <?=$producto['Precio']?></p>
                     <p><?=$producto['Categoria']?></p>
-                    <p>Descripción del producto: Esta increible cajita de chocolatada hecha por la gran empresa conaprole conocida por todo el país y el exterior llega a nuestra página para distribuir por cantidades mayores a un precio más que razonbale.</p>
+                    <p><?=$producto['descripcion']?></p>
                     <?php
-                        if (!isset($_SESSION['idRol'])) {
+                        if (!isset($_SESSION['user']['idRol'])) {
                             echo '<input type="submit" id="btnAddCart" value="agregar al carrito">';
                         }
                     ?>

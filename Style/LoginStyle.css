@@ -68,7 +68,7 @@ body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
 .eIncorrecto{background: red}
 .ePrecaucion{background: #5564eb}
 
-@media (max-width: 875px){
+@media (max-width: 1024px){
     #loginDerecha{
         width: 100%;    
         display: inline-block;

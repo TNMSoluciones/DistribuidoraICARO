@@ -2,17 +2,17 @@
 <?php 
     session_start();
     include_once 'BD/conBD.php';
-    if(isset($_SESSION['rol'])){
+    if(isset($_SESSION['user']['rol'])){
         include_once 'Assets/header.php';
         mostrarHeader('Empleados');
         echo '<main>';
         $pdo=pdo_conectar_mysql();
-        if ($_SESSION['idRol']==2 || $_SESSION['idRol']==1) {
+        if ($_SESSION['user']['idRol']==2 || $_SESSION['user']['idRol']==1) {
             
             ?>
     <div id="encargado" class="divPrincipal">
         <div>
-            <h1>Encargado de Ventas</h1>
+            <h1>Ventas</h1>
         </div>
         <!-- Este div se cambiara por un template -->
         <div class="comprasEncargado">
@@ -29,14 +29,14 @@
     </div>
     
     <?php }
-        if($_SESSION['idRol']==3 || $_SESSION['idRol']==1){
+        if($_SESSION['user']['idRol']==3 || $_SESSION['user']['idRol']==1){
             $sqlCantidadProductos=$pdo->query('SELECT COUNT(idProducto) FROM producto')->fetch(PDO::FETCH_ASSOC);
             $sqlCantidadProductos=$sqlCantidadProductos['COUNT(idProducto)'];
             ?>
     <div id="productos" class="divPrincipal">
         <div>
-            <h1>Encargado de Productos</h1>
-            <input type="text" class="searchEmpleados"  placeholder="Busca producto!">
+            <h1>Productos</h1>
+            <input type="text" class="searchEmpleados"  placeholder="Busca producto">
             <a href="modificarProductos.php?idProducto=0" class="btnDerecha">Agregar</a>
         </div>
         <!-- Este div se cambiara por un template -->
@@ -68,7 +68,7 @@
         </template>
         
         <?php }
-        if($_SESSION['idRol']==5 || $_SESSION['idRol']==1){
+        if($_SESSION['user']['idRol']==5 || $_SESSION['user']['idRol']==1){
             $sqlCantidadCliente=$pdo->query('SELECT COUNT(idCliente) FROM cliente')->fetch(PDO::FETCH_ASSOC);
             $sqlCantidadCliente=$sqlCantidadCliente['COUNT(idCliente)'];
             $sqlCantidadSugerencias=$pdo->query('SELECT COUNT(idOpinion) FROM opiniones')->fetch(PDO::FETCH_ASSOC);
@@ -77,7 +77,7 @@
     <div id="cliente" class="divPrincipal">
         <div>
             <h1>Clientes</h1>
-            <input type="text" class="searchEmpleados" placeholder="Busca clientes!">
+            <input type="text" class="searchEmpleados" placeholder="Busca clientes">
         </div>
         <div id="client">
             <!-- Se utilizara el template correspondiente con los datos desde la BD -->
@@ -90,7 +90,7 @@
     <div id="sugerencias" class="divPrincipal">
         <div>
             <h1>Sugerencias</h1>
-            <input type="text" class="searchEmpleados" placeholder="Busca sugerencias!">
+            <input type="text" class="searchEmpleados" placeholder="Busca sugerencias">
         </div>
         <div id="sugerencia">
             <!-- Se utilizara el template correspondiente con los datos de sde la BD -->
@@ -123,7 +123,7 @@
         </div>
     </template>
     <?php }
-        if($_SESSION['idRol']==1){
+        if($_SESSION['user']['idRol']==1){
             $sqlCantidadPersonal=$pdo->query('SELECT COUNT(idPersonal) FROM personal')->fetch(PDO::FETCH_ASSOC);
             $sqlCantidadPersonal=$sqlCantidadPersonal['COUNT(idPersonal)'];
             ?>
@@ -132,7 +132,7 @@
 <div id="personal" class="divPrincipal">
     <div>
         <h1>Empleados</h1>
-        <input type="text" class="searchEmpleados" placeholder="Busca empleados!">
+        <input type="text" class="searchEmpleados" placeholder="Busca empleados">
         <a href="modificarEmpleados.php?idPersonal=0" class="btnDerecha">Agregar</a>
     </div>
     <div id="empleados">
@@ -156,14 +156,14 @@
 </template>
 
 <?php }
-        if($_SESSION['idRol']==4 || $_SESSION['idRol']==1){
+        if($_SESSION['user']['idRol']==4 || $_SESSION['user']['idRol']==1){
             $sqlCantidadCategorias=$pdo->query('SELECT COUNT(idCategoria) FROM categorias')->fetch(PDO::FETCH_ASSOC);
             $sqlCantidadCategorias=$sqlCantidadCategorias['COUNT(idCategoria)'];
             ?>
     <div id="categoriasProduct" class="divPrincipal">
         <div>
             <h1>Categorias</h1>
-            <input type="text" class="searchEmpleados"  placeholder="Busca categoría!">
+            <input type="text" class="searchEmpleados"  placeholder="Busca categoría">
             <a href="modificarCategorias.php?idCategoria=0" class="btnDerecha">Agregar</a>
         </div>
         <div id="catProduct">

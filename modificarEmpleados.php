@@ -15,16 +15,16 @@
                 <div>
                     <form id="form">
                         <label for="primerNombre">Primer Nombre</label>
-                        <label for="segundoNombre">Segundo Nombre</label>
                         <input id="primerNombre" type="text" placeholder="Ingrese el primer nombre">
+                        <label for="segundoNombre">Segundo Nombre</label>
                         <input id="segundoNombre" type="text" placeholder="Ingrese el segundo nombre">
                         <label for="apellidoEmpleado">Apellido</label>
-                        <label for="email">Correo</label>
                         <input id="apellidoEmpleado" type="text" placeholder="Ingrese el apellido">
+                        <label for="email">Correo</label>
                         <input id="email" autocomplete="username" type="email" placeholder="Ingrese el correo">
                         <label for="passwd">Escriba la contraseña</label>
-                        <label for="passwdConfirm">Confirme la contraseña</label>
                         <input id="passwd" autocomplete="new-password" type="password" placeholder="Ingrese la contraseña">
+                        <label for="passwdConfirm">Confirme la contraseña</label>
                         <input id="passwdConfirm" autocomplete="new-password" type="password" placeholder="Confirme la contraseña">
                         <label for="rolPersonal" style="margin-top: 20px;">¿A cual rol pertenecera?</label>
                         <select id="rolPersonal">
@@ -60,17 +60,17 @@
                         <form id="form">
                             <label for="idPersonal">ID:</label>
                             <input id="idPersonal" type="text" value="<?=$empleado['idPersonal']?>" readonly>
-                            <label for="primerNombre">Primer Nombre</label>
-                            <label for="segundoNombre">Segundo Nombre</label>
+                            <label for="primerNombre">Primer nombre:</label>
                             <input id="primerNombre" type="text" placeholder="<?=$empleado['PrimerNombre']?>" value="<?=$empleado['PrimerNombre']?>">
+                            <label for="segundoNombre">Segundo nombre:</label>
                             <input id="segundoNombre" type="text" placeholder="<?=$empleado['SegundoNombre']?>" value="<?=$empleado['SegundoNombre']?>">
-                            <label for="apellidoEmpleado">Apellido</label>
-                            <label for="email">Correo</label>
-                            <input id="apellidoEmpleado" type="text" placeholder="<?=$empleado['Apellido']?>" value="<?=$empleado['Apellido']?>">
+                            <label for="apellidoEmpleado">Apellido:</label>
+                            <input id="apellidoEmpleado" type="text" placeholder="<?=$empleado['Apellido']!=''?$empleado['Apellido']:'Ingrese el segundo nombre'?>" value="<?=$empleado['Apellido']?>">
+                            <label for="email">Correo:</label>
                             <input id="email" autocomplete="username" type="email" placeholder="<?=$empleado['Correo']?>" value="<?=$empleado['Correo']?>">
-                            <label for="passwd">Escriba la nueva contraseña</label>
-                            <label for="rolPersonal">¿A cual rol pertenecera?</label>
+                            <label for="passwd">Escriba la nueva contraseña:</label>
                             <input id="passwd" autocomplete="new-password" type="password" placeholder="Ingrese su nueva contraseña">
+                            <label for="rolPersonal">Rol:</label>
                             <select id="rolPersonal">
                                 <option value="<?=$empleado['idRol']?>"><?=$empleado['Rol']?></option>
                                 <?php 
@@ -93,9 +93,9 @@
                 <div id="actualizar" class="eliminarEmpleado">
                     <h2>¿Esta seguro que desea eliminar <u><?=$empleado['PrimerNombre']?></u>?</h2>
                     <div>
-                        <label for="idPersonal">ID</label>
-                        <label for="nombreCompleto">Nombre</label>
+                        <label for="idPersonal">ID:</label>
                         <input type="text" value="<?=$empleado['idPersonal']?>" id="idPersonal" readonly>
+                        <label for="nombreCompleto">Nombre:</label>
                         <input type="text" value="<?=$nombreCompleto?>" readonly>
                         <input type="submit" value="Eliminar" id="btnEliminarPersonal">
                         <button id="btnCancelarEliminar">No</button>

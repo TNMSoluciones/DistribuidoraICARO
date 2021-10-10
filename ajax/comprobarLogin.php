@@ -20,10 +20,10 @@
                 {
                     if ($usuario['Activo']==1)
                     {
-                        $_SESSION['idUsuario'] = $usuario['idCliente'];
-                        $_SESSION['nombre']=$usuario['NombreEmpresa'];
-                        $_SESSION['correo']=$usuario['CorreoCliente'];
-                        $_SESSION['rut']=$usuario['RUT'];
+                        $_SESSION['user']['idUsuario'] = $usuario['idCliente'];
+                        $_SESSION['user']['nombre']=$usuario['NombreEmpresa'];
+                        $_SESSION['user']['correo']=$usuario['CorreoCliente'];
+                        $_SESSION['user']['rut']=$usuario['RUT'];
                         echo 1;
                     }else{echo 2;}
                 }else{echo 3;}
@@ -37,11 +37,11 @@
                 if (password_verify($passwd, $usuario['Password']))
                 {
                     $nombreCompleto=$usuario['SegundoNombre']==NULL? $usuario['PrimerNombre'] .' '.$usuario['Apellido']:$usuario['PrimerNombre'] .' '.$usuario['SegundoNombre'].' '.$usuario['Apellido'];
-                    $_SESSION['idUsuario'] = $usuario['idPersonal'];
-                    $_SESSION['nombre']=$nombreCompleto;
-                    $_SESSION['correo']=$usuario['Correo'];
-                    $_SESSION['idRol']=$usuario['idRol'];
-                    $_SESSION['rol']=$usuario['Rol'];
+                    $_SESSION['user']['idUsuario'] = $usuario['idPersonal'];
+                    $_SESSION['user']['nombre']=$nombreCompleto;
+                    $_SESSION['user']['correo']=$usuario['Correo'];
+                    $_SESSION['user']['idRol']=$usuario['idRol'];
+                    $_SESSION['user']['rol']=$usuario['Rol'];
                     echo 1;
                 }else{echo 3;}
             }else{echo 4;}

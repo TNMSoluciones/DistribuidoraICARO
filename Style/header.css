@@ -5,12 +5,12 @@ header
     width: 100%;
     height: 15vh;
 }
+
 header #logo
 {
-    width: 14vw;
-    height: 7.06vw;
-    margin: calc(10vh - 4.04vw) 0 0 40.425vw;
-    float: left;
+    width: 12vw;
+    height: 6.0975vw;
+    margin: calc(10vh - 3.04875vw) 0 0 40.425vw;
 }
 header img#carrito
 {
@@ -24,10 +24,7 @@ header img#carrito:hover{cursor: pointer}
 
 header #perfil a:visited{color: black}
 header #perfil a:active{color: rgb(229,143,83)}
-header #perfilusr img
-{
-    width: 3.85vw;
-}
+header #perfilusr img{width: 3.85vw}
 header a img#perfil
 {
     max-height: 15vh;
@@ -73,10 +70,14 @@ div#categorias p:hover
     font-size: 2vw;
 }
 div#categorias p:first-of-type{margin-top: 30vh}
-
+main {
+    width: 100%;
+    float: left;
+    min-height: calc(100vh - 20vh - 100px);
+}
 /* Header escritorio */
 
-@media (min-width: 876px){
+@media (min-width: 1025px){
     #btnCat{display: none}
     header div#buscador img{display: none}
     #categoriasMovil{display: none}
@@ -86,8 +87,17 @@ div#categorias p:first-of-type{margin-top: 30vh}
         font-weight: 400 !important;
         color: rgb(232, 232, 232);
     }
-    header #logo{
+    #headerDivImg {
+        width: 12vw;
+        height: 100%;
+        float: left;
         margin-left: 4vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    header #logo{
+        margin: 0;
     }
     header div#buscador{
         width: 33vw;
@@ -100,7 +110,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
         border: 0;
         float: left;
         font-weight: 300;
-        font-size: 100%;
+        font-size: 1vw;
         text-indent: 12px;
         padding: 0;
         outline: 1px solid rgb(231, 226, 226);
@@ -164,7 +174,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
         transition: none;
         position: relative;
         float: left;
-        
+        box-shadow: 0 1px 1px orange;
     }
     div#categorias a{
         text-decoration: none;
@@ -177,6 +187,7 @@ div#categorias p:first-of-type{margin-top: 30vh}
         line-height: 5vh;
         height: 5vh;
         padding: 0 15px;
+        transition: background-color 0.1s ease;
     }
     div#categorias p:hover{
         height: 5vh;
@@ -192,42 +203,12 @@ div#categorias p:first-of-type{margin-top: 30vh}
     div#categorias p:first-of-type{margin-top: 0}
 }
 
-@media (max-width: 1200px){
-    header div#buscador{
-        width: 40vw;
-        margin-left: 12vw;
-    }
-    header div#buscador select{width: 13vw}
-    header div#buscador input[type=text]{
-        width: 22vw;
-        height: 3vw;
-    }
-    header div#buscador input[type=submit]{
-        width: 5vw;
-        height: 3vw;
-        line-height: 3vw;
-        font-size: 1.3vw;
-    }
-    header div#buscador #search, header div#buscador select{height: 3vw;}
-    header div#carrito, header div#perfil{
-        min-width: 12vw;
-        margin-right: 1vw;
-    }
-    header div#carrito p, header div#perfil p{font-size: 1.1vw}
-    header div#carrito h1, header div#perfil h1{
-        font-size: 1.3vw;
-        font-weight: bolder;
-        padding-top: 0vw;
-    }
-    div#categorias p{font-size: 1.6vw}
-    div#categorias p:hover{font-size: 1.6vw}
-
-
-} 
+ 
 
 /* Header movil */
 
-@media (max-width: 875px){
+@media (max-width: 1024px){
+    header #formSearch select {display: none}
     header #logo
     {
         width: 40vw;
@@ -237,15 +218,24 @@ div#categorias p:first-of-type{margin-top: 30vh}
     }
     header div#buscador{
         width: 90vw;
-        height: 7vw;
+        height: fit-content;
         margin-left: 5vw;
         float: left;
         margin-top: 2vw;
     }
     header div#buscador p:first-of-type{display: none}
+    header #formSearch #search {
+        width: 8vw;
+        height: 8vw;
+        border: none;
+        outline: 1px solid rgb(231, 226, 226);
+        background: url(../img/lupa.png) no-repeat;
+        background-size: 90%;
+        
+    }
     header div#buscador input[type=text]{
-        width: 83vw;
-        height: 7vw;
+        width: 82vw;
+        height: 8vw;
         border: 0;
         float: left;
         font-weight: 300;
