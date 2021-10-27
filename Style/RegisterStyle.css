@@ -1,44 +1,47 @@
 *{font-family: 'Roboto Condensed', sans-serif;box-sizing: border-box;}
 body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
-#registerDerecha
-{
+#registerDerecha {
     width: 67%;
-    height: 100vh;  
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100vh;
+    float: right;
+    position: relative;
     background: radial-gradient(circle, rgba(197,115,68,1) 30%, rgba(229,143,83,1) 70%, rgba(255,175,101,1) 100%);
 }
-#registerDerecha form{width: 16vw}
-#registerDerecha form label, #registerDerecha form input, #registerDerecha form select
-{
-    width: 16vw;
-    height: 1.7vw;
-    line-height: 1.7vw;
-    font-size: 16px;
+#registerDerecha form{
+    width: 25vw;
+    float: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#registerDerecha form label, #registerDerecha form input, #registerDerecha form select {
+    width: 100%;
+    height: 1.6vw;
+    line-height: 1.6vw;
     margin: 5px 0;
 }
-#registerDerecha form label
-{
+#registerDerecha form label {
     display: block;
     text-align: left;
     font-weight: 400;
-    font-size: 28px;
+    font-size: 1.8vw;
 }
 #registerDerecha form input, #registerDerecha form select{
     text-indent: 10px;
-    height: 1.3vw;
-    line-height: 1.3vw;
+    height: 1.6vw;
+    line-height: 1.6vw;
+    font-size: 1vw;
 }
 #registerDerecha form input:focus-visible, #registerDerecha form select:focus-visible{outline: 0}
 .btnRegister{
-    width: 7vw;
-    height: 2vh;
+    width: 45%;
+    height: 1.6vw;
     float: right;
     margin-top: 30px;
-    font-size: 16px;
+    font-size: 90%;
     border: 0;
-    line-height: 2vh;
+    line-height: 1.6vw;
     padding: 0;
     box-sizing: border-box;
     background-color: rgb(239, 239, 239);
@@ -49,7 +52,7 @@ body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
     user-select: none;
 }
 .btnRegister:hover{
-    transition: 200ms ease all;
+    transition: 350ms ease all;
     cursor: pointer;
     background-color: rgb(120, 120, 120);
     outline-color: rgb(120, 120, 120);
@@ -58,37 +61,45 @@ body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
 .btnRegisterA{float: left}
 #registerDerecha form input[type=number]::-webkit-inner-spin-button,
 #registerDerecha form input[type=number]::-webkit-outer-spin-button{appearance: none;}
-.divEmergente{
-    width: 16vw;
-    line-height: 3vw;
-    font-size: 110%;
-    margin: 30px 0 30px 0;
-    text-align: center;
-    color: white;
+#divEmergente { 
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    bottom: -70px;
+    background-color: rgb(10, 10, 10);
+    color: rgb(255, 255, 255);
+    line-height: 70px;
+    font-size: 1.4vw;
+    text-indent: 20px;
+    transition: bottom .2s ease-in-out;
 }
-.eCorrecto{background: #32a367}
-.eIncorrecto{background: red}
-.ePrecaucion{background: #5564eb}
+.moverDiv {
+    bottom: 0 !important;
+}
 
 @media (max-width: 1024px){
     #registerDerecha{
-        width: 100%;
+        width: 100%;    
         display: inline-block;
-        height: fit-content;
+        min-height: calc(100vh - 30vw);
+        height: max-content;
     }
     #registerDerecha form{
+        position: relative;
         float: left;
         width: 100%;
         height: max-content;
-        margin-top: 3vw;
+        top: 3vw;
+        left: auto;
+        transform: translate(0);
     }
     #registerDerecha form label{font-size: 22px}
     #registerDerecha form input, #registerDerecha form select{font-size: 15px;}
     #registerDerecha form label, #registerDerecha form input, #registerDerecha form select{
         width: 80%;
-        margin: 2vw 10%;
-        height: 6vw;
-        line-height: 6vw;
+        margin: 1vw 10%;
+        height: 3vh;
+        line-height: 5vw;
     }
     #registerDerecha form button, #registerDerecha form a{
         float: left;

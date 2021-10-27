@@ -5,34 +5,36 @@
     margin: 3vw 0 0 15%;
     float: left;
 }
-.divPrincipal div{outline: 1px solid lightgrey; }
+.divPrincipal:last-of-type{margin-bottom: 3vw}
 .divPrincipal > div{
+    position: relative;
+    background-color: rgba(255, 255, 255);
+    outline: 1px solid rgb(128, 128, 128);
     float: left;
     width: 100%;
 }
+.divPrincipal > div:first-of-type{padding: 8px 0;}
 .divPrincipal > div h1{
-    height: 60px;
+    display: block;
+    height: 40px;
     margin: 0;
     width: 40%;
-    line-height: 60px;
+    line-height: 40px;
     padding-left: 1vw;
-    float: left;
     font-weight: 700;
 }
 .searchEmpleados{
-    position: absolute;
     width: 20vw;
-    left: calc(50% - 10vw);
     height: 1.4vw;
     box-sizing: border-box;
-    margin-top: calc(30px - .7vw);
+    margin-left: 1vw;
     text-indent: 4px;
 }
-.btnDerecha, .btnAdd{
+.btnDerecha{
     width: 4vw;
     height: 1.5vw;
     float: right;
-    margin: calc(30px - 0.75vw) 30px 0 0;
+    margin: calc(25px - 0.75vw) 30px 0 0;
     font-size: 85%;
     border: 0;
     line-height: 1.5vw;
@@ -44,80 +46,51 @@
     color: rgb(118, 118, 118);
     user-select: none;
 }
-.btnDerecha:hover, .btnAdd:hover{
+
+.btnDerecha:hover{
     transition: 200ms ease all;
     cursor: pointer;
     background-color: rgb(120, 120, 120);
     outline-color: rgb(120, 120, 120);
     color: white;
 }
-.comprasEncargado div, .empleados div, .categoriaProduct div, .clientesEncargado div, .sugerenciasEncargado div
-{
+.btnAdd {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -.75vw;
+}
+.titulosTabla, .comprasEncargado, .empleados, .categoriaProduct, .clientesEncargado, .sugerenciasEncargado, .productosEncargado {
+    float: left;
+    width: 100%;
+    outline: 1px solid rgb(216,216,216);
+    padding: 6px 0;
+}
+.titulosTabla div, .productosEncargado div, .comprasEncargado div, .empleados div, .categoriaProduct div, .clientesEncargado div, .sugerenciasEncargado div {
     width: 100%;
     height: 50px;
-    padding: 10px 0;
     float: left;
 }
-.comprasEncargado div .imgproducto
-{
-    width: 50px;
-    height: 50px;
+.titulosTabla div h3, .productosEncargado div h3, .comprasEncargado div h3, .empleados div h3, .categoriaProduct div h3, .clientesEncargado div h3, .sugerenciasEncargado div h3{
     float: left;
-    margin-left: 1vw;
-    user-select: none;
-}
-.comprasEncargado div h3, .empleados div h3, .categoriaProduct div h3, .clientesEncargado div h3, .sugerenciasEncargado div h3{
-    float: left;
-    width:20%;
+    width: 18%;
     height: 3vh;
     font: normal normal 300 1vw/3vh 'Roboto Condensed', sans-serif;
     text-indent: 5px;
-    margin: calc(30px - 1.5vh) 0 0 0;
+    margin: calc(25px - 1.5vh) 0 0 2%;
+    font-size: 1.2vw;
     overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.txtDerecha{
+
+.txtDerecha {
     width: auto !important;
     float: right !important;
     margin-right: 30px !important;
 }
-.productosEncargado{
-    width: 25%;
-    float: left;
-}
-.productosEncargado div:first-of-type{height: 20vw;}
-.productosEncargado div img{
-    width: 99%;
-    max-height: 20vw;
-}
-.productosEncargado div .imgDiv{
-    width: 100%;
-    height: 20vw;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-.btnProductos{
-    float: left;
-    width:45%;
-    margin: 0;
-}
-.btnProductos:nth-child(2){margin: 0 0 0 10%;}
-.aDiv{
-    float: left;
-    width: 70%;
-    outline: none !important;
-    margin: 1vw 0 1vw 15%;
-}
-.productosEncargado div h3{
-    font-size: 1vw;
-    font-weight: 300;
-    height: 2vh;
-    text-indent: 6px;
-}
 
-#eliminarCategoria{
+#eliminarCategoria {
     width: 15vw;
     height: 13vw;
     position: fixed;
@@ -143,8 +116,9 @@
 }
 .pagination{
     display: inline-block;
-    width: 86.5px;
-    padding: 0;
+    background-color: inherit !important;
+    width: 86.5px !important;
+    padding: 0 !important;
     margin: 1px 0 0 30px;
     outline: 0 !important;
 }
@@ -166,5 +140,53 @@
 }
 
 @media (max-width: 1024px){
-    
+    .divPrincipal{
+        width: 90%;
+        margin-left: 5%;
+    }
+    .divPrincipal > div h1{
+        height: 6vw;
+        margin: 0;
+        width: 20%;
+        font-size: 3.5vh;
+        line-height: 3.5vh;
+        padding-left: 1vw;
+        float: left;
+        font-weight: 500;
+    }
+    .searchEmpleados{
+        position: absolute;
+        width: 30%;
+        left: calc(50% - 10vw);
+        height: 4vw;
+        box-sizing: border-box;
+        margin-top: 1.5vw;
+        text-indent: 4px;
+    }
+    .btnDerecha{
+        width: 15vw;
+        height: 4vw;
+        font-size: 75%;
+        line-height: 4vw;
+        margin: calc(15px - 2vw) 1vw 0 0;
+    }
+    .btnAdd{
+        margin-top: 1vw;
+    }
+    .comprasEncargado div h3, .empleados div h3, .categoriaProduct div h3, .clientesEncargado div h3, .sugerenciasEncargado div h3{
+        font-size: 3vw;
+        width: 15vw;
+        margin: 0;
+        float: left;
+    }
+    .clientesEncargado div h3:nth-of-type(3), .clientesEncargado div h3:nth-of-type(4), .sugerenciasEncargado div h3:nth-of-type(3), .empleados div h3:nth-of-type(2) {
+        display: none;
+    }
+    .txtDerecha{
+        float: left !important;
+        margin-right: 0 !important;
+    }
+    .comprasEncargado div, .empleados div, .categoriaProduct div, .clientesEncargado div, .sugerenciasEncargado div {
+        height: 30px;
+    }
 }

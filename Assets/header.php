@@ -2,7 +2,7 @@
 $pdoCats=pdo_conectar_mysql();
 $sqlCats=$pdoCats->query("SELECT idCategoria, Categoria FROM categorias");
 function mostrarHeader($title){
-    echo '
+    ?>
         <!DOCTYPE html>
             <html lang="es-ES">
             <head>
@@ -12,7 +12,8 @@ function mostrarHeader($title){
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                 <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
                 <link rel="stylesheet" href="Style/header.css">
-                <title>'.$title.'</title>
+                <link rel="icon" href="img/icon.ico">
+                <title><?=$title?></title>
             </head>
             <body>
             <header>
@@ -22,56 +23,67 @@ function mostrarHeader($title){
                 </div>
                 <div id="buscador">
                     <form id="formSearch" action="productos.php" method="GET" onSubmit="return comprobarInput()">
-                        <select onchange="location = this.value">
+                        <select oninput="location = this.value">
+                            <option>Lista de Categorias</option>
                             <option value="productos.php">Todas las Categorias</option>
-                            ';
-                            while($cat = $GLOBALS['sqlCats']->fetch(PDO::FETCH_ASSOC)){
-                            ?>
+                            <?php while($cat = $GLOBALS['sqlCats']->fetch(PDO::FETCH_ASSOC)){?>
                             <option value="productos.php?query_cat=<?=$cat['idCategoria']?>"><?=$cat['Categoria']?></option>
-                            <?php
-                        }
-                    echo '</select>    
+                            <?php }?>
+                    </select>    
                         <input name="query_search" type="text" placeholder="Busca tu producto" autocomplete="off">
+                        <label for="search" id="forSearch"></label>
                         <input id="search" type="submit" value="Buscar">
                     </form>
-                </div>';
+                </div>
+                <?php
                 $cantidad = isset($_SESSION['carrito'])?count($_SESSION['carrito']):0;
                 $palabraCantidad = $cantidad==1?'item':'items';
-                echo !isset($_SESSION['user']['rol'])?"
+                if (!isset($_SESSION['user']['rol'])) {
+                    ?>
                     <div id='carrito'>
                         <a href='carrito.php' id='perfilusr'><img id='carrito' src='img/carrito-de-compras.png'></a> 	
-                        <p>".$cantidad." ".$palabraCantidad."</p>
+                        <p><?=$cantidad?> <?=$palabraCantidad?>.</p>
                         <a href='carrito.php'><h1>Carrito</h1></a>
-                    </div>": '';
-                echo '
+                    </div>
+                    <?php }?>
                 <div id="perfil">
-                    <a href="login.php" id="perfilusr"><img src="img/usuario.png" id="perfil"></a>
-                    <p>aaaaaa</p>
-                    <a href="login.php"><h1>Iniciar Sesion</h1></a>   
+                    <a href="<?=isset($_SESSION['user']["nombre"])?'Assets/logout.php':'login.php'?>" id="perfilusr"><img src="img/usuario.png" id="perfil"></a>
+                    <p><?=isset($_SESSION['user']["nombre"])?$_SESSION['user']["nombre"]:''?></p>
+                    <a href="<?=isset($_SESSION['user']["nombre"])?'Assets/logout.php':'login.php'?>"><h1><?=isset($_SESSION['user']["nombre"])?'Cerrar Sesion':'Iniciar Sesion'?></h1></a>   
                 </div>
             </header>
             <div id="categorias">
-                <a href="login.php"><p>Iniciar Sesion</p></a>
-                <a href="carrito.php"><p>Carrito</p></a>
-                <a href="index.php"><p>Inicio</p></a>
-                <a href="productos.php"><p>Catálogo de Productos</p></a>
-                <a href="contactanos.php"><p>Contactanos</p></a>
-        ';
-        echo isset($_SESSION['user']['rol'])?'<a href="pagempleado.php"><p>Empleados</p></a>':'';
-        echo isset($_SESSION['user']['nombre'])?'<a href="perfilUsuario.php"><p>Mi perfil</p></a>':'';
-        echo '</div>';
-    if (isset($_SESSION['user']["nombre"])) {
-        ?><script>
-            document.querySelector('header #perfil p').innerHTML= "<?php echo $_SESSION['user']['nombre']?>";
-            document.querySelector('header #perfil h1').innerHTML= "Cerrar Sesion";
-            document.querySelector('header #perfil a:first-of-type').setAttribute('href', 'Assets/logout.php');
-            document.querySelector('header #perfil a:last-of-type').setAttribute('href', 'Assets/logout.php');
-            document.querySelector('div#categorias a:first-of-type').innerHTML = "<p>Cerrar Sesion</p>";
-            document.querySelector('div#categorias a:first-of-type').setAttribute('href','Assets/logout.php');
-        </script><?php
-    }
-    ?>
-        <script>
+                <a href="<?=isset($_SESSION['user']["nombre"])?'Assets/logout.php':'login.php'?>"><p class="movilSuperior"><?=isset($_SESSION['user']["nombre"])?'Cerrar Sesion':'Iniciar Sesion'?></p></a>
+                <?=isset($_SESSION['user']['rol'])?"<a><p></p></a>":'<a href="carrito.php"><p>Carrito</p></a>'?>
+                <a href="index.php"><p id="inicioHeader">Inicio</p></a>
+                <a href="productos.php"><p id="productosHeader">Catálogo de Productos</p></a>
+                <a href="contactanos.php"><p id="contactanosHeader">Contactanos</p></a>
+
+        <?php
+            if (isset($_SESSION['user']['rol'])) {
+                echo '<a href="pagempleado.php"><p id="empleadosHeader">Empleados</p></a>';
+                echo '<a href="dashboard.php"><p id="dashboard">Dashboard</p></a>';
+            }
+            if (isset($_SESSION['user']['nombre'])) {
+                echo '<a href="perfilUsuario.php"><p id="miperfilHeader">Mi perfil</p></a>';
+            }
+        ?>
+        </div>
+        <script>    
+        let menuBandera = false;
+        document.getElementById('btnCat').addEventListener('click',()=>{
+            if (menuBandera)
+            {
+                document.getElementById('btnCat').style.transform= 'rotate(0deg)';
+                document.getElementById('categorias').style.marginLeft = '-100vw';
+            }
+            else
+            {
+                document.getElementById('btnCat').style.transform= 'rotate(-90deg)';
+                document.getElementById('categorias').style.marginLeft = '0vw';
+            }
+            menuBandera = !menuBandera;
+        });
             const comprobarInput = function(){
                 return document.querySelector('#buscador form input[type=text]').value.length>0? true:false ;
             }
@@ -86,20 +98,23 @@ function mostrarHeader($title){
             const lastSlash = window.location.pathname.lastIndexOf('/');
             const url = window.location.pathname.slice(lastSlash+1);
             switch(url) {
-                case 'index.php': document.querySelector("#categorias > a:nth-child(3) > p").classList.add('selected');
+                case 'index.php': document.getElementById('inicioHeader').classList.add('selected');
                     break;
-                case 'contactanos.php': document.querySelector("#categorias > a:nth-child(5) > p").classList.add('selected');
+                case 'productos.php': document.getElementById('productosHeader').classList.add('selected');
                     break;
-                case 'productos.php': document.querySelector("#categorias > a:nth-child(4) > p").classList.add('selected');
+                case 'contactanos.php': document.getElementById('contactanosHeader').classList.add('selected');
                     break;
-                case 'pagempleado.php': document.querySelector("#categorias > a:nth-child(6) > p").classList.add('selected');
+                case 'pagempleado.php': document.getElementById('empleadosHeader').classList.add('selected');
                     break;
-                case '': document.querySelector("#categorias > a:nth-child(3) > p").classList.add('selected');
+                case 'perfilUsuario.php': document.getElementById('miperfilHeader').classList.add('selected');
+                    break;
+                case 'dashboard.php': document.getElementById('dashboard').classList.add('selected')
+                    break;
+                case '': document.getElementById('inicioHeader').classList.add('selected');
                     break;
                 }
         </script>
     <?php
-    include_once 'Assets/menuDesplegable.php';
 }
 
 ?>

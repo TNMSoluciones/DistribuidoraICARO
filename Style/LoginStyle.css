@@ -1,25 +1,28 @@
 *{font-family: 'Roboto Condensed', sans-serif;box-sizing: border-box;}
 body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
-#loginDerecha
-{
+#loginDerecha {
     width: 67%;
-    height: 100vh;  
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100vh;
+    float: right;
+    position: relative;
     background: radial-gradient(circle, rgba(197,115,68,1) 30%, rgba(229,143,83,1) 70%, rgba(255,175,101,1) 100%);
 }
-#loginDerecha form{width: 16vw}
-#loginDerecha form label, #loginDerecha form input
-{
-    width: 16vw;
+#loginDerecha form{
+    width: 25vw;
+    float: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#loginDerecha form label, #loginDerecha form input {
+    width: 100%;
     height: 1.7vw;
     line-height: 1.7vw;
     font-size: 16px;
     margin: 5px 0;
 }
-#loginDerecha form label
-{
+#loginDerecha form label {
     display: block;
     text-align: left;
     font-weight: 400;
@@ -27,18 +30,18 @@ body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
 }
 #loginDerecha form input{
     text-indent: 10px;
-    height: 1.3vw;
-    line-height: 1.3vw;
+    height: 1.8vw;
+    line-height: 1.8vw;
 }
 #loginDerecha form input:focus-visible{outline: 0}
 .btnLogin{
-    width: 7vw;
-    height: 2vh;
+    width: 45%;
+    height: 1.6vw;
     float: right;
     margin-top: 30px;
-    font-size: 16px;
+    font-size: 90%;
     border: 0;
-    line-height: 2vh;
+    line-height: 1.6vw;
     padding: 0;
     box-sizing: border-box;
     background-color: rgb(239, 239, 239);
@@ -49,36 +52,40 @@ body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
     user-select: none;
 }
 .btnLogin:hover{
-    transition: 200ms ease all;
+    transition: 350ms ease all;
     cursor: pointer;
     background-color: rgb(120, 120, 120);
     outline-color: rgb(120, 120, 120);
     color: white;
 }
 .btnLoginA{float: left}
-.divEmergente{
-    width: 16vw;
-    line-height: 3vw;
-    font-size: 110%;
-    margin: 30px 0 30px 0;
-    text-align: center;
-    color: white;
+#divEmergente { 
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    bottom: -70px;
+    background-color: rgb(10, 10, 10);
+    color: rgb(255, 255, 255);
+    line-height: 70px;
+    font-size: 1.4vw;
+    text-indent: 20px;
+    transition: bottom .2s ease-in-out;
 }
-.eCorrecto{background: #32a367}
-.eIncorrecto{background: red}
-.ePrecaucion{background: #5564eb}
+.moverDiv {
+    bottom: 0 !important;
+}
 
 @media (max-width: 1024px){
     #loginDerecha{
         width: 100%;    
         display: inline-block;
-        height: calc(100vh - 50.81vw);
+        height: calc(100vh - 30vw);
     }
     #loginDerecha form{
+        position: relative;
         float: left;
         width: 100%;
         height: max-content;
-        margin-top: 18vw;
     }
     #loginDerecha form label{font-size: 22px}
     #loginDerecha form input, #loginDerecha form select{font-size: 15px}

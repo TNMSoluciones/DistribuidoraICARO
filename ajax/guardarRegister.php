@@ -4,7 +4,9 @@
     $pdo=pdo_conectar_mysql();
     if(isset($data)){
         $correoEmpresa = $data->correoEmpresa;
-        $sqlConsultaEmpleados=$pdo->query("SELECT COUNT(idPersonal) as Cantidad FROM personal WHERE Correo='$correoEmpresa'")->fetch(PDO::FETCH_ASSOC);
+        $sqlConsultaEmpleados=$pdo->prepare("SELECT COUNT(idPersonal) as Cantidad FROM personal WHERE Correo=?");
+        $sqlConsultaEmpleados->execute([$correoEmpresa]);
+        $sqlConsultaEmpleados = $sqlConsultaEmpleados->fetch(PDO::FETCH_ASSOC);
         $sqlConsultaEmpleados=$sqlConsultaEmpleados['Cantidad'];
         if($sqlConsultaEmpleados==0){
             $nombreEmpresa = $data->nombreEmpresa;
@@ -15,9 +17,13 @@
             $codigoPostal = $data->codigoPostal;
             $calle = $data->calle;
             $numCalle = $data->numCalle;
-            $sqlSelectCorreo = $pdo->query("SELECT COUNT(idCliente) FROM cliente WHERE CorreoCliente='$correoEmpresa'")->fetch(PDO::FETCH_ASSOC);
+            $sqlSelectCorreo = $pdo->prepare("SELECT COUNT(idCliente) FROM cliente WHERE CorreoCliente=?");
+            $sqlSelectCorreo->execute([$correoEmpresa]);
+            $sqlSelectCorreo = $sqlSelectCorreo->fetch(PDO::FETCH_ASSOC);
             $sqlSelectCorreo = $sqlSelectCorreo['COUNT(idCliente)'];
-            $sqlSelectRUT = $pdo->query("SELECT COUNT(idCliente) FROM cliente WHERE RUT='$rut'")->fetch(PDO::FETCH_ASSOC);
+            $sqlSelectRUT = $pdo->prepare("SELECT COUNT(idCliente) FROM cliente WHERE RUT=?");
+            $sqlSelectRUT->execute([$rut]);
+            $sqlSelectRUT = $sqlSelectRUT->fetch(PDO::FETCH_ASSOC);
             $sqlSelectRUT = $sqlSelectRUT['COUNT(idCliente)'];
             if ($sqlSelectCorreo==0&&$sqlSelectRUT==0) {
                 $SQL=$pdo->prepare('INSERT INTO cliente(NombreEmpresa, CorreoCliente, Password, RUT, idCiudad, CodigoPostal, CalleDir, NumeroDir) VALUES (?,?,?,?,?,?,?,?)');

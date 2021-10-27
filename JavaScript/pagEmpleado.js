@@ -1,97 +1,84 @@
 'use strict';
 document.addEventListener('DOMContentLoaded',()=>{
+    const cantidadPorPagina = 20;
     //Variables
     let paginaActualCategorias = actCantidadDeCategorias()>0?1:0;
     let paginaActualPersonal = actCantidadDePersonal()>0?1:0;
     let paginaActualCliente = actCantidadDeCliente()>0?1:0;
     let paginaActualProducto = actCantidadDeProductos()>0?1:0;
     let paginaActualSugerencias = actCantidadDeSugerencias()>0?1:0;
-    const cantidadPorPagina = 4;
-    
-    let paginaTotalCategorias=cantidadDeCategorias/cantidadPorPagina;
-    let paginaTotalPersonal=cantidadDePersonal/cantidadPorPagina;
-    let paginaTotalCliente=cantidadDeCliente/cantidadPorPagina;
-    let paginaTotalProducto=cantidadDeProductos/cantidadPorPagina;
-    let paginaTotalSugerencias=cantidadDeSugerencias/cantidadPorPagina;
+    let paginaActualVentas = actCantidadDeVentas()>0?1:0;
+    let keyUpInterval;
     
     if (document.getElementById('encargado')) {
-        //Cuando esten programados los eventListener de encargado de ventas
-    }
-    if (document.getElementById('sugerencias')) {
-        const divSugerencias = document.getElementById('sugerencia');
-        const templateSugerencias = document.getElementById('templateSugerencias').content;
-        const fragmentSugerencias = document.createDocumentFragment();
-        const mostrarSugerencias = function(){
-            let btnPaginacionSugerenciasIzquierda = document.querySelector('#sugerencias div.pagination li:first-of-type');
-            let btnPaginacionSugerenciasDerecha = document.querySelector('#sugerencias div.pagination li:last-of-type');
-            paginaActualSugerencias==1?btnPaginacionSugerenciasIzquierda.style.display='none':btnPaginacionSugerenciasIzquierda.style.display='inline';
-            paginaActualSugerencias==Math.ceil(paginaTotalSugerencias)?btnPaginacionSugerenciasDerecha.style.display='none':btnPaginacionSugerenciasDerecha.style.display='inline';
-            if(paginaActualSugerencias==0) {
-                btnPaginacionSugerenciasIzquierda.style.display='none';
-                btnPaginacionSugerenciasDerecha.style.display='none';
-            }
-            if (paginaActualSugerencias!=0) {
-                let xmlSugerencias = new XMLHttpRequest();
-                xmlSugerencias.overrideMimeType('text/xml');
+        const divVentas = document.getElementById('pedido');
+        const templateVentas = document.getElementById('templateVentas').content;
+        const fragmentVentas = document.createDocumentFragment();
+        const mostrarVentas = function() {
+            const btnPaginacionVentasIzquierda = document.querySelector('#encargado div.pagination li:first-of-type')
+            const btnPaginacionVentasDerecha = document.querySelector('#encargado div.pagination li:last-of-type');
+            if (cantidadDeVentas>0) {
+                let xmlVentas = new XMLHttpRequest();
+                xmlVentas.overrideMimeType('text/xml');
                 const data = {
-                    texto: document.querySelector('#sugerencias > div > input[type=text]').value,
+                    texto: document.querySelector('#encargado > div >input[type=text]').value,
                     datosPorPagina: cantidadPorPagina,
-                    paginaActual: (paginaActualSugerencias-1)*cantidadPorPagina
+                    paginaActual: (paginaActualVentas-1)*cantidadPorPagina
                 };
-                xmlSugerencias.onreadystatechange = function() {
-                    if(this.readyState==4 && this.status==200) {
-                        let sugerencias = JSON.parse(this.response);
-                        if(sugerencias[0]==undefined || sugerencias[0]['cantidad']<5){
-                            btnPaginacionSugerenciasIzquierda.style.display='none';
-                            btnPaginacionSugerenciasDerecha.style.display='none';
+                xmlVentas.onreadystatechange = function() {
+                    if (this.readyState==4 && this.status==200) {
+                        let ventas = JSON.parse(this.response);
+                        paginaActualVentas>1?btnPaginacionVentasIzquierda.style.display="inline":btnPaginacionVentasIzquierda.style.display='none';
+                        if (ventas[0]!=undefined) {
+                            paginaActualVentas<Math.ceil(ventas[0]['cantidad']/cantidadPorPagina)?btnPaginacionVentasDerecha.style.display="inline":btnPaginacionVentasDerecha.style.display='none';
+                        }else {
+                            btnPaginacionVentasDerecha.style.display='none'
+                            btnPaginacionVentasIzquierda.style.display='none'
                         }
-                        sugerencias.forEach(sugerencia => {
-                            templateSugerencias.querySelector('.sugerenciasEncargado div h3:first-of-type').textContent = sugerencia.nombreOpinion;
-                            templateSugerencias.querySelector('.sugerenciasEncargado div h3:nth-of-type(2)').textContent = sugerencia.correoOpinion; 
-                            templateSugerencias.querySelector('.sugerenciasEncargado div h3:last-of-type').textContent = sugerencia.fecha;  
-                            templateSugerencias.querySelector('.sugerenciasEncargado div a.btnModificarSugerencia').setAttribute('href', `modificarSugerencias.php?idSugerencia=${sugerencia.idOpinion}`);
-                            const clon = templateSugerencias.cloneNode(true);
-                            fragmentSugerencias.appendChild(clon);
-                        });
-                        divSugerencias.innerHTML=``;
-                        divSugerencias.appendChild(fragmentSugerencias);
+                        ventas.forEach(venta => {
+                            templateVentas.querySelector('.comprasEncargado div h3:first-of-type').textContent =  venta.nombre;
+                            templateVentas.querySelector('.comprasEncargado div h3:nth-of-type(2)').textContent = venta.fecha;
+                            templateVentas.querySelector('.comprasEncargado div h3:nth-of-type(3)').textContent = venta.precio;
+                            templateVentas.querySelector('.comprasEncargado div h3:nth-of-type(4)').textContent = venta.metodo;
+                            templateVentas.querySelector('.comprasEncargado div a.btnEliminarVentas').setAttribute('href', `modificarPedido.php?idPedido=${venta.idPedido}&delete=true`);
+                            templateVentas.querySelector('.comprasEncargado div a.btnModificarVentas').setAttribute('href', `modificarPedido.php?idPedido=${venta.idPedido}`);
+                            const clon = templateVentas.cloneNode(true);
+                            fragmentVentas.appendChild(clon);
+                        })
+                        divVentas.innerHTML=``;
+                        divVentas.appendChild(fragmentVentas);
                     }
                 }
-                xmlSugerencias.open('POST', 'ajax/sugerencias-mostrar.php', true);
-                xmlSugerencias.send(JSON.stringify(data));
+                xmlVentas.open('POST','ajax/pedidos-mostrar.php', true);
+                xmlVentas.send(JSON.stringify(data));
             }
         }
-        document.querySelector('#btnPagSugD').addEventListener('click', ()=>{
-            paginaActualSugerencias++;
-            mostrarSugerencias();
+        mostrarVentas();
+        document.querySelector('#btnPagVentasD').addEventListener('click', ()=>{
+            paginaActualVentas++;
+            mostrarVentas();
         });
-        document.querySelector('#btnPagSugI').addEventListener('click', ()=>{
-            paginaActualSugerencias--;
-            mostrarSugerencias();
+        document.querySelector('#btnPagVentasI').addEventListener('click', ()=>{
+            paginaActualVentas--;
+            mostrarVentas();
         });
-        mostrarSugerencias();
-        document.querySelector("#sugerencias > div:nth-child(1) > input").addEventListener('input',()=>{
-            paginaActualSugerencias = actCantidadDeSugerencias()>0?1:0;
-            mostrarSugerencias();   
-        })
+        document.querySelector("#encargado > div:nth-child(1) > input").addEventListener("keyup", function() {
+            clearInterval(keyUpInterval);
+            keyUpInterval = setInterval(function(){
+                paginaActualVentas = actCantidadDeVentas()>0?1:0
+                mostrarVentas();
+                clearInterval(keyUpInterval);
+            }, 800);
+        }, false);
     }
-    
     if (document.getElementById('productos')) {
-        //Cosas necesarias para crear y mostrar los productos
         const divProductos = document.getElementById('product');
         const templateProductos = document.getElementById('templateProductos').content;
         const fragmentProductos = document.createDocumentFragment();
-        const mostrarProductos = function()
-        {
+        const mostrarProductos = function() {
             let btnPaginacionProductoIzquierda = document.querySelector('#productos div.pagination li:first-of-type');
             let btnPaginacionProductoDerecha = document.querySelector('#productos div.pagination li:last-of-type');
-            paginaActualProducto==1?btnPaginacionProductoIzquierda.style.display='none':btnPaginacionProductoIzquierda.style.display='inline';
-            paginaActualProducto==Math.ceil(paginaTotalProducto)?btnPaginacionProductoDerecha.style.display='none':btnPaginacionProductoDerecha.style.display='inline';
-            if (paginaActualProducto==0) {
-                btnPaginacionProductoIzquierda.style.display='none';
-                btnPaginacionProductoDerecha.style.display='none';
-            }
-            if(paginaActualProducto!=0){
+            if(cantidadDeProductos>0){
                 let xmlProducto = new XMLHttpRequest();
                 xmlProducto.overrideMimeType('text/xml');
                 const data = {
@@ -102,12 +89,14 @@ document.addEventListener('DOMContentLoaded',()=>{
                 xmlProducto.onreadystatechange = function(){
                     if (this.readyState==4 && this.status==200) {
                         let productos = JSON.parse(this.response);
-                        if (productos[0]==undefined || productos[0]['cantidad']<5) {
-                            btnPaginacionProductoIzquierda.style.display='none';
-                            btnPaginacionProductoDerecha.style.display='none';
+                        paginaActualProducto>1?btnPaginacionProductoIzquierda.style.display='inline':btnPaginacionProductoIzquierda.style.display='none';
+                        if (productos[0]!=undefined) {
+                            paginaActualProducto<Math.ceil(productos[0]['cantidad']/cantidadPorPagina)?btnPaginacionProductoDerecha.style.display="inline":btnPaginacionProductoDerecha.style.display='none';
+                        }else {
+                            btnPaginacionProductoIzquierda.style.display='none'
+                            btnPaginacionProductoDerecha.style.display='none'
                         }
                         productos.forEach(producto =>{
-                            templateProductos.querySelector('.productosEncargado div img').setAttribute('src', producto.urlImagen);
                             templateProductos.querySelector('.productosEncargado div h3:first-of-type').textContent=producto.nombre;
                             templateProductos.querySelector('.productosEncargado div h3:nth-of-type(2)').textContent=producto.Categoria;
                             templateProductos.querySelector('.productosEncargado div h3:nth-of-type(3)').textContent='$'+producto.precio;
@@ -125,6 +114,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 xmlProducto.send(JSON.stringify(data));
             }
         }
+        mostrarProductos();
         document.querySelector('#btnPagProductoD').addEventListener('click', ()=>{
             paginaActualProducto++;
             mostrarProductos();
@@ -133,31 +123,85 @@ document.addEventListener('DOMContentLoaded',()=>{
             paginaActualProducto--;
             mostrarProductos();
         });
-        mostrarProductos();
-        document.querySelector("#productos > div:nth-child(1) > input").addEventListener('input',()=>{
-            paginaActualProducto = actCantidadDeProductos()>0?1:0;
-            mostrarProductos();   
-        })
+        document.querySelector("#productos > div:nth-child(1) > input").addEventListener('keyup',()=>{
+            clearInterval(keyUpInterval);
+            keyUpInterval = setInterval(function(){
+                paginaActualProducto = actCantidadDeProductos()>0?1:0
+                mostrarProductos();
+                clearInterval(keyUpInterval);
+            }, 800);
+        }, false);
     }
+    if (document.getElementById('sugerencias')) {
+        const divSugerencias = document.getElementById('sugerencia');
+        const templateSugerencias = document.getElementById('templateSugerencias').content;
+        const fragmentSugerencias = document.createDocumentFragment();
+        const mostrarSugerencias = function(){
+            let btnPaginacionSugerenciasIzquierda = document.querySelector('#sugerencias div.pagination li:first-of-type');
+            let btnPaginacionSugerenciasDerecha = document.querySelector('#sugerencias div.pagination li:last-of-type');
+            if (cantidadDeSugerencias>0) {
+                let xmlSugerencias = new XMLHttpRequest();
+                xmlSugerencias.overrideMimeType('text/xml');
+                const data = {
+                    texto: document.querySelector('#sugerencias > div > input[type=text]').value,
+                    datosPorPagina: cantidadPorPagina,
+                    paginaActual: (paginaActualSugerencias-1)*cantidadPorPagina
+                };
+                xmlSugerencias.onreadystatechange = function() {
+                    if(this.readyState==4 && this.status==200) {
+                        let sugerencias = JSON.parse(this.response);
+                        paginaActualSugerencias>1?btnPaginacionSugerenciasIzquierda.style.display='inline':btnPaginacionSugerenciasIzquierda.style.display='none';
+                        if(sugerencias[0]==undefined){
+                            paginaActualSugerencias>Math.ceil(sugerencias[0]['cantidad']/cantidadPorPagina)?btnPaginacionSugerenciasDerecha.style.display='inline':btnPaginacionSugerenciasDerecha.style.display='none';
+                        } else {
+                            btnPaginacionSugerenciasDerecha.style.display='none'
+                            btnPaginacionSugerenciasIzquierda.style.display='none'
+                        }
+                        sugerencias.forEach(sugerencia => {
+                            templateSugerencias.querySelector('.sugerenciasEncargado div h3:first-of-type').textContent = sugerencia.nombreOpinion;
+                            templateSugerencias.querySelector('.sugerenciasEncargado div h3:nth-of-type(2)').textContent = sugerencia.correoOpinion; 
+                            templateSugerencias.querySelector('.sugerenciasEncargado div h3:last-of-type').textContent = sugerencia.fecha;  
+                            templateSugerencias.querySelector('.sugerenciasEncargado div a.btnModificarSugerencia').setAttribute('href', `modificarSugerencias.php?idSugerencia=${sugerencia.idOpinion}`);
+                            const clon = templateSugerencias.cloneNode(true);
+                            fragmentSugerencias.appendChild(clon);
+                        });
+                        divSugerencias.innerHTML=``;
+                        divSugerencias.appendChild(fragmentSugerencias);
+                    }
+                }
+                xmlSugerencias.open('POST', 'ajax/sugerencias-mostrar.php', true);
+                xmlSugerencias.send(JSON.stringify(data));
+            }
+        }
+        mostrarSugerencias();
+        document.querySelector('#btnPagSugD').addEventListener('click', ()=>{
+            paginaActualSugerencias++;
+            mostrarSugerencias();
+        });
+        document.querySelector('#btnPagSugI').addEventListener('click', ()=>{
+            paginaActualSugerencias--;
+            mostrarSugerencias();
+        });
+        document.querySelector("#sugerencias > div:nth-child(1) > input").addEventListener("keyup", function() {
+            clearInterval(keyUpInterval);
+            keyUpInterval = setInterval(function(){
+                paginaActualSugerencias = actCantidadDeSugerencias()>0?1:0
+                mostrarSugerencias();
+                clearInterval(keyUpInterval);
+            }, 800);
+        }, false);
+    }
+    
 
 
-    if (document.getElementById('cliente'))
-    {
-        //Cosas necesarias para crear y mostrar los clientes
+    if (document.getElementById('cliente')) {
         const divCliente = document.getElementById('client');
         const templateCliente = document.getElementById('templateClientes').content;
         const fragmentCliente = document.createDocumentFragment();
-        const mostrarClientes = function()
-        {
+        const mostrarClientes = function() {
             let btnPaginacionClienteIzquierda=document.querySelector('#cliente div.pagination li:first-of-type');
             let btnPaginacionClienteDerecha=document.querySelector('#cliente div.pagination li:last-of-type');
-            paginaActualCliente==1?btnPaginacionClienteIzquierda.style.display='none':btnPaginacionClienteIzquierda.style.display='inline';
-            paginaActualCliente==Math.ceil(paginaTotalCliente)?btnPaginacionClienteDerecha.style.display='none':btnPaginacionClienteDerecha.style.display='inline';
-            if(paginaActualCliente==0){
-                btnPaginacionClienteIzquierda.style.display='none';
-                btnPaginacionClienteDerecha.style.display='none';
-            }
-            if(paginaActualCliente!=0){
+            if(cantidadDeCliente>0){
                 let xmlCliente = new XMLHttpRequest();
                 xmlCliente.overrideMimeType('text/xml');
                 const data = {
@@ -168,12 +212,14 @@ document.addEventListener('DOMContentLoaded',()=>{
                 xmlCliente.onreadystatechange = function(){
                     if (this.readyState==4 && this.status==200) {
                         let clientes = JSON.parse(this.response);
-                        if (clientes[0]==undefined || clientes[0]['cantidad']<5) {
-                            btnPaginacionClienteIzquierda.style.display='none';
-                            btnPaginacionClienteDerecha.style.display='none';
+                        paginaActualCliente>1?btnPaginacionClienteIzquierda.style.display="inline":btnPaginacionClienteIzquierda.style.display='none';
+                        if (clientes[0]!=undefined) {
+                            paginaActualCliente<Math.ceil(clientes[0]['cantidad']/cantidadPorPagina)?btnPaginacionClienteDerecha.style.display="inline":btnPaginacionClienteDerecha.style.display='none';
+                        }else {
+                            btnPaginacionClienteDerecha.style.display='none'
+                            btnPaginacionClienteIzquierda.style.display='none'
                         }
-                        clientes.forEach(cliente =>
-                            {
+                        clientes.forEach(cliente => {
                                 templateCliente.querySelector('.clientesEncargado div h3:first-of-type').textContent=cliente.nombreEmpresa;
                                 templateCliente.querySelector('.clientesEncargado div h3:nth-of-type(2)').textContent=cliente.correoEmpresa;
                                 templateCliente.querySelector('.clientesEncargado div h3:nth-of-type(3)').textContent=cliente.rut;
@@ -191,6 +237,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 xmlCliente.send(JSON.stringify(data));
             }
         }
+        mostrarClientes();
         document.querySelector('#btnPagClienteD').addEventListener('click', ()=>{
             paginaActualCliente++;
             mostrarClientes();
@@ -199,31 +246,25 @@ document.addEventListener('DOMContentLoaded',()=>{
             paginaActualCliente--;
             mostrarClientes();
         });
-        mostrarClientes();
-        document.querySelector("#cliente > div:nth-child(1) > input").addEventListener('input', ()=>{
-            paginaActualCliente = actCantidadDeCliente()>0?1:0;
-            mostrarClientes();
-        })
+        document.querySelector("#cliente > div:nth-child(1) > input").addEventListener('keyup', ()=>{
+            clearInterval(keyUpInterval);
+            keyUpInterval = setInterval(function(){
+                paginaActualCliente = actCantidadDeCliente()>0?1:0
+                mostrarClientes();
+                clearInterval(keyUpInterval);
+            }, 800);
+        }, false);
     }
 
 
-    if (document.getElementById('personal'))
-    {
-        //Cosas necesarias para crear y mostrar los Empleados
+    if (document.getElementById('personal')) {
         const divPersonal = document.getElementById('empleados');
         const templatePersonal = document.querySelector('#templatePersonal').content;
         const fragmentPersonal = document.createDocumentFragment();
-        const mostrarPersonal = function()
-        {
+        const mostrarPersonal = function() {
             let btnPaginacionPersonalIzquierda=document.querySelector('#personal div.pagination li:first-of-type');
             let btnPaginacionPersonalDerecha=document.querySelector('#personal div.pagination li:last-of-type');
-            paginaActualPersonal==1?btnPaginacionPersonalIzquierda.style.display='none':btnPaginacionPersonalIzquierda.style.display='inline';
-            paginaActualPersonal==Math.ceil(paginaTotalPersonal)?btnPaginacionPersonalDerecha.style.display='none':btnPaginacionPersonalDerecha.style.display='inline';
-            if (paginaActualPersonal==0) {
-                btnPaginacionPersonalIzquierda.style.display='none';
-                btnPaginacionPersonalDerecha.style.display='none';
-            }
-            if (paginaActualPersonal!=0) {
+            if (cantidadDePersonal>0) {
                 let xmlPersonal = new XMLHttpRequest();
                 xmlPersonal.overrideMimeType('text/xml');
                 const data={
@@ -231,14 +272,15 @@ document.addEventListener('DOMContentLoaded',()=>{
                     datosPorPagina: cantidadPorPagina,
                     paginaActual: (paginaActualPersonal-1)*cantidadPorPagina
                 };
-                xmlPersonal.onreadystatechange = function()
-                {
-                    if (this.readyState==4 && this.status==200)
-                    {
+                xmlPersonal.onreadystatechange = function() {
+                    if (this.readyState==4 && this.status==200) {
                         let empleados = JSON.parse(this.response);
-                        if (empleados[0]==undefined || empleados[0]['cantidad']<5) {
-                            btnPaginacionPersonalIzquierda.style.display='none';
-                            btnPaginacionPersonalDerecha.style.display='none';
+                        paginaActualPersonal>1?btnPaginacionPersonalIzquierda.style.display="inline":btnPaginacionPersonalIzquierda.style.display='none';
+                        if (empleados[0]!=undefined) {
+                            paginaActualPersonal<Math.ceil(empleados[0]['cantidad']/cantidadPorPagina)?btnPaginacionPersonalDerecha.style.display="inline":btnPaginacionPersonalDerecha.style.display='none';
+                        }else {
+                            btnPaginacionPersonalDerecha.style.display='none'
+                            btnPaginacionPersonalIzquierda.style.display='none'
                         }
                         empleados.forEach(empleados =>{
                             let nombreCompleto = empleados.sName=='NULL'?empleados.fName + ' ' + empleados.lastName:empleados.fName + ' ' + empleados.sName + ' '+ empleados.lastName;
@@ -258,7 +300,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 xmlPersonal.send(JSON.stringify(data));
             }
         }
-
+        mostrarPersonal();
         document.querySelector('#btnPagPersonalD').addEventListener('click', ()=>{
             paginaActualPersonal++;
             mostrarPersonal();
@@ -267,31 +309,25 @@ document.addEventListener('DOMContentLoaded',()=>{
             paginaActualPersonal--;
             mostrarPersonal();
         });
-        mostrarPersonal();
-        document.querySelector('#personal > div > input').addEventListener('input',()=>{
-            paginaActualPersonal = actCantidadDePersonal()>0?1:0;
-            mostrarPersonal();   
-        });
+        document.querySelector('#personal > div > input').addEventListener("keyup", function() {
+            clearInterval(keyUpInterval);
+            keyUpInterval = setInterval(function(){
+                paginaActualPersonal = actCantidadDePersonal()>0?1:0
+                mostrarPersonal();
+                clearInterval(keyUpInterval);
+            }, 800);
+        }, false);
     }
 
 
-    if (document.getElementById('categoriasProduct'))
-    {
-        //Cosas necesarias para crear y mostrar las Categorias
+    if (document.getElementById('categoriasProduct')) {
         const divCategorias = document.getElementById('catProduct');
         const templateCategoria = document.querySelector('#templateCategoria').content;
         const fragmentCategorias = document.createDocumentFragment();
-        const mostrarCategorias = function()
-        {
+        const mostrarCategorias = function() {
             let btnPaginacionCategoriasIzquierda=document.querySelector('#categoriasProduct div.pagination li:first-of-type');
             let btnPaginacionCategoriasDerecha=document.querySelector('#categoriasProduct div.pagination li:last-of-type');
-            paginaActualCategorias==1?btnPaginacionCategoriasIzquierda.style.display="none":btnPaginacionCategoriasIzquierda.style.display="inline";
-            paginaActualCategorias==Math.ceil(paginaTotalCategorias)?btnPaginacionCategoriasDerecha.style.display='none':btnPaginacionCategoriasDerecha.style.display='inline';
-            if (paginaActualCategorias==0){
-                btnPaginacionCategoriasIzquierda.style.display="none";
-                btnPaginacionCategoriasDerecha.style.display='none';
-            }
-            if (paginaActualCategorias!=0){
+            if (cantidadDeCategorias>0){
                 let xmlCat = new XMLHttpRequest();
                 xmlCat.overrideMimeType('text/xml');
                 const data={
@@ -299,13 +335,15 @@ document.addEventListener('DOMContentLoaded',()=>{
                     datosPorPagina: cantidadPorPagina,
                     paginaActual: (paginaActualCategorias-1)*cantidadPorPagina
                 };
-                xmlCat.onreadystatechange = function()
-                {
+                xmlCat.onreadystatechange = function() {
                     if (this.readyState== 4 && this.status ==200){
                         let categoriasProducto = JSON.parse(this.response);
-                        if (categoriasProducto[0]==undefined || categoriasProducto[0]['cantidad']<5) {
-                            btnPaginacionCategoriasIzquierda.style.display='none';
-                            btnPaginacionCategoriasDerecha.style.display='none';
+                        paginaActualCategorias>1?btnPaginacionCategoriasIzquierda.style.display="inline":btnPaginacionCategoriasIzquierda.style.display='none';
+                        if (categoriasProducto[0]!=undefined) {
+                            paginaActualCategorias<Math.ceil(categoriasProducto[0]['cantidad']/cantidadPorPagina)?btnPaginacionCategoriasDerecha.style.display="inline":btnPaginacionCategoriasDerecha.style.display='none';
+                        }else {
+                            btnPaginacionCategoriasDerecha.style.display='none'
+                            btnPaginacionCategoriasIzquierda.style.display='none'
                         }
                         categoriasProducto.forEach(categoria =>{
                             templateCategoria.querySelector('.categoriaProduct div h3').textContent=categoria.Categoria;
@@ -322,6 +360,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 xmlCat.send(JSON.stringify(data));
             }
         }
+        mostrarCategorias();
         document.querySelector('#btnPagCatD').addEventListener('click', ()=>{
             paginaActualCategorias++;
             mostrarCategorias();
@@ -330,11 +369,14 @@ document.addEventListener('DOMContentLoaded',()=>{
             paginaActualCategorias--;
             mostrarCategorias();
         });
-        mostrarCategorias();
-        document.querySelector('#categoriasProduct > div > input[type=text]').addEventListener('input', ()=>{
-            paginaActualCategorias = actCantidadDeCategorias()>0?1:0;
-            mostrarCategorias();
-        })
+        document.querySelector('#categoriasProduct > div > input[type=text]').addEventListener("keyup", function() {
+            clearInterval(keyUpInterval);
+            keyUpInterval = setInterval(function(){
+                paginaActualCategorias = actCantidadDeCategorias()>0?1:0
+                mostrarCategorias();
+                clearInterval(keyUpInterval);
+            }, 800);
+        }, false);
     }
     
 });//Fin de DOMContentLoaded

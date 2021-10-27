@@ -3,9 +3,10 @@
     include_once 'BD/conBD.php';
     include_once 'Assets/header.php';
     $pdo=pdo_conectar_mysql();
-    //$idProductoSeleccionado = isset($_GET['idProducto']) && $_GET['idProducto']>0?$_GET
     isset($_GET['idProducto']) && $_GET['idProducto']>0?$idProductoSeleccionado=$_GET['idProducto']:header('Location: productos.php');
-    $siExisteProducto = $pdo->query("SELECT COUNT(idProducto), Nombre FROM producto WHERE idProducto='$idProductoSeleccionado'")->fetch(PDO::FETCH_ASSOC);
+    $siExisteProducto = $pdo->prepare("SELECT COUNT(idProducto), Nombre FROM producto WHERE idProducto=?");
+    $siExisteProducto->execute([$idProductoSeleccionado]);
+    $siExisteProducto = $siExisteProducto->fetch(PDO::FETCH_ASSOC);
     if ($siExisteProducto['COUNT(idProducto)']==1) {
         mostrarHeader('Comprar '.$siExisteProducto['Nombre']);
         $sql=$pdo->prepare("SELECT producto.*, categorias.Categoria FROM producto JOIN categorias ON producto.idCategoria=categorias.idCategoria WHERE idProducto=?");

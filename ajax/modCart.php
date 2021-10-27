@@ -36,9 +36,7 @@
         if(isset($_GET['remove']) && $_GET['remove'] && isset($_GET['idProducto']) && $_GET['idProducto']>=0) {
             $idProducto = $_GET['idProducto'];
             $clave = array_search($idProducto, array_column($_SESSION['carrito'], 'idProducto'));
-            if ($clave!='') {
-                unset($_SESSION['carrito'][$clave]);
-            }
+            unset($_SESSION['carrito'][$clave]);
         }
         if (isset($_SESSION['carrito'])) {
             $_SESSION['carrito'] = array_values($_SESSION['carrito']);

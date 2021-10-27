@@ -1,5 +1,12 @@
-*{font-family: 'Roboto Condensed', sans-serif}
-body{margin: 0}
+*{
+    font-family: 'Roboto Condensed', sans-serif;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0;
+    background-color: rgba(250,250,250);
+}
 header
 {
     width: 100%;
@@ -62,14 +69,17 @@ div#categorias p
     font-size: 1.8vw;
     margin: 0;
     user-select: none;
+    transition: background-color .3s ease, color .3s ease;
 }
 div#categorias p:hover
 {
     cursor: pointer;
+    color: rgb(255, 255, 255);
     height: 6vh;
     font-size: 2vw;
+	background-color: #ca6d2f;
+
 }
-div#categorias p:first-of-type{margin-top: 30vh}
 main {
     width: 100%;
     float: left;
@@ -80,7 +90,7 @@ main {
 @media (min-width: 1025px){
     #btnCat{display: none}
     header div#buscador img{display: none}
-    #categoriasMovil{display: none}
+    div#categorias a:nth-of-type(1) p, div#categorias a:nth-of-type(2) p{display: none;}
     #formSearch{float: left;}
     .selected{
         background-color: #D98851;
@@ -110,7 +120,7 @@ main {
         border: 0;
         float: left;
         font-weight: 300;
-        font-size: 1vw;
+        font-size: 0.7vw;
         text-indent: 12px;
         padding: 0;
         outline: 1px solid rgb(231, 226, 226);
@@ -129,8 +139,11 @@ main {
         outline: 1px solid rgb(231, 226, 226);
         line-height: 2vw;
         text-align: center;
-        font-size: 1vw;
+        font-size: 0.7vw;
         transition: background 0.2s ease-in;
+    }
+    header div#buscador #search {
+        font-weight: 800;
     }
     header div#buscador select{
         width: 11vw;
@@ -144,12 +157,14 @@ main {
         margin: calc(7.5vh - 0.75vw) 2vw 0 0;
     }
     header div#carrito{min-width: 6vw}
-    header div#perfil{margin-right: 0}
     header div#carrito p, header div#perfil p{
         margin: 0;
         font-size: 0.6vw;
         font-weight: 300;
         color: rgb(112, 101, 101);
+    	overflow: hidden;
+    	white-space: nowrap;
+	    text-overflow: ellipsis;
     }
     header div#carrito h1, header div#perfil h1{
         margin: 0;
@@ -187,15 +202,11 @@ main {
         line-height: 5vh;
         height: 5vh;
         padding: 0 15px;
-        transition: background-color 0.1s ease;
     }
     div#categorias p:hover{
         height: 5vh;
         font-size: 1vw;
         background-color: #D98851;
-    }
-    div#categorias a:first-of-type, div#categorias a:nth-of-type(2){
-        display: none;
     }
     div#categorias a:nth-of-type(3){
         margin: 0 0 0 calc(4vw - 15px);
@@ -208,32 +219,51 @@ main {
 /* Header movil */
 
 @media (max-width: 1024px){
+    header {
+        height: 35vw;
+        float: left;
+    }
+    header #btnCat {
+        width: 9.5vw;
+        height: 9.5vw;
+    }
+    #slidervista {margin-top: 2vw}
+    header #headerDivImg a {
+        width: 40vw;
+        position: relative;
+        height: fit-content;
+        float: left;
+        margin: 4vw 0 0 30vw;
+    }
+    header #headerDivImg img {margin: 0}
     header #formSearch select {display: none}
-    header #logo
-    {
+    header #logo {
         width: 40vw;
         position: relative;
         height: auto;
         margin: 4vw 0 0 30vw;
     }
-    header div#buscador{
+    header div#buscador {
         width: 90vw;
         height: fit-content;
         margin-left: 5vw;
         float: left;
         margin-top: 2vw;
     }
-    header div#buscador p:first-of-type{display: none}
-    header #formSearch #search {
+    header div#buscador p:first-of-type {display: none}
+    header #formSearch #search {display: none}
+    header #formSearch #forSearch {
+        float: left;
         width: 8vw;
         height: 8vw;
         border: none;
         outline: 1px solid rgb(231, 226, 226);
-        background: url(../img/lupa.png) no-repeat;
+        background: url(../img/lupa.png) center;
         background-size: 90%;
-        
+        background-repeat: no-repeat;
+        background-origin: content-box;
     }
-    header div#buscador input[type=text]{
+    header div#buscador input[type=text] {
         width: 82vw;
         height: 8vw;
         border: 0;
@@ -245,59 +275,47 @@ main {
         outline: 1px solid rgb(231, 226, 226);
         color: rgb(34, 32, 32);
     }
-    header div#buscador input[type=text]:focus{
+    header div#buscador input[type=text]:focus {
         outline: 1px solid black;
     }
-    header div#buscador p{display: none}
-    header div#buscador img{
+    header div#buscador p {display: none}
+    header div#buscador img {
         width: 5vw;
         height: 5vw;
         float: left;
         padding: 1vw;
         outline: 1px solid rgb(231, 226, 226);
     }
-    header #btnCat
-    {
-        width: 9.5vw;
-        height: 9.5vw;
-        top: calc(7.5vh - 4.75vw);
-    }
     header div#carrito, header div#perfil{display: none}
-    div#categorias
-    {
+    div#categorias {
         width: 100%;
         top: 0;
         margin-left: -100%;
         background-color: #D98851;
     }
-    div#categorias a{
+    div#categorias a {
         text-decoration: none;
         text-align: center;
     }
     div#categorias p:first-of-type{
         margin: 0;
     }
-    div#categorias p
-    {
+    div#categorias p {
         font-size: 8vw;
         height: 6vh;
         color: #000;
     }
-    div#categorias p:hover
-    {
+    div#categorias p:hover {
         height: 6vh;
         font-size: 8vw;
     }
-    div#categorias a:first-of-type p{
+
+    div#categorias a:nth-of-type(1) p {
         margin-top: 12vh;
     }
-    div#categorias a:nth-of-type(3) p{
-        margin-top: 20vh;
+    div#categorias a:nth-of-type(2) p {
+        margin-bottom: 20vh;
     }
-    div#categorias a:first-of-type p, div#categorias a:nth-of-type(2) p{font-weight: 600;}
-    div#categorias a:first-of-type img,div#categorias a:nth-child(2) img{
-        width: 4vh;
-        padding: 1vh;
-        float: left;
-    } 
+    div#categorias a:nth-of-type(1) p, div#categorias a:nth-of-type(2) p {font-weight: 600;}
+
 } 

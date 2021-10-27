@@ -20,18 +20,21 @@
 
     /* Header movil */
 
-    @media (max-width: 875px)
+    @media (max-width: 1024px)
     {
         #zonaIzquierda{
-            width: 100vw;
-            height: 50.81vw;
+            width: 100%;
+            height: 30vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border-right: none;
             border-bottom: 1px solid black;
             box-sizing: border-box;
         }
         #zonaIzquierda a, #zonaIzquierda img{
-            width: 100%;    
-            height: 50.81vw;
+            width: auto;
+            height: 100%;    
             margin: 0;
             display:block;
             margin-left:auto;

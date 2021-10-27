@@ -1,0 +1,27 @@
+#divGraficaPorMes {
+    width: 65%;
+    margin: 15vw 0 0 3vw;
+}
+#ganadoM {margin-left: 5vw;}
+#ganadoY {margin: 0 2vw 0 2vw;}
+#ganadoM, #ganadoY, #productosMenorStock{
+    outline: 1px solid black;
+    float: left;
+    margin-top: 2vw;
+    text-align: center;
+}
+#ganadoM, #ganadoY {width: 20vw;}
+#productosMenorStock table{width: 18vw;}
+#productosMenorStock table td{border-bottom: 1px solid black;}
+#productosMenorStock table th:first-child{border-right: 1px solid black;}
+#productosMenorStock table th {
+    width: 9vw;
+    border-bottom: 1px solid black;
+}
+#productosMenorStock table td:first-child {
+    width: 9vw;
+    border-right: 1px solid black;
+}
+#productosMenorStock > table > tbody > tr:last-of-type > td {
+    border-bottom: none;
+} 

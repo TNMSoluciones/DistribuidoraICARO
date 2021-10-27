@@ -1,39 +1,40 @@
+#productosCarrito {
+    float: left;
+    width: 70%;
+    margin-top: 1vw;
+}
 .btnEliminar{
     width: 22px;
     height: 22px;
     display: inline-block;
+    margin-right: 3%;
     background: url('../svg/trash.svg');
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
 }
 .carritompra{
-    border: 1px solid rgb(128, 128, 128);
+    border: 1px solid rgb(240, 240, 240);
+    background-color: rgb(255, 255, 255);
     border-radius: 5px;
-    margin-bottom: 20px;
-    width: 64vw;
-    height: 8vw;
-    margin-left: 18vw;
+    margin: 1vw 0 20px 10%;
+    width: 90%;
+    height: 4vw;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
-.carritompra p, .carritompra h1{
-    margin: 3vw 5vw 2vw 0;
-    height: 2vw;
-}
 .carritompra h1{
+    width: 14vw;
     margin-left: 2vw;
-    font-size: 1.3vw;
-    width: 10vw;
+    font-size: 1vw;
 }
-#only{
-    margin: 4vw 0 2vw 0;
-    margin-left: 20vw;
+.carritompra p {
+    width: 8vw;
+    margin-left: 3vw;
 }
 .divImg {
-    width: 8vw;
-    height: 8vw;
+    width: 4vw;
+    height: 4vw;
     display:flex;
     float: left;
     justify-content: center;
@@ -42,6 +43,111 @@
     margin-left: 10px;
 }
 .divImg img{
-    max-height: 8vw;
-    max-width: 8vw;
+    max-height: calc(4vw - 2px);
+    max-width: calc(4vw - 2px);
+}
+.carritovacio{
+    margin: 2vw 0 0 25vw;
+    background-color: #fff;
+    border: 1px solid rgb(240, 240, 240);
+    width: 50vw;
+    float: left
+}
+.carritovacio input[type=submit]{
+    margin: 2vw 0 2vw 2vw;
+    background-color: rgb(37, 126, 243);
+    color: white;
+    width: fit-content;
+    padding: 0 12px;
+    float: left;
+    height: 2vw;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    font-weight: 300;
+    font-size: 1vw;
+}
+.carritovacio input[type=submit]:hover{
+    transition: background-color .2s ease;
+    background-color: rgb(40, 120, 243);
+}
+.carritovacio h2{
+    color: #414a4c;
+    font-weight: 400;
+}
+.carritovacio h1, .carritovacio h2{margin: 1.5vw 0 0 2vw;}
+
+#resumenPagar {
+    width: 30%;
+    margin-top: 2vw;
+    float: right;
+}
+#formMetodoPago {
+    width: 80%;
+    min-height: 26vw;
+    margin-left: 10%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 5px;
+}
+#resumenPagar div img {
+    width: 4vw;
+    height: 4vw;
+}
+#formMetodoPago input[type=radio] {
+    margin: 2vw 0 0 0;
+}
+#formMetodoPago label:first-of-type {
+    margin-right: 1vw;
+}
+#formMetodoPago p {
+    font-size: 2vw;
+    font-weight: 700;
+}
+#formMetodoPago input[type=button] {
+    display: block;
+    margin: 2vw 0 0 calc(50% - 4vw);
+    background-color: rgb(37, 126, 243);
+    color: white;
+    width: 8vw;
+    height: 2vw;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+}
+#formMetodoPago {text-align: center;}
+#formMetodoPago img{margin-left: 1vw;}
+
+/* Estilos del div que se muestra cuando se ejecuta una accion */
+#divEmergente { 
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    bottom: -70px;
+    background-color: rgb(10, 10, 10);
+    color: rgb(255, 255, 255);
+    line-height: 70px;
+    font-size: 1.4vw;
+    text-indent: 20px;
+    transition: bottom .2s ease-in-out;
+}
+.moverDiv {
+    bottom: 0 !important;
+}
+@media (max-width: 1024px){
+    #productosCarrito {
+        width: 100%;
+    }
+    .carritovacio {
+        width: 90%;
+        margin: 10vw 0 10vw 5%;
+    }
+    .carritovacio h1{font-size: 8vw;}
+    .carritovacio h2{font-size: 5vw;margin: 4vw 2vw;}
+    .carritovacio input[type=submit] {
+        width: 30vw;
+        height: 10vw;
+        font-size: 4vw;
+    }
 }

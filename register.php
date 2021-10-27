@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['user'])) {
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,7 +28,7 @@
             <input id="correoEmpresa" type="email" placeholder="Ingrese el Correo">
             <label for="passwordEmpresa">Contraseña:</label>
             <input id="passwordEmpresa" autocomplete="off" type="password" placeholder="Ingrese una contraseña">
-            <label for="passwordConfirmEmpresa">Contraseña:</label>
+            <label for="passwordConfirmEmpresa">Confirmar contraseña:</label>
             <input id="passwordConfirmEmpresa" autocomplete="off" type="password" placeholder="Confirme la contraseña">
             <label for="rutEmpresa">RUT:</label>
             <input type="number" step="0" min="0" max="999999999999" id="rutEmpresa" placeholder="Ingrese el RUT">
@@ -43,11 +47,12 @@
             <label for="direccionNumEmpresa">Numero de calle:</label>
             <input id="direccionNumEmpresa" type="text" placeholder="Ingrese el Numero de la Direccion">
             <label for="postalEmpresa">Codigo Postal:</label>
-            <input id="postalEmpresa" type="number" step="0" min="0" max="99999" placeholder="Ingrese codigo postal">
-            <a class="btnRegister btnRegisterA" href="login.php">Ir a Iniciar Sesion</a>
-            <button class="btnRegister" name="btnReg" type="submit">Registrarse</button>
+            <input id="postalEmpresa" type="text" placeholder="Ingrese codigo postal">
+            <button class="btnRegister btnRegisterA" name="btnReg" type="submit">Registrarse</button>
+            <a class="btnRegister" href="login.php">Ir a Iniciar Sesion</a>
         </form>
     </div>
+    <div id="divEmergente"></div>
     <template id="templateCiudad">
         <option value=""></option>
     </template>
@@ -55,3 +60,8 @@
 <link rel="stylesheet" href="Style/RegisterStyle.css">
 <script src="JavaScript/register.js"></script>
 </html>
+<?php 
+    }else{
+        header("Location: index.php");
+    }
+?>

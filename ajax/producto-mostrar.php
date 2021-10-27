@@ -13,13 +13,12 @@
         $sqlCantidad=$pdo->query("SELECT COUNT(idProducto) AS cantidad FROM producto WHERE Nombre LIKE '%".$texto."%'")->fetch(PDO::FETCH_ASSOC);
         $json = array();
         while ($fila = $sql->fetch(PDO::FETCH_ASSOC)) {
-            $json[]= array(
+            $json[] = array(
                 'idProducto' => $fila['idProducto'],
                 'nombre' => $fila['Nombre'],
                 'precio' => $fila['Precio'],
                 'Categoria' => $fila['Categoria'],
                 'stock' => $fila['Stock'],
-                'urlImagen' => "data:image/png;base64,".base64_encode($fila['Imagen']),
                 'cantidad' => isset($sqlCantidad['cantidad'])?$sqlCantidad['cantidad']:0
             );
         }

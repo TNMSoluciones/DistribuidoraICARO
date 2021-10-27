@@ -4,8 +4,10 @@
     include_once 'Assets/header.php';
     mostrarHeader('Distribuidora ICARO');
     $pdo = pdo_conectar_mysql();
-    $selectProductosDestacados = $pdo->prepare('SELECT idProducto, Nombre, Precio, Imagen, Stock FROM producto WHERE Destacado=1 LIMIT 3');
+    $selectProductosDestacados = $pdo->prepare('SELECT idProducto, Nombre, Precio, Imagen, Stock FROM producto WHERE Destacado=1 ORDER BY RAND() LIMIT 3');
     $selectProductosDestacados->execute();
+    $selectProductosRandom = $pdo->prepare('SELECT idProducto, Nombre, Precio, Imagen, Stock FROM producto ORDER BY RAND() LIMIT 15');
+    $selectProductosRandom->execute();
 ?>
 <main>
     <div id="slidervista">
@@ -42,56 +44,22 @@
             </div>
         <?php }?>
     </div>
-
     <div id="section3">
         <h1>Productos</h1>
-        <div class="articulos2">
-            <img src="" alt="">
-            <h1>Nombre Producto</h1>
-            <p>$Precio</p>
-            <p>Stock Si/No</p>
-            <a href="">Ver Mas</a>
-        </div>
-        <div class="articulos2">
-            <img src="" alt="">
-            <h1>Nombre Producto</h1>
-            <p>$Precio</p>
-            <p>Stock Si/No</p>
-            <a href="">Ver Mas</a>
-        </div>
-        <div class="articulos2">
-            <img src="" alt="">
-            <h1>Nombre Producto</h1>
-            <p>$Precio</p>
-            <p>Stock Si/No</p>
-            <a href="">Ver Mas</a>
-        </div>
-        <div class="articulos2">
-            <img src="" alt="">
-            <h1>Nombre Producto</h1>
-            <p>$Precio</p>
-            <p>Stock Si/No</p>
-            <a href="">Ver Mas</a>
-        </div>
-        <div class="articulos2">
-            <img src="" alt="">
-            <h1>Nombre Producto</h1>
-            <p>$Precio</p>
-            <p>Stock Si/No</p>
-            <a href="">Ver Mas</a>
-        </div>
-        <div class="articulos2">
-            <img src="" alt="">
-            <h1>Nombre Producto</h1>
-            <p>$Precio</p>
-            <p>Stock Si/No</p>
-            <a href="">Ver Mas</a>
+        <div class="productoSection3">
+            <?php while($productosRandom = $selectProductosRandom->fetch(PDO::FETCH_ASSOC)) {?>
+                <div class="articulos2">
+                    <div class="divImg2">
+                        <img src="data:image/png;base64,<?=base64_encode($productosRandom['Imagen'])?>" alt="<?=$productosRandom['Nombre']?>">
+                    </div>
+                    <h1><?=$productosRandom['Nombre']?></h1>
+                    <p>$ <?=$productosRandom['Precio']?></p>
+                    <p>Stock <?=$productosRandom['Stock']>0?'':'no'?> disponible</p>
+                    <a href="extensionProducto.php?idProducto=<?=$productosRandom['idProducto']?>">Ver Mas</a>
+                </div>
+                <?php }?>
         </div>
     </div>
-</main>
-    
-    <?php include_once 'Assets/footer.php';?>
-
-</body>
-    <link rel="stylesheet" href="Style/indexStyle.css">
-</html>
+</main>    
+<?php include_once 'Assets/footer.php';?>
+<link rel="stylesheet" href="Style/indexStyle.css">

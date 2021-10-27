@@ -1,0 +1,85 @@
+@keyframes error {
+    0%{transform: translatex(0px);}
+    12.5%{transform: translatex(-3px);}
+    25%{transform: translatex(3px);}
+    37.5%{transform: translatex(-3px);}
+    50%{transform: translatex(3px);}
+    62.5%{transform: translatex(-3px);}
+    75%{transform: translatex(3px);}
+    87.5%{transform: translatex(-3px);}
+    100%{transform: translatex(0px);}
+}
+main {
+    margin-bottom: 3vw;
+}
+.Editarperfil{
+    outline: 1px solid rgb(240, 240, 240);
+    float: left;
+    margin: 3vw 0 0 3vw;
+    Width: 40vw;
+    margin-left: 30vw;
+    padding-bottom: 3vw;
+    background-color: #fff;
+}
+.Editarperfil div form h3, .Editarperfil div form label{
+    width: 40%;
+    margin: 3vw 0 1vw 10%;
+}
+.Editarperfil div form label{
+    display: inline-block;
+    border-bottom: 1px solid rgb(240, 240, 240);
+}
+.Editarperfil div form input, .Editarperfil div form select{
+    width: 40%;
+    border: 1px solid #b1acac;
+    outline: none;
+    border-radius: 2px;
+}
+.Editarperfil div form h3:first-of-type {
+    overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.Editarperfil div form input[type=submit]{
+    display: inline-block;
+    margin: 3vw 0 0 4vw;
+    background-color: rgb(37, 126, 243);
+    color: white;
+    width: 5vw;
+    height: 2vw;
+    font-weight: 500;
+    cursor: pointer;
+}
+.Editarperfil div form input[type=submit]:hover{
+    background-color: rgb(37, 118, 237);
+}
+#mapa {
+    width: 400px;
+    height: 400px;
+    display: inline-block;
+    margin: 1vw 0 0 4vw;
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 3px;
+}
+#mapa div {
+    cursor: pointer;
+}
+#divEmergente { 
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    bottom: -70px;
+    background-color: rgb(10, 10, 10);
+    color: rgb(255, 255, 255);
+    line-height: 70px;
+    font-size: 1.4vw;
+    text-indent: 20px;
+    transition: bottom .2s ease-in-out;
+}
+.moverDiv {
+    bottom: 0 !important;
+}
+.errorCantidad {
+    border: 1px solid red !important;
+    animation: error 3s ease;
+}

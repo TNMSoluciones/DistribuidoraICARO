@@ -24,7 +24,9 @@
         }else{
             //Si se desea insertar
             $email = $data->email;
-            $sqlConsultaClientes=$pdo->query("SELECT COUNT(idCliente) as Cantidad FROM cliente WHERE CorreoCliente='$email'")->fetch(PDO::FETCH_ASSOC);
+            $sqlConsultaClientes = $pdo->prepare("SELECT COUNT(idCliente) as Cantidad FROM cliente WHERE CorreoCliente=?");
+            $sqlConsultaClientes->execute([$email]);
+            $sqlConsultaClientes = $sqlConsultaClientes->fetch(PDO::FETCH_ASSOC);
             $sqlConsultaClientes=$sqlConsultaClientes['Cantidad'];
             if ($sqlConsultaClientes==0) {
                 $fName = $data->fName;
@@ -33,8 +35,8 @@
                 $passwd = $data->passwd;
                 $passwdCifrada = password_hash($passwd, PASSWORD_DEFAULT);
                 $rolPersonal = $data->rolPersonal;
-                $sqlInsert = $pdo->prepare("INSERT INTO personal(PrimerNombre, SegundoNombre, Apellido, Correo, Password, idRol) VALUES('$fName', '$sName', '$lastName', '$email', '$passwdCifrada', '$rolPersonal')");
-                $sqlInsert->execute();
+                $sqlInsert = $pdo->prepare("INSERT INTO personal(PrimerNombre, SegundoNombre, Apellido, Correo, Password, idRol) VALUES(?, ?, ?, ?, ?, ?)");
+                $sqlInsert->execute([$fName, $sName, $lastName, $email, $passwdCifrada, $rolPersonal]);
                 echo 1;
             }else{echo 2;}
         }

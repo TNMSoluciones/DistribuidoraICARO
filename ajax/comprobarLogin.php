@@ -7,7 +7,9 @@
     if (isset($data)) {
         $email = $data->email;
         $passwd = $data->password;
-        $sqlLoginClientes=$pdo->query("SELECT COUNT(idCliente) FROM cliente WHERE CorreoCliente='$email'")->fetch(PDO::FETCH_ASSOC);
+        $sqlLoginClientes=$pdo->prepare("SELECT COUNT(idCliente) FROM cliente WHERE CorreoCliente=?");
+        $sqlLoginClientes->execute([$email]);
+        $sqlLoginClientes = $sqlLoginClientes->fetch(PDO::FETCH_ASSOC);
         $sqlLoginClientes=$sqlLoginClientes['COUNT(idCliente)'];
         if ($sqlLoginClientes==1)
         {

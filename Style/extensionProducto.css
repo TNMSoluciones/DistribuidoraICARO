@@ -6,8 +6,11 @@
     100%{transform: translatex(0px);}
 }
 .producto {
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
     width: 40vw;
     margin: 3vw 0 0 30vw;
+    padding-bottom: 2vw;
     float: left;
 }
 .producto div.divImg {
@@ -61,6 +64,7 @@
     display: block;
     color: rgb(128, 128, 128);
     height: 2vw;
+    margin: 0.3vw;
     line-height: 2vw;
 }
 .divEmergente{

@@ -7,7 +7,9 @@
             if($_POST['accion'] == 'insertar') {
                 //Se desea Insertar
                 $nameProduct = $_POST['nameProduct'];
-                $sqlConsultaProducto = $pdo->query("SELECT COUNT(idProducto) as Cantidad FROM producto WHERE Nombre='$nameProduct'")->fetch(PDO::FETCH_ASSOC);
+                $sqlConsultaProducto = $pdo->prepare("SELECT COUNT(idProducto) as Cantidad FROM producto WHERE Nombre=?");
+                $sqlConsultaProducto->execute([$nameProduct]);
+                $sqlConsultaProducto = $sqlConsultaProducto->fetch(PDO::FETCH_ASSOC);
                 $sqlConsultaProducto=$sqlConsultaProducto['Cantidad'];
                 if($sqlConsultaProducto==0) {
                     $stockProduct = $_POST['stockProduct'];
@@ -29,7 +31,9 @@
             //Se desea actualizar
             if($_POST['accion'] == 'actualizar') {
                 $nameProduct = $_POST['nameProduct'];
-                $sqlConsultaProducto = $pdo->query("SELECT COUNT(idProducto) as Cantidad FROM producto WHERE Nombre='$nameProduct'")->fetch(PDO::FETCH_ASSOC);
+                $sqlConsultaProducto = $pdo->prepare("SELECT COUNT(idProducto) as Cantidad FROM producto WHERE Nombre=?");
+                $sqlConsultaProducto->execute([$nameProduct]);
+                $sqlConsultaProducto = $sqlConsultaProducto->fetch(PDO::FETCH_ASSOC);
                 $sqlConsultaProducto=$sqlConsultaProducto['Cantidad'];
                 if($sqlConsultaProducto=1) {   
                     $idProduct=$_POST['idProduct'];

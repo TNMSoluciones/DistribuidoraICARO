@@ -12,8 +12,8 @@
             echo $res;
         }else{
             $nameCategoria = !empty($data->categoria)? $data->categoria : '';
-            $sqlInsert=$pdo->prepare("INSERT INTO categorias(Categoria) VALUES('$nameCategoria')");
-            $sqlInsert->execute();
+            $sqlInsert=$pdo->prepare("INSERT INTO categorias(Categoria) VALUES(?)");
+            $sqlInsert->execute([$nameCategoria]);
             $resInsert = $sqlInsert ? true : false;
             echo $resInsert;
         }
