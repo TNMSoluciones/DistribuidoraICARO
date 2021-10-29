@@ -7,8 +7,8 @@ const data = {
     tipo: 'dataPorMes'
 }
 xmlPorMes.onreadystatechange = function (){
-    if (this.status==200 && this.readyState==4){
-        console.log(this.respone)
+    if (this.status==200 && this.readyState==4) {
+        console.log(this.response);
         const ganadopormes = JSON.parse(this.response);
         new Chart("myChart", {
             type: "line",
@@ -23,9 +23,17 @@ xmlPorMes.onreadystatechange = function (){
                 }]
             },
             options: {
+                title: {
+                    display: true,
+                    text: 'Ingresos Mensuales',
+                    fontSize:20,
+                    fontFamiliy:"'Roboto Condensed', 'sans-serif'",
+                    fontColor: '#000'
+                
+                },
                 legend: {display: false},
                 scales: {
-                xAxes: [{ticks: {min: 1, max:12}}],
+                    xAxes: [{ticks: {min: 1, max:12}}],
                 }
             }
             });
