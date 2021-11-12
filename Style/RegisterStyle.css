@@ -84,6 +84,14 @@ body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
         min-height: calc(100vh - 30vw);
         height: max-content;
     }
+    #divEmergente{
+        font-size: 5vw;
+        height: 100px;
+        bottom: -120px;
+        text-indent: 0;
+        padding-left: 20px;
+        line-height: 50px;
+    }
     #registerDerecha form{
         position: relative;
         float: left;

@@ -12,11 +12,11 @@
             ?>
     <div id="encargado" class="divPrincipal">
         <div>
-            <a href="listaPedidosCompleta.php" style="width: 7vw;" class="btnDerecha btnAdd">Lista completa</a>
+            <a href="listaPedidosCompleta.php" id="listar" class="btnDerecha btnAdd">Lista completa</a>
             <h1>Pedidos</h1>
             <input type="text" class="searchEmpleados"  placeholder="Busca pedido">
         </div>
-        <div class="titulosTabla">
+        <div class="titulosTabla tituloproducto">
             <div>
                 <h3>Nombre</h3>
                 <h3>Fecha</h3>
@@ -57,7 +57,7 @@
             <h1>Productos</h1>
             <input type="text" class="searchEmpleados"  placeholder="Busca producto">
         </div>
-        <div class="titulosTabla">
+        <div class="titulosTabla tituloproducto">
             <div>
                 <h3>Nombre</h3>
                 <h3>Categoria</h3>
@@ -97,7 +97,7 @@
             <h1>Clientes</h1>
             <input type="text" class="searchEmpleados" placeholder="Busca clientes">
         </div>
-        <div class="titulosTabla">
+        <div class="titulosTabla tituloscliente">
             <div>
                 <h3>Nombre</h3>
                 <h3>Correo</h3>
@@ -117,7 +117,7 @@
             <h1>Sugerencias</h1>
             <input type="text" class="searchEmpleados" placeholder="Busca sugerencias">
         </div>
-        <div class="titulosTabla">
+        <div class="titulosTabla titulosugerencia">
             <div>
                 <h3>Nombre</h3>
                 <h3>Correo</h3>
@@ -166,7 +166,7 @@
         <a href="modificarEmpleados.php?idPersonal=0" class="btnDerecha btnAdd">Agregar</a>
         <input type="text" class="searchEmpleados" placeholder="Busca empleados">
     </div>
-    <div class="titulosTabla">
+    <div class="titulosTabla tituloempleado">
         <div>
             <h3>Nombre</h3>
             <h3>Correo</h3>

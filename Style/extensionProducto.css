@@ -60,13 +60,7 @@
     outline: 1px solid red;
     animation: error 0.4s ease;
 }
-.producto a {
-    display: block;
-    color: rgb(128, 128, 128);
-    height: 2vw;
-    margin: 0.3vw;
-    line-height: 2vw;
-}
+.producto a {display: none;}
 .divEmergente{
     width: 40vw;
     height: 3vw;
@@ -78,3 +72,37 @@
 }
 .eCorrecto{background: #32a367}
 .eIncorrecto{background: red}
+@media (max-width: 1024px){
+    .producto{
+        width: 90%;
+        margin-left: 5%;
+    }
+    .producto h1{
+        width: 100%;
+        font-size: 5vw;
+    }
+    .producto div.divImg{margin: 20% 10% 80% 10%;}
+    .producto div.divImg img{
+        max-width: 36vw;
+        height: 32vw;
+    }
+    .divEmergente{
+        width: 100%;
+        height: 10vw;
+        font-size: 5vw;
+        line-height: 10vw;
+    }
+    .producto input[type=submit]{
+        width: 25vw;
+        height: 6vw;
+        font-size: 3vw;
+        font-weight: 500;
+    }
+    .producto a{
+        display: block;
+        color: rgb(128, 128, 128);
+        height: 2vw;
+        margin: 5vw 0;
+        line-height: 2vw;
+    }
+}

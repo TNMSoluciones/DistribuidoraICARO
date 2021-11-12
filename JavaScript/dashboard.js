@@ -8,8 +8,11 @@ const data = {
 }
 xmlPorMes.onreadystatechange = function (){
     if (this.status==200 && this.readyState==4) {
-        console.log(this.response);
         const ganadopormes = JSON.parse(this.response);
+        let ganadoMensual = []
+        ganadopormes.forEach(element => {
+            ganadoMensual.push({'x':parseInt(element.x),'y':element.y})
+        });
         new Chart("myChart", {
             type: "line",
             data: {
@@ -19,7 +22,7 @@ xmlPorMes.onreadystatechange = function (){
                 lineTension: 0,
                 backgroundColor: "rgba(0,0,255,1.0)",
                 borderColor: "rgba(255,175,101,.6)",
-                data: ganadopormes
+                data: ganadoMensual
                 }]
             },
             options: {
@@ -29,7 +32,7 @@ xmlPorMes.onreadystatechange = function (){
                     fontSize:20,
                     fontFamiliy:"'Roboto Condensed', 'sans-serif'",
                     fontColor: '#000'
-                
+
                 },
                 legend: {display: false},
                 scales: {

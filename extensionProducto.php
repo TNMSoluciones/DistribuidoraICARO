@@ -15,7 +15,6 @@
         ?>
         <main>
             <div class="producto" id="<?=$producto['idProducto']?>">
-            <a href="javascript:history.go(-1);">Volver Atrás</a>
                 <div class="divImg">
                     <img src="data:image/png;base64,<?=base64_encode($producto['Imagen'])?>" alt="<?=$producto['Nombre']?>">
                 </div>
@@ -31,6 +30,7 @@
                             echo '<input type="submit" id="btnAddCart" value="agregar al carrito">';
                         }
                     ?>
+                    <a href="javascript:history.go(-1);">Volver Atrás</a>
                 </div>
             </div>
         </main>

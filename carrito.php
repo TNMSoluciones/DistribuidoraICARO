@@ -22,9 +22,9 @@
                         <img src="data:image/png;base64,<?=base64_encode($datosProducto['Imagen'])?>" alt="">
                     </div>
                     <h1><?=$datosProducto['Nombre']?></h1>
-                    <p>Cantidad: <?=$key['Cantidad']?></p>
-                    <p>Precio: $<?=$datosProducto['Precio']?></p>
-                    <p>Total: $<?=$datosProducto['Precio']*$key['Cantidad']?></p>
+                    <p>Cantidad <?=$key['Cantidad']?></p>
+                    <p>Precio $<?=$datosProducto['Precio']?></p>
+                    <p>Total $<?=$datosProducto['Precio']*$key['Cantidad']?></p>
                     <p class="btnEliminar" id="<?=$datosProducto['idProducto']?>"></p>
                 </div>
                 <?php
@@ -38,7 +38,7 @@
                 <img src="svg/visa.svg" alt="">
                 <img src="svg/paypal.svg" alt="">
                 <img src="svg/mastercard.svg" alt="">
-                <label>Seleccione el metodo de pago:</label>
+                <label>Seleccione el metodo de pago</label>
                 <input type="radio" id="radioBtnEfectivo" name="metodoPago" value="Efectivo">
                 <label for="radioBtnEfectivo">Efectivo</label>
                 <input type="radio" id="radioBtnPOS" name="metodoPago" value="POS">

@@ -1,6 +1,6 @@
 'use strict';
 document.addEventListener('DOMContentLoaded',()=>{
-    const cantidadPorPagina = 20;
+    const cantidadPorPagina = 10;
     //Variables
     let paginaActualCategorias = actCantidadDeCategorias()>0?1:0;
     let paginaActualPersonal = actCantidadDePersonal()>0?1:0;

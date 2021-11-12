@@ -224,6 +224,7 @@ main {
         float: left;
     }
     header #btnCat {
+        position: fixed;
         width: 9.5vw;
         height: 9.5vw;
     }
@@ -288,6 +289,7 @@ main {
     }
     header div#carrito, header div#perfil{display: none}
     div#categorias {
+        position: fixed;
         width: 100%;
         top: 0;
         margin-left: -100%;

@@ -21,6 +21,7 @@ function mostrarHeader($title){
                 <div id="headerDivImg">
                     <a href="index.php"><img src="img/logoconfondochico.png" id="logo" alt="Foto de Logo"></a>
                 </div>
+
                 <div id="buscador">
                     <form id="formSearch" action="productos.php" method="GET" onSubmit="return comprobarInput()">
                         <select oninput="location = this.value">
@@ -35,6 +36,7 @@ function mostrarHeader($title){
                         <input id="search" type="submit" value="Buscar">
                     </form>
                 </div>
+                
                 <?php
                 $cantidad = isset($_SESSION['carrito'])?count($_SESSION['carrito']):0;
                 $palabraCantidad = $cantidad==1?'item':'items';

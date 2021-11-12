@@ -81,6 +81,9 @@ body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
         display: inline-block;
         height: calc(100vh - 30vw);
     }
+    #divEmergente{
+        font-size: 5vw;
+    }
     #loginDerecha form{
         position: relative;
         float: left;

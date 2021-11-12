@@ -83,3 +83,38 @@ main {
     border: 1px solid red !important;
     animation: error 3s ease;
 }
+@media (max-width: 1024px){
+    .Editarperfil{
+        width: 90%;
+        margin: 5vw 5%;
+    }
+    #divEmergente{
+        font-size: 5vw;
+    }
+    .Editarperfil div form label{
+        display: block;
+        border: none;
+    }
+    .Editarperfil div form h3{
+        font-size: 6vw;
+    }
+    .Editarperfil div form h3, .Editarperfil div form label{
+        margin-left: 30%;
+        width: 80%;
+    }
+    .Editarperfil div form input, .Editarperfil div form select{
+        width: 40%;
+        height: 7vw;
+        margin: 0 30%;
+        border-radius: 2px;
+    }
+    .Editarperfil div form input[type=submit]{
+        margin: 4vw 30%;
+        background-color: rgb(37, 126, 243);
+        color: white;
+        width: 40%;
+        height: 8vw;
+        font-weight: 500;
+        cursor: pointer;
+    }
+}

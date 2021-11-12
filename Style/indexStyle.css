@@ -78,7 +78,6 @@ main {
     display: inline-block;
 }
 #section2 h1, #section3 h1, #section3 > div > div > p {
-    width: calc(100% - 1vw) !important;
     margin: 3vw 0 0 4vw;
     height: fit-content;
     font-size: 2vw;
@@ -86,11 +85,14 @@ main {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+.articulos2 h1 {
+    width: calc(100% - 1vw) !important;
+}
 #section3 > div > div > p {
     font-size: 1vw;
 }
 #section2 > h1, #section3 > h1 {
-    width: 50vw !important;
+    width: 50vw;
 }
 #section2 .articulos {
     width: 30vw;
@@ -192,7 +194,6 @@ main {
         height: fit-content;
     }
     div#section2 > h1, #section3 > h1 {
-        margin: 5vw 0 3vw;
         width: 100%;
         text-align: center;
         height: fit-content;
@@ -257,6 +258,7 @@ main {
         font-size: 5vw;
         margin: 2vw 0 0 5%;
     }
+    div#section3 h1{margin-left: -7vw;}
     #section3 .articulos2 a {
         width: 80%;
         height: 6vw;

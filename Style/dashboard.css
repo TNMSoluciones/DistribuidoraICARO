@@ -1,27 +1,40 @@
 #divGraficaPorMes {
-    width: 65%;
-    margin: 15vw 0 0 3vw;
+    width: 65vw;
+    margin: 15vw 0vw 0 17.5vw;
 }
-#ganadoM {margin-left: 5vw;}
-#ganadoY {margin: 0 2vw 0 2vw;}
-#ganadoM, #ganadoY, #productosMenorStock{
+.dashboard{margin-left:2.5vw;}
+
+.dashboard{
     outline: 1px solid black;
     float: left;
     margin-top: 2vw;
     text-align: center;
 }
-#ganadoM, #ganadoY {width: 20vw;}
-#productosMenorStock table{width: 18vw;}
-#productosMenorStock table td{border-bottom: 1px solid black;}
-#productosMenorStock table th:first-child{border-right: 1px solid black;}
-#productosMenorStock table th {
-    width: 9vw;
+.dashboard{width: 30vw;}
+.dashboard table{width: 30vw;}
+.dashboard table td{border-bottom: 1px solid black;}
+.dashboard table th:first-child{border-right: 1px solid black;}
+.dashboard table th {
+    width: 15vw;
     border-bottom: 1px solid black;
 }
-#productosMenorStock table td:first-child {
-    width: 9vw;
+.dashboard table td:first-child {
+    width: 15vw;
     border-right: 1px solid black;
 }
-#productosMenorStock > table > tbody > tr:last-of-type > td {
+.dashboard > table > tbody > tr:last-of-type > td {
     border-bottom: none;
 } 
+@media (max-width: 1025px){
+    .dashboard {
+        width: 90%;
+        margin-left: 5%;
+    }
+    #divGraficaPorMes{
+        width: 100%;
+        margin: 0;
+    }
+    main{padding-bottom: 5vw;}
+    .dashboard table{width: 100%;}
+    .dashboard table td:first-child{width:50%}
+}

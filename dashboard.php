@@ -12,7 +12,7 @@
     ?>
         <main>
             
-            <div id="ganadoM">
+            <div id="ganadoM" class="dashboard">
                 <?php if (isset($ganadoMesActual['mes'])) {
                     $mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"][$ganadoMesActual['mes'] - 1];
                 ?>
@@ -24,7 +24,7 @@
                 <h1>No ha vendido nada este mes</h1>
                 <?php }?>
             </div>
-            <div id="ganadoY">
+            <div id="ganadoY" class="dashboard">
             <?php if (isset($ganadoYearActual['total'])) {?>
                 <h1>Ganado en el año de <?=date('Y')?></h1>
                 <h1>$ <?=$ganadoYearActual['total']?></h1>
@@ -34,7 +34,7 @@
                 <h1>No ha vendido nada este año</h1>
                 <?php }?>
             </div>
-            <div id="pedidoM">
+            <div id="pedidoM" class="dashboard">
                 <?php if (isset($vendidoMesActual['cantidad'])) {
                     ?>
                     <h1>Total de pedidos Vendidos en <?date('m')?></h1>
@@ -46,7 +46,7 @@
             <div id="divGraficaPorMes">
                 <canvas id="myChart" style="width:100%;"></canvas>
             </div>
-            <div id="productosMenorStock">
+            <div id="productosMenorStock" class="dashboard">
                 <h1>Menor stock</h1>
                 <table>
                     <tr>

@@ -130,3 +130,57 @@
 .moverDiv {
     bottom: 0 !important;
 }
+@media (max-width: 1024px){
+    #actualizar{
+        width: 90%;
+        margin-left: 5%;
+    }
+    #actualizar h2{
+        font-size: 3vh;
+    }
+    #actualizar div label{
+        width: 100%;
+        font-size: 2vh;
+        height: 2vh;
+    }
+    #actualizar div p{
+        width: 50%;
+        font-size: 2vh;
+        height: auto;
+        line-height: initial;
+        margin: 0 0 2vw 0;
+    }
+    .carritompra h1{
+        font-size: 2vh;
+    }
+    .checkbox:before{
+        font-size: 7vw !important;
+        line-height: 7vw !important;
+        margin-top: -2vw;
+        width: 3vh;
+        height: 3vh;
+    }
+    .productos .carritompra{width: 100%;}
+    .productos .carritompra p{
+        width: 30% !important;
+        border-bottom: unset !important;
+        height: 4vw !important;
+        line-height: 6vw !important;
+    }
+    .checkbox{
+        width: auto !important;
+    }
+    .checkbox:before{
+        right: unset;
+        margin-left: 29vw;
+    }
+    #actualizar div input[type=submit], #actualizar div button{
+        display: block;
+        width: 12vh;
+        height: 4vh;
+        font-size: 1.7vh;
+        text-indent: 0;
+    }
+    #actualizar div input, #actualizar div select, #actualizar div select option{width: 70%;}
+    #actualizar div textarea{font-size: 2vh;}
+}

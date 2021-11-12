@@ -5,6 +5,7 @@
     margin: 3vw 0 0 15%;
     float: left;
 }
+#listar{width: 7vw;}
 .divPrincipal:last-of-type{margin-bottom: 3vw}
 .divPrincipal > div{
     position: relative;
@@ -144,49 +145,87 @@
         width: 90%;
         margin-left: 5%;
     }
+    #listar{
+        font-size: 3vw;
+    }
     .divPrincipal > div h1{
         height: 6vw;
         margin: 0;
-        width: 20%;
         font-size: 3.5vh;
         line-height: 3.5vh;
         padding-left: 1vw;
-        float: left;
         font-weight: 500;
     }
     .searchEmpleados{
-        position: absolute;
-        width: 30%;
-        left: calc(50% - 10vw);
-        height: 4vw;
+        width: 35%;
+        left: 33vw;
+        height: 5vw;
         box-sizing: border-box;
-        margin-top: 1.5vw;
-        text-indent: 4px;
+        margin-top: 2vw;
     }
     .btnDerecha{
         width: 15vw;
         height: 4vw;
         font-size: 75%;
         line-height: 4vw;
-        margin: calc(15px - 2vw) 1vw 0 0;
+        margin: 0 1vw 0 0;
+    }
+    .btnEliminarVentas{
+        margin-top: -1vw;
+        margin-bottom: 1.8vw;
     }
     .btnAdd{
-        margin-top: 1vw;
-    }
+        width: 20vw !important;
+        margin-right: 2vw;
+        margin-top: -2vw;
+}
     .comprasEncargado div h3, .empleados div h3, .categoriaProduct div h3, .clientesEncargado div h3, .sugerenciasEncargado div h3{
         font-size: 3vw;
         width: 15vw;
         margin: 0;
         float: left;
     }
-    .clientesEncargado div h3:nth-of-type(3), .clientesEncargado div h3:nth-of-type(4), .sugerenciasEncargado div h3:nth-of-type(3), .empleados div h3:nth-of-type(2) {
+    .clientesEncargado div h3:nth-of-type(3), .clientesEncargado div h3:nth-of-type(4), .sugerenciasEncargado div h3:nth-of-type(3), .empleados div h3:nth-of-type(2), .tituloproducto div h3:nth-child(4), .productosEncargado div h3:nth-child(4), .tituloscliente div h3:nth-child(3), .tituloscliente div h3:nth-child(4), .tituloproducto div h3:nth-child(4), .tituloproducto div h3:nth-child(4), .comprasEncargado div h3:nth-child(4), .titulosugerencia div h3:nth-child(3), .tituloempleado div h3:nth-child(3) {
         display: none;
     }
     .txtDerecha{
-        float: left !important;
-        margin-right: 0 !important;
+        float: right;
+        margin-right: 2vw;
     }
     .comprasEncargado div, .empleados div, .categoriaProduct div, .clientesEncargado div, .sugerenciasEncargado div {
         height: 30px;
     }
+    .btnEliminarVentas{
+        margin-right: 1vw;
+        margin-top: 2vw;
+    }
+    .btnModificarVentas{margin-top: 2vw;}
+    .comprasEncargado div h3{
+        font-size: 3vw;
+        margin-left: 2.5vw;
+        margin-top: 1.5vw;
+    }
+    .productosEncargado div h3{font-size: 3vw;}
+    .btnModificarProducto{margin-top: 4.5vw;}
+    .btnEliminarProducto{
+        margin-right: 1vw;
+        margin-top: 4.5vw;
+    }
+    .titulosTabla div h3{font-size: 3vw;}
+    .tituloscliente div h3{
+        font-size: 3vw;
+        margin-left: 4vw;
+    }
+    .empleados div h3{
+        font-size: 3vw;
+        margin-left: 2vw;
+        width: 20vw;
+    }
+    .clientesEncargado div h3{margin-left: 4vw;}
+    .btnModificarSugerencia{ margin-right: 6vw;}
+    .sugerenciasEncargado div h3, .categoriaProduct div h3{margin-left: 2vw;}
+    .btnModificarPersonal, .btnEliminarCategoria, .btnEliminarPersonal, .btnModificarCategoria, .btnEliminarCliente, .btnModificarCliente, .clientesEncargado div h3, .btnModificarSugerencia, .sugerenciasEncargado div h3, .empleados div h3, .categoriaProduct div h3{margin-top: 2vw;}
+    .sugerenciasEncargado div h3:nth-child(2), .clientesEncargado div h3:nth-child(2){width: 24vw;}
+    .btnEliminarCliente{margin-right: 1vw;}
+    .tituloempleado div h3:nth-child(2){margin-left: 6vw;}
 }

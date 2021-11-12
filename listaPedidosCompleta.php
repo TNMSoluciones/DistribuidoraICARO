@@ -29,6 +29,18 @@
                     <h3 class="txtDerecha">Funciones</h3>
                 </div>
             </div>
+            <style>
+                #contenedor .titulosTabla h3:nth-child(4){
+                    display: none;
+                }
+                #contenedor .btnDerecha:nth-child(1){
+                    position: absolute;
+                    right: 0;
+                    margin-top: 0;
+                    top: 50%;
+                    transform: translateY(-50%);        
+                }
+            </style>
             <div>
                 <?php
                 foreach($allPedidos as $pedido) {
