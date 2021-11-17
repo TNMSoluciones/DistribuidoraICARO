@@ -25,8 +25,8 @@ function mostrarHeader($title){
                 <div id="buscador">
                     <form id="formSearch" action="productos.php" method="GET" onSubmit="return comprobarInput()">
                         <select oninput="location = this.value">
-                            <option>Lista de Categorias</option>
-                            <option value="productos.php">Todas las Categorias</option>
+                            <option>Lista de Categorías</option>
+                            <option value="productos.php">Todas las Categorías</option>
                             <?php while($cat = $GLOBALS['sqlCats']->fetch(PDO::FETCH_ASSOC)){?>
                             <option value="productos.php?query_cat=<?=$cat['idCategoria']?>"><?=$cat['Categoria']?></option>
                             <?php }?>
@@ -39,7 +39,7 @@ function mostrarHeader($title){
                 
                 <?php
                 $cantidad = isset($_SESSION['carrito'])?count($_SESSION['carrito']):0;
-                $palabraCantidad = $cantidad==1?'item':'items';
+                $palabraCantidad = $cantidad==1?'ítem':'ítems';
                 if (!isset($_SESSION['user']['rol'])) {
                     ?>
                     <div id='carrito'>
@@ -51,15 +51,15 @@ function mostrarHeader($title){
                 <div id="perfil">
                     <a href="<?=isset($_SESSION['user']["nombre"])?'Assets/logout.php':'login.php'?>" id="perfilusr"><img src="img/usuario.png" id="perfil"></a>
                     <p><?=isset($_SESSION['user']["nombre"])?$_SESSION['user']["nombre"]:''?></p>
-                    <a href="<?=isset($_SESSION['user']["nombre"])?'Assets/logout.php':'login.php'?>"><h1><?=isset($_SESSION['user']["nombre"])?'Cerrar Sesion':'Iniciar Sesion'?></h1></a>   
+                    <a href="<?=isset($_SESSION['user']["nombre"])?'Assets/logout.php':'login.php'?>"><h1><?=isset($_SESSION['user']["nombre"])?'Cerrar Sesión':'Iniciar Sesión'?></h1></a>   
                 </div>
             </header>
             <div id="categorias">
-                <a href="<?=isset($_SESSION['user']["nombre"])?'Assets/logout.php':'login.php'?>"><p class="movilSuperior"><?=isset($_SESSION['user']["nombre"])?'Cerrar Sesion':'Iniciar Sesion'?></p></a>
+                <a href="<?=isset($_SESSION['user']["nombre"])?'Assets/logout.php':'login.php'?>"><p class="movilSuperior"><?=isset($_SESSION['user']["nombre"])?'Cerrar Sesión':'Iniciar Sesión'?></p></a>
                 <?=isset($_SESSION['user']['rol'])?"<a><p></p></a>":'<a href="carrito.php"><p>Carrito</p></a>'?>
                 <a href="index.php"><p id="inicioHeader">Inicio</p></a>
                 <a href="productos.php"><p id="productosHeader">Catálogo de Productos</p></a>
-                <a href="contactanos.php"><p id="contactanosHeader">Contactanos</p></a>
+                <a href="contactanos.php"><p id="contactanosHeader">Contáctanos</p></a>
 
         <?php
             if (isset($_SESSION['user']['rol'])) {

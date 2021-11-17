@@ -6,6 +6,7 @@
     $pdo = pdo_conectar_mysql();
     $selectProductos = $pdo->prepare('SELECT idProducto, Nombre, Precio, Imagen FROM producto WHERE idProducto=?');
     ?>    
+    <link rel="stylesheet" href="Style/carritoStyle.css">
     <main>
         <div id="productosCarrito">
             
@@ -38,7 +39,7 @@
                 <img src="svg/visa.svg" alt="">
                 <img src="svg/paypal.svg" alt="">
                 <img src="svg/mastercard.svg" alt="">
-                <label>Seleccione el metodo de pago</label>
+                <label>Seleccione el método de pago</label>
                 <input type="radio" id="radioBtnEfectivo" name="metodoPago" value="Efectivo">
                 <label for="radioBtnEfectivo">Efectivo</label>
                 <input type="radio" id="radioBtnPOS" name="metodoPago" value="POS">
@@ -61,7 +62,6 @@
 </main>
 <div id="divEmergente"></div>
 <?php include_once 'Assets/footer.php';?>
-<link rel="stylesheet" href="Style/carritoStyle.css">
 <script src="JavaScript/comprarCarrito.js"></script>
 <script defer>
     document.getElementById('productosCarrito').addEventListener('click', e => {

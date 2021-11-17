@@ -11,7 +11,7 @@
             if (isset($_GET['nuls']) && $_GET['nuls']) {
                 $sql=$pdo->prepare('SELECT pedido.* FROM pedido WHERE pedido.idPedido=?');
             }else {
-                $sql=$pdo->prepare('SELECT pedido.*, cliente.NombreEmpresa, cliente.CorreoCliente FROM pedido JOIN cliente ON pedido.idCliente = cliente.idCliente WHERE pedido.idPedido=?');
+                $sql=$pdo->prepare('SELECT pedido.*, cliente.NombreEmpresa, cliente.CorreoCliente FROM pedido JOIN cliente ON pedido.idCliente = cliente.RUT WHERE pedido.idPedido=?');
             }
             $sql->execute([$idPedidoSeleccionado]);
             $pedido=$sql->fetch(PDO::FETCH_ASSOC);
@@ -39,7 +39,7 @@
                     $allProduct=$allProduct->fetchAll(PDO::FETCH_ASSOC);
                     ?>
                     <div id="actualizar" class="actualizarPedido">
-                        <h2>Informacion sobre pedido de: <u><?=isset($pedido['NombreEmpresa'])?$pedido['NombreEmpresa']:'\'Cliente Eliminado\''?></u></h2>
+                        <h2>Información sobre pedido de: <u><?=isset($pedido['NombreEmpresa'])?$pedido['NombreEmpresa']:'\'Cliente Eliminado\''?></u></h2>
                         <div>
                             <form id="form">
                                 <label for="idPedido">ID del pedido:</label>
@@ -48,7 +48,7 @@
                                 <p id="nameEmpresa"><?=isset($pedido['NombreEmpresa'])?$pedido['NombreEmpresa']:'Cliente Eliminado'?></p>
                                 <label for="correoEmpresa">Correo de la empresa:</label>
                                 <p id="correoEmpresa"><?=isset($pedido['CorreoCliente'])?$pedido['CorreoCliente']:'Cliente Eliminado'?></p>
-                                <label for="metodoPago">Metodo Pago:</label>
+                                <label for="metodoPago">Método Pago:</label>
                                 <p id="metodoPago"><?=$pedido['MetodoPago']?></p>
                                 <label for="precioTotal">Monto Total:</label>
                                 <p id="precioTotal"><?=$pedido['PrecioTotal']?></p>

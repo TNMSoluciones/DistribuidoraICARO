@@ -76,7 +76,7 @@ document.getElementById('form').addEventListener('submit', e => {
                 timeoutIDnumeroCalle = setTimeout(()=>{document.getElementById('numeroCalle').classList.remove('errorCantidad');}, 3000)
             }
             scrollTo(0,181)
-            mostrarMensaje("No pueden haber campos vacios.", 3000);
+            mostrarMensaje("No pueden haber campos vacíos.", 3000);
             return;
         }
     }else {
@@ -91,7 +91,7 @@ document.getElementById('form').addEventListener('submit', e => {
                 typeof timeoutIDlName=="number"?clearTimeout(timeoutIDlName):'';
                 timeoutIDlName = setTimeout(()=>{document.getElementById('lName').classList.remove('errorCantidad');}, 3000)
                 scrollTo(0,181)
-                mostrarMensaje("No pueden haber campos vacios.", 3000);
+                mostrarMensaje("No pueden haber campos vacíos.", 3000);
                 return;
             }
             
@@ -130,37 +130,36 @@ document.getElementById('form').addEventListener('submit', e => {
                 document.getElementById('passwdNueva2').classList.add('errorCantidad');
                 typeof timeoutIDpasswdFail2=="number"?clearTimeout(timeoutIDpasswdFail2):'';
                 timeoutIDpasswdFail = setTimeout(()=>{document.getElementById('passwdNueva2').classList.remove('errorCantidad');}, 3000)
-                mostrarMensaje("La contraseña deben tener 6 o mas caracteres.", 3000);
+                mostrarMensaje("La contraseña deben tener 6 o mas carácteres.", 3000);
                 return;
             }
         }
     }else {
-        mostrarMensaje("No pueden haber campos vacios.", 3000);
+        mostrarMensaje("No pueden haber campos vacíos.", 3000);
         return;
     }
     let XML = new XMLHttpRequest();
     XML.overrideMimeType('text/xml');
     XML.onreadystatechange = function() {
         if (this.status==200 && this.readyState==4) {
-            console.log(this.response);
             if (this.response==1) {
                 mostrarMensaje("Guardado Correctamente, para aplicarlos, recargue la página.", 12000);
             }else if(this.response==2) {
-                mostrarMensaje("Las contraseñas deben ser iguales, intentelo nuevamente.", 3000)
+                mostrarMensaje("Las contraseñas deben ser iguales, inténtelo nuevamente.", 3000)
             }else if(this.response==3) {
                 scrollTo(0,181)
                 document.getElementById('passwdAntigua').classList.add('errorCantidad');
                 typeof timeoutpasswdAntigua=="number"?clearTimeout(timeoutpasswdAntigua):'';
                 timeoutpasswdAntigua = setTimeout(()=>{document.getElementById('passwdAntigua').classList.remove('errorCantidad');}, 3000)
-                mostrarMensaje("Contraseña incorrecta, intentelo nuevamente.", 3000)
+                mostrarMensaje("Contraseña incorrecta, inténtelo nuevamente.", 3000)
             }else if(this.response==4) {
                 scrollTo(0,181)
                 document.getElementById('passwdAntigua').classList.add('errorCantidad');
                 typeof timeoutpasswdNueva=="number"?clearTimeout(timeoutpasswdNueva):'';
                 timeoutpasswdNueva = setTimeout(()=>{document.getElementById('passwdAntigua').classList.remove('errorCantidad');}, 3000)
-                mostrarMensaje("Contraseña incorrecta, intentelo nuevamente.", 3000)
+                mostrarMensaje("Contraseña incorrecta, inténtelo nuevamente.", 3000)
             }else if(this.response==5) {
-                mostrarMensaje("Error desconocido, intentelo nuevamente.", 3000);
+                mostrarMensaje("Error desconocido, inténtelo nuevamente.", 3000);
             } 
         }
     }

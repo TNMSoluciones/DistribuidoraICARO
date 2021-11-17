@@ -14,10 +14,10 @@
         $forma = $data->forma;
         switch ($forma) {
             case 'register':
-                $mensaje = 'Gracias por utilizar Distribuidora ICARO, su registro se realizo correctamente.<br>Te avisaremos a esta direccion de correo electronico cuando su cuenta sea activada.';
+                $mensaje = 'Gracias por utilizar Distribuidora ICARO, su registro se realizó correctamente.<br>Te avisaremos a esta dirección de correo electrónico cuando su cuenta sea activada.';
             break;
             case 'cliente':
-                $mensaje = 'Gracias por utilizar Distribuidora ICARO, su cuenta ha sido activada.<br> Te invitamos a ver nuestros productos mas recientes en nuestra pagina web.';
+                $mensaje = 'Gracias por utilizar Distribuidora ICARO, su cuenta ha sido activada.<br> Te invitamos a ver nuestros productos más recientes en nuestra página web.';
             break;
             case 'pedido':
                 $mensaje = 'Su pedido ha sido confirmado, para mas información, lea el siguiente archivo.';

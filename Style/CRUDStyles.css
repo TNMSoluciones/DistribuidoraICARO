@@ -153,13 +153,6 @@
     .carritompra h1{
         font-size: 2vh;
     }
-    .checkbox:before{
-        font-size: 7vw !important;
-        line-height: 7vw !important;
-        margin-top: -2vw;
-        width: 3vh;
-        height: 3vh;
-    }
     .productos .carritompra{width: 100%;}
     .productos .carritompra p{
         width: 30% !important;

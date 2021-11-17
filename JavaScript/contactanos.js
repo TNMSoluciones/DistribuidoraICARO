@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         const cantCar = document.querySelector("#formContacto > p");
         let cantidadCaracteres = formContacto.value.length;
         formContacto.value = formContacto.value.slice(0, 400);
-        cantidadCaracteres>399?cantCar.textContent='Caracteres Disponibles: 400/400':cantCar.textContent = 'Caracteres Disponibles: '+ cantidadCaracteres +'/400';
+        cantidadCaracteres>399?cantCar.textContent='Carácteres Disponíbles: 400/400':cantCar.textContent = 'Carácteres Disponíbles: '+ cantidadCaracteres +'/400';
     }
     document.getElementById('formMsgContacto').addEventListener('input',comprobarCaracteres);
 
@@ -44,9 +44,9 @@ document.addEventListener('DOMContentLoaded',()=>{
         let comprobacionUno=false;
         let comprobacionDos=false;
         let comprobacionTres=false;
-        name!=''?comprobacionUno=true:comprobarMensaje('formNameContacto','Campo Vacio!');
-        email!=''?comprobacionDos=true:comprobarMensaje('formEmailContacto','Campo Vacio!');
-        msg!=''?comprobacionTres=true:comprobarMensaje('formMsgContacto','Campo Vacio!');
+        name!=''?comprobacionUno=true:comprobarMensaje('formNameContacto','Campo Vacío');
+        email!=''?comprobacionDos=true:comprobarMensaje('formEmailContacto','Campo Vacío');
+        msg!=''?comprobacionTres=true:comprobarMensaje('formMsgContacto','Campo Vacío');
         if (comprobacionUno&&comprobacionDos&&comprobacionTres) {
             if (re.exec(email)) {
                 let today = new Date();
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 XML.send(JSON.stringify(data));
             }else{
                 document.getElementById('formEmailContacto').value=''
-                comprobarMensaje('formEmailContacto', 'Correo Incorrecto!');
+                comprobarMensaje('formEmailContacto', 'Correo Incorrecto');
             }
         }
     });

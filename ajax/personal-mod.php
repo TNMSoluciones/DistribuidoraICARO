@@ -24,7 +24,7 @@
         }else{
             //Si se desea insertar
             $email = $data->email;
-            $sqlConsultaClientes = $pdo->prepare("SELECT COUNT(idCliente) as Cantidad FROM cliente WHERE CorreoCliente=?");
+            $sqlConsultaClientes = $pdo->prepare("SELECT COUNT(RUT) as Cantidad FROM cliente WHERE CorreoCliente=?");
             $sqlConsultaClientes->execute([$email]);
             $sqlConsultaClientes = $sqlConsultaClientes->fetch(PDO::FETCH_ASSOC);
             $sqlConsultaClientes=$sqlConsultaClientes['Cantidad'];

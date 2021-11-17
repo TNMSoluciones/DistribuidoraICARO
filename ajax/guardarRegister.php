@@ -17,14 +17,14 @@
             $codigoPostal = $data->codigoPostal;
             $calle = $data->calle;
             $numCalle = $data->numCalle;
-            $sqlSelectCorreo = $pdo->prepare("SELECT COUNT(idCliente) FROM cliente WHERE CorreoCliente=?");
+            $sqlSelectCorreo = $pdo->prepare("SELECT COUNT(RUT) FROM cliente WHERE CorreoCliente=?");
             $sqlSelectCorreo->execute([$correoEmpresa]);
             $sqlSelectCorreo = $sqlSelectCorreo->fetch(PDO::FETCH_ASSOC);
-            $sqlSelectCorreo = $sqlSelectCorreo['COUNT(idCliente)'];
-            $sqlSelectRUT = $pdo->prepare("SELECT COUNT(idCliente) FROM cliente WHERE RUT=?");
+            $sqlSelectCorreo = $sqlSelectCorreo['COUNT(RUT)'];
+            $sqlSelectRUT = $pdo->prepare("SELECT COUNT(RUT) FROM cliente WHERE RUT=?");
             $sqlSelectRUT->execute([$rut]);
             $sqlSelectRUT = $sqlSelectRUT->fetch(PDO::FETCH_ASSOC);
-            $sqlSelectRUT = $sqlSelectRUT['COUNT(idCliente)'];
+            $sqlSelectRUT = $sqlSelectRUT['COUNT(RUT)'];
             if ($sqlSelectCorreo==0&&$sqlSelectRUT==0) {
                 $SQL=$pdo->prepare('INSERT INTO cliente(NombreEmpresa, CorreoCliente, Password, RUT, idCiudad, CodigoPostal, CalleDir, NumeroDir) VALUES (?,?,?,?,?,?,?,?)');
                 $SQL->execute([$nombreEmpresa, $correoEmpresa, $passwordCifrada, $rut, $idCiudad, $codigoPostal, $calle, $numCalle]);

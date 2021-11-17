@@ -33,8 +33,8 @@
                     </div>
                     <h1><?=$producto['Nombre']?></h1>
                     <p>$<?=$producto['Precio']?></p>
-                    <p><?=$producto['Stock']>0?'Stock disponible':'Stock no disponible'?></p>
-                    <a href="extensionProducto.php?idProducto=<?=$producto['idProducto']?>">Ver Mas</a>
+                    <p><?=$producto['Stock']>0?'Disponible':'No disponible'?></p>
+                    <a href="extensionProducto.php?idProducto=<?=$producto['idProducto']?>">Ver más</a>
                 </div>
                 <?php
             }

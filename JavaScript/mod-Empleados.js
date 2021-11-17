@@ -66,12 +66,12 @@ const agregarEmpleado = function(){
                     XML.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                     XML.send(JSON.stringify(data));
                 }else{mostrarMensaje('Las contraseñas no coinciden', 'eIncorrecto')}
-            }else{mostrarMensaje('La contraseña debe poseer 8 o mas caracteres','ePrecaucion')}
+            }else{mostrarMensaje('La contraseña debe poseer 8 o mas carácteres','ePrecaucion')}
 
         }else{mostrarMensaje('Email invalido', 'ePrecaucion')}
 
 
-    }else{mostrarMensaje('Los campos no pueden estar vacios!', 'eIncorrecto')}
+    }else{mostrarMensaje('Los campos no pueden estar vacíos', 'eIncorrecto')}
 }
 
 const actualizarEmpleado = function(){
@@ -97,14 +97,14 @@ const actualizarEmpleado = function(){
                 if (this.readyState==4&&this.status==200) {
                     if (this.response) {
                         mostrarMensaje("Actualizado correctamente", "eCorrecto");
-                    }else{mostrarMensaje('Actualizacion Incorrecta', 'eIncorrecto')}
+                    }else{mostrarMensaje('Actualización Incorrecta', 'eIncorrecto')}
                 }
             };
             XML.open('POST', 'ajax/personal-mod.php', true);
             XML.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             XML.send(JSON.stringify(data));
         }else{mostrarMensaje('La contraseña debe poseer 8 caracteres o mas', 'eIncorrecto')}
-    }else{mostrarMensaje('Los campos no pueden estar vacios', 'eIncorrecto')}
+    }else{mostrarMensaje('Los campos no pueden estar vacíos', 'eIncorrecto')}
 }
 
 const eliminarEmpleado = function(){

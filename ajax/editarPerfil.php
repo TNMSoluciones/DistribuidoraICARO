@@ -5,13 +5,13 @@
     $pdo=pdo_conectar_mysql();
     if (isset($data)) {
         if (isset($data->nombreCalle)) {
-            $selectUser = $pdo->prepare("SELECT NombreEmpresa, CorreoCliente, Password, RUT, CodigoPostal, CalleDir, NumeroDir, Latitud, Longitud, Departamento.Nombre as Departamento, Ciudad.Nombre as Ciudad FROM cliente JOIN Ciudad ON cliente.idCiudad=ciudad.idCiudad JOIN Departamento ON Departamento.idDepartamento=Ciudad.idDepartamento WHERE idCliente = ?");
+            $selectUser = $pdo->prepare("SELECT NombreEmpresa, CorreoCliente, Password, RUT, CodigoPostal, CalleDir, NumeroDir, Latitud, Longitud, Departamento.Nombre as Departamento, Ciudad.Nombre as Ciudad FROM cliente JOIN Ciudad ON cliente.idCiudad=ciudad.idCiudad JOIN Departamento ON Departamento.idDepartamento=Ciudad.idDepartamento WHERE RUT = ?");
             $selectUser->execute([$_SESSION['user']['idUsuario']]);
             $selectUser = $selectUser->fetch(PDO::FETCH_ASSOC);
             if ($data->passwdA!='') {
                 if (password_verify($data->passwdA, $selectUser['Password'])) {
                     if ($data->passwdN==$data->passwdN2) {
-                        $actualizarUser = $pdo->prepare("UPDATE cliente SET NombreEmpresa=?, Password=?, CalleDir=?, NumeroDir=?, Latitud=?, Longitud=?, idCiudad=? WHERE idCliente = ?");
+                        $actualizarUser = $pdo->prepare("UPDATE cliente SET NombreEmpresa=?, Password=?, CalleDir=?, NumeroDir=?, Latitud=?, Longitud=?, idCiudad=? WHERE RUT = ?");
                         $passwordEncriptada=password_hash($data->passwdN, PASSWORD_DEFAULT);
                         $actualizarUser->execute([$data->nameN, $passwordEncriptada, $data->nombreCalle, $data->numeroCalle, $data->lat, $data->lng, $data->ciudad, $_SESSION['user']['idUsuario']]);
                         echo $actualizarUser?1:5;
@@ -25,16 +25,16 @@
                 if ($data->passwdN!=''||$data->passwdN2) {
                     echo 4;
                 }else {
-                    $actualizarUser = $pdo->prepare("UPDATE cliente SET NombreEmpresa=?, CalleDir=?, NumeroDir=?, Latitud=?, Longitud=?, idCiudad=? WHERE idCliente = ?");
+                    $actualizarUser = $pdo->prepare("UPDATE cliente SET NombreEmpresa=?, CalleDir=?, NumeroDir=?, Latitud=?, Longitud=?, idCiudad=? WHERE RUT = ?");
                     $actualizarUser->execute([$data->nameN, $data->nombreCalle, $data->numeroCalle, $data->lat, $data->lng, $data->ciudad, $_SESSION['user']['idUsuario']]);
                     echo $actualizarUser?1:5;
                 }
             }
             if ($actualizarUser) {
-                $sqlClientes=$pdo->prepare("SELECT idCliente, NombreEmpresa, CorreoCliente, RUT, Activo, Password FROM cliente WHERE idCliente=?");
+                $sqlClientes=$pdo->prepare("SELECT NombreEmpresa, CorreoCliente, RUT, Activo, Password FROM cliente WHERE RUT=?");
                 $sqlClientes->execute([$_SESSION['user']['idUsuario']]);
                 $usuario=$sqlClientes->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['user']['idUsuario'] = $usuario['idCliente'];
+                $_SESSION['user']['idUsuario'] = $usuario['RUT'];
                 $_SESSION['user']['nombre']=$usuario['NombreEmpresa'];
                 $_SESSION['user']['correo']=$usuario['CorreoCliente'];
                 $_SESSION['user']['rut']=$usuario['RUT'];

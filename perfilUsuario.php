@@ -10,7 +10,7 @@
             $bandera=true;
         }else {
             $bandera=false;
-            $infoUser = $pdo->prepare("SELECT NombreEmpresa, CorreoCliente, CalleDir, NumeroDir, Latitud, Longitud, departamento.idDepartamento, departamento.Nombre as Departamento, ciudad.idCiudad, ciudad.Nombre as Ciudad FROM cliente JOIN ciudad ON ciudad.idCiudad = cliente.idCiudad JOIN departamento ON departamento.idDepartamento = ciudad.idDepartamento  WHERE idCliente=?");
+            $infoUser = $pdo->prepare("SELECT NombreEmpresa, CorreoCliente, CalleDir, NumeroDir, Latitud, Longitud, departamento.idDepartamento, departamento.Nombre as Departamento, ciudad.idCiudad, ciudad.Nombre as Ciudad FROM cliente JOIN ciudad ON ciudad.idCiudad = cliente.idCiudad JOIN departamento ON departamento.idDepartamento = ciudad.idDepartamento  WHERE RUT=?");
         }
         $infoUser->execute([$_SESSION['user']['idUsuario']]);
         $infoUser=$infoUser->fetch(PDO::FETCH_ASSOC);
@@ -29,6 +29,7 @@
             $ciudades = $pdo->query("SELECT * FROM ciudad WHERE idDepartamento=".$infoUser['idDepartamento']." AND idCiudad !=".$infoUser['idCiudad']);
         }
 ?>
+<link rel="stylesheet" href="Style/Editarperfil.css">
 <main id="main">
     <div class="Editarperfil">
         <div>
@@ -51,7 +52,7 @@
                 <?php if(!isset($_SESSION['user']['idRol'])){?>
                 <label for="nombreCalle">Nombre de calle</label>
                 <input type="text" id="nombreCalle" value="<?=$nombreCalle?>">
-                <label for="numeroCalle">Numero de calle</label>
+                <label for="numeroCalle">Número de calle</label>
                 <input type="text" id="numeroCalle" value="<?=$numeroCalle?>">
                 <label for="departamentos">Departamento:</label>
                 <select id="departamentos">
@@ -67,9 +68,8 @@
                         <option value="<?=$ciud['idCiudad']?>"><?=$ciud['Nombre']?></option>
                     <?php }?>
                 </select>
-                <label for="mapa">Seleccione su ubicacion:</label>
+                <label for="mapa">Seleccione su ubicación:</label>
                 <div id="mapa"></div>
-                <button>Borrar Punto</button>
                 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Pqbhh0y7lSrWl6gG6xZjoKy797xrB0w&callback=initMap&v=weekly" async></script>
                 <?php }?>
@@ -83,7 +83,6 @@
         <option value=""></option>
 </template>
 <?php include_once 'Assets/footer.php';?>
-<link rel="stylesheet" href="Style/Editarperfil.css">
 <script>
     const name = "<?=$nombre?>";
     <?php if(!$bandera){?>

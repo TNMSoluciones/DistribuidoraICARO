@@ -22,7 +22,7 @@ const actualizarCliente = function(){
     if (activoActual !== activar) {
         const data = {
             activo: activar,
-            idCliente: document.getElementById('idEmpresa').textContent,
+            idCliente: document.getElementById('rut').textContent,
             delete: false
         }
         XML.onreadystatechange = function(){
@@ -31,7 +31,7 @@ const actualizarCliente = function(){
                     mostrarMensaje('Actualizado Correctamente');
                     document.getElementById('activo').value = activar ? 1 : 0;
                     document.getElementById('activo').value == 1?enviarMail(document.getElementById('nombreEmpresa').textContent, document.getElementById('correoEmpresa').textContent):null;
-                }else{mostrarMensaje('No se logro actualizar')}
+                }else{mostrarMensaje('No se logró actualizar')}
             }
         };
         XML.open('POST', 'ajax/cliente-mod.php', true);

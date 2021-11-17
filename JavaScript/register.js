@@ -86,7 +86,9 @@ function registar(){
                                 xml.onreadystatechange = function() {
                                     if (this.readyState==4 && this.status==200) {
                                         if (this.response=='1') {
-                                            mostrarMensaje('Registrado correctamente, espere a que activen su cuenta.', 15000);
+                                            document.getElementById('registerDerecha').style.display='none';
+                                            document.getElementById('formRegister').reset();
+                                            document.getElementById('registerCorrecto').style.display='block';
                                             enviarMail(nombreEmpresa, emailEmpresa);
                                         }else if(this.response=='2'){
                                             mostrarMensaje('Error al momento de insertar', 3000);
@@ -99,12 +101,12 @@ function registar(){
                                 xml.send(JSON.stringify(data));
 
                             }else{mostrarMensaje('Las contraseñas no coinciden.', 3000)}
-                        }else{mostrarMensaje('La contrasela debe tener mas de 6 caracteres.', 3000)}
+                        }else{mostrarMensaje('La contraseña debe tener más de 6 carácteres.', 3000)}
                     }else{mostrarMensaje('Las contraseñas no deben poseer espacios.', 3000)}
-                }else{mostrarMensaje('RUT invalido.', 3000)}
-            }else{mostrarMensaje('Codigo postal invalido.', 3000)}
-        }else{mostrarMensaje('Ha ingresado un correo invalido.', 3000)}
-    }else{mostrarMensaje('No deben haber campos vacios.', 3000)}
+                }else{mostrarMensaje('RUT inválido.', 3000)}
+            }else{mostrarMensaje('Código postal inválido.', 3000)}
+        }else{mostrarMensaje('Ha ingresado un correo inválido.', 3000)}
+    }else{mostrarMensaje('No deben haber campos vacíos.', 3000)}
 }
 
 const enviarMail = function(nombreEmpresaMail, emailEmpresaMail){

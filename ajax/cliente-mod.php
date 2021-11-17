@@ -7,12 +7,12 @@
             //Actualizar
             $idCliente = $data->idCliente;
             $activo = $data->activo? 1 : 0;
-            $sql=$pdo->prepare('UPDATE cliente SET Activo=? WHERE idCliente=?');
+            $sql=$pdo->prepare('UPDATE cliente SET Activo=? WHERE RUT=?');
             $sql->execute([$activo, $idCliente]);
             echo $sql ? true : false;
         }else if($data->delete){
             $idCliente = $data->idCliente;
-            $sqlDelete = $pdo->prepare('DELETE FROM cliente WHERE idCliente=?');
+            $sqlDelete = $pdo->prepare('DELETE FROM cliente WHERE RUT=?');
             $sqlDelete->execute([$idCliente]);
             echo $sqlDelete ? true : false;
         }

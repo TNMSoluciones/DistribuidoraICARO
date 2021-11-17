@@ -35,7 +35,7 @@ const actualizarPedido = function(){
                     const name = document.getElementById('nameEmpresa').textContent;
                     const email = document.getElementById('correoEmpresa').textContent;
                     document.getElementById('activo').value==1?enviarMail(name, email):'';
-                }else{mostrarMensaje('No se logro actualizar')}
+                }else{mostrarMensaje('No se logró actualizar')}
             }
         }
         XML.open('POST', 'ajax/pedidos-mod.php', true);

@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 XML.overrideMimeType('text/xml');
                 XML.onreadystatechange = function() {
                     if (this.status==200 && this.readyState==4) {
+                        console.log(this.response);
                         if (this.response==1) {
                             location.href = "pedidoAceptado.php?estado=true";
                         }else if (this.response==2) {

@@ -7,7 +7,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Iniciar Sesion</title>
+        <title>Iniciar Sesión</title>
     </head>
     <body>
         <?php include 'Assets/zonaizquierda.php';?>
@@ -17,7 +17,7 @@
                 <input id="email" type="text" placeholder="Ingrese su correo">
             <label for="password">Contraseña:</label>
             <input id="password" autocomplete="off" type="password" placeholder="Ingrese su contraseña">
-            <button name="botonLg" class="btnLogin btnLoginA" type="submit">Iniciar Sesion</button>
+            <button name="botonLg" class="btnLogin btnLoginA" type="submit">Iniciar Sesión</button>
             <a href="register.php" class="btnLogin">Ir a Registrarse</a>
         </form>
     </div>

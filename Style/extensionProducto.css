@@ -50,6 +50,9 @@
     background-color: #32a367
 }
 .producto h1 {
+    overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
     display: inline-block;
 }
 .producto p:last-of-type {
@@ -81,10 +84,17 @@
         width: 100%;
         font-size: 5vw;
     }
-    .producto div.divImg{margin: 20% 10% 80% 10%;}
+    .producto div.divImg{
+        margin: 6vw 0;
+        width: 100%;
+        height: fit-content;
+    }
     .producto div.divImg img{
-        max-width: 36vw;
-        height: 32vw;
+        max-width: 50%;
+        height: auto;
+    }
+    .producto div.divInfo {
+        width: 100%;
     }
     .divEmergente{
         width: 100%;
@@ -93,9 +103,9 @@
         line-height: 10vw;
     }
     .producto input[type=submit]{
-        width: 25vw;
-        height: 6vw;
-        font-size: 3vw;
+        width: 35vw;
+        height: 8vw;
+        font-size: 4vw;
         font-weight: 500;
     }
     .producto a{

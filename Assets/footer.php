@@ -12,11 +12,10 @@
         <img src="svg/logofacebook.png" alt="">
     </div>
         <h2 id="hechopor">Powered&nbsp;&nbsp;by&nbsp;&nbsp;TNMSoluciones</h2>
-</footer>
+    </footer>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-footer
-{
+footer{
     background-color: #fff;
     width: 100%;
     float: left;

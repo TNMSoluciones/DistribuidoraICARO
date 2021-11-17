@@ -10,14 +10,13 @@
         $sql->bindValue(':paginaActual', $paginaActual, PDO::PARAM_INT);
         $sql->bindValue(':datosPorPagina',$datosPorPagina, PDO::PARAM_INT);
         $sql->execute();
-        $sqlCantidad=$pdo->query("SELECT COUNT(idCliente) AS cantidad FROM cliente WHERE NombreEmpresa LIKE '%".$texto."%'")->fetch(PDO::FETCH_ASSOC);
+        $sqlCantidad=$pdo->query("SELECT COUNT(RUT) AS cantidad FROM cliente WHERE NombreEmpresa LIKE '%".$texto."%'")->fetch(PDO::FETCH_ASSOC);
         $json = array();
         while($fila = $sql->fetch(PDO::FETCH_ASSOC)){
             $json[] = array(
-                'idCliente' => $fila['idCliente'],
+                'idCliente' => $fila['RUT'],
                 'nombreEmpresa' => $fila['NombreEmpresa'],
                 'correoEmpresa' => $fila['CorreoCliente'],
-                'rut' => $fila['RUT'],
                 'activo' => $fila['Activo'],
                 'cantidad' => $sqlCantidad['cantidad']
             );

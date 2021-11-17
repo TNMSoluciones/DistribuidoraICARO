@@ -34,7 +34,7 @@ const agregarCategoria = function(){
         XML.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         XML.send(JSON.stringify(data));
     }else{
-        mostrarMensaje('El texto no puede estar vacio!');
+        mostrarMensaje('El texto no puede estar vacío');
     }
 }
 
@@ -54,7 +54,7 @@ const actualizarCategoria = function(){
                     if (this.response) {
                         mostrarMensaje('Actualizado Correctamente.');
                         document.getElementById('Name').placeholder = document.getElementById('Name').value;
-                    }else{mostrarMensaje('Actualizacion Incorrecta')}
+                    }else{mostrarMensaje('Actualización Incorrecta')}
                 }
             };
             XML.open('POST', 'ajax/categories-mod.php');
@@ -63,7 +63,7 @@ const actualizarCategoria = function(){
         }else{
             mostrarMensaje('Intenta guardar el mismo texto que el actual');
         }
-    }else{mostrarMensaje('El texto no puede estar vacio!');}
+    }else{mostrarMensaje('El texto no puede estar vacío');}
 }
 
 const eliminarCategoria = function(){

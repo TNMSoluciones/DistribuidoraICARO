@@ -2,21 +2,24 @@
     width: 65vw;
     margin: 15vw 0vw 0 17.5vw;
 }
-.dashboard{margin-left:2.5vw;}
-
 .dashboard{
     outline: 1px solid black;
     float: left;
-    margin-top: 2vw;
+    margin: 2vw 0 0 2.5vw;
     text-align: center;
+    width: 30vw;
+    min-height: 10vw;
 }
-.dashboard{width: 30vw;}
 .dashboard table{width: 30vw;}
 .dashboard table td{border-bottom: 1px solid black;}
 .dashboard table th:first-child{border-right: 1px solid black;}
 .dashboard table th {
     width: 15vw;
     border-bottom: 1px solid black;
+}
+.doble{
+    margin-left: 18vw;
+    margin-right: 4vw;
 }
 .dashboard table td:first-child {
     width: 15vw;
@@ -25,6 +28,7 @@
 .dashboard > table > tbody > tr:last-of-type > td {
     border-bottom: none;
 } 
+main{padding-bottom: 5vw;}
 @media (max-width: 1025px){
     .dashboard {
         width: 90%;
@@ -34,7 +38,6 @@
         width: 100%;
         margin: 0;
     }
-    main{padding-bottom: 5vw;}
     .dashboard table{width: 100%;}
     .dashboard table td:first-child{width:50%}
 }

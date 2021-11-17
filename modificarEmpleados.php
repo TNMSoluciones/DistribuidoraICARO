@@ -25,7 +25,7 @@
                             <input id="passwd" autocomplete="new-password" type="password" placeholder="Ingrese la contraseña">
                             <label for="passwdConfirm">Confirme la contraseña</label>
                             <input id="passwdConfirm" autocomplete="new-password" type="password" placeholder="Confirme la contraseña">
-                            <label for="rolPersonal" style="margin-top: 20px;">¿A cual rol pertenecera?</label>
+                            <label for="rolPersonal" style="margin-top: 20px;">¿A cuál rol pertenecera?</label>
                             <select id="rolPersonal">
                             <?php 
                                 foreach($pdo->query('SELECT * FROM roles ORDER BY Rol') as $rol)

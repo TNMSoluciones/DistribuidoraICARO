@@ -44,12 +44,12 @@ const agregarProducto = function(){
                             }
                             XML.open('POST', '../ajax/producto-mod.php', true);
                             XML.send(new FormData(form));                  
-                        }else{mostrarMensaje('El archivo no debe pesar mas de 5MB.')}
-                    }else{mostrarMensaje('La extension de la imagen es incorrecta', 'eIncorrecto')}
+                        }else{mostrarMensaje('El archivo no debe pesar más de 5MB.')}
+                    }else{mostrarMensaje('La extensión de la imagen es incorrecta', 'eIncorrecto')}
                 }else{mostrarMensaje('No ha seleccionado ninguna imagen', 'ePrecaucion')}
-            }else{mostrarMensaje('El precio no es un valor numerico','ePrecaucion')}
-        }else{mostrarMensaje('El stock no es un valor numerico','ePrecaucion')}
-    }else{mostrarMensaje('Los campos no pueden estar vacios!', 'eIncorrecto')}
+            }else{mostrarMensaje('El precio no es un valor numérico','ePrecaucion')}
+        }else{mostrarMensaje('El stock no es un valor numérico','ePrecaucion')}
+    }else{mostrarMensaje('Los campos no pueden estar vacíos', 'eIncorrecto')}
 }
 const eliminarProducto = function(){
     XML.onreadystatechange = function(){
@@ -89,9 +89,9 @@ const actualizarProducto = function(){
                 }
                 XML.open('POST', 'ajax/producto-mod.php', true);
                 XML.send(new FormData(form));
-            }else{mostrarMensaje('El precio debe ser un valor numerico','ePrecaucion')}
-        }else{mostrarMensaje('El stock debe ser un valor numerico','ePrecaucion')}
-    }else{mostrarMensaje('Los campos no pueden estar vacios','eIncorrecto')}
+            }else{mostrarMensaje('El precio debe ser un valor numérico','ePrecaucion')}
+        }else{mostrarMensaje('El stock debe ser un valor numérico','ePrecaucion')}
+    }else{mostrarMensaje('Los campos no pueden estar vacíos','eIncorrecto')}
 }
 
 

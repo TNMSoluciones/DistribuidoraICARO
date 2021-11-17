@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400&display=swap" rel="stylesheet">
-    <title>Registrate!</title>
+    <title>Regístrate</title>
 </head>
 <body>
     <?php 
@@ -42,15 +42,22 @@
             </select>
             <label for="ciudadEmpresa">Ciudad:</label>
             <select id="ciudadEmpresa"></select>
-            <label for="direccionEmpresa">Direccion:</label>
+            <label for="direccionEmpresa">Dirección:</label>
             <input id="direccionEmpresa" type="text" placeholder="Ingrese la direccion">
-            <label for="direccionNumEmpresa">Numero de calle:</label>
+            <label for="direccionNumEmpresa">Número de puerta:</label>
             <input id="direccionNumEmpresa" type="text" placeholder="Ingrese el Numero de la Direccion">
-            <label for="postalEmpresa">Codigo Postal:</label>
+            <label for="postalEmpresa">Código Postal:</label>
             <input id="postalEmpresa" type="text" placeholder="Ingrese codigo postal">
             <button class="btnRegister btnRegisterA" name="btnReg" type="submit">Registrarse</button>
-            <a class="btnRegister" href="login.php">Ir a Iniciar Sesion</a>
+            <a class="btnRegister" href="login.php">Ir a iniciar sesión</a>
         </form>
+    </div>
+    <div id="registerCorrecto">
+        <div>
+            <h1>Registrado correctamente, espere a que activen su cuenta.</h1>
+            <a href="login.php">Ir a iniciar sesión.</a>
+            <a href="index.php">Ir a incio.</a>
+        </div>
     </div>
     <div id="divEmergente"></div>
     <template id="templateCiudad">

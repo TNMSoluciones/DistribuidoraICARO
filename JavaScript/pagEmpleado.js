@@ -220,9 +220,10 @@ document.addEventListener('DOMContentLoaded',()=>{
                             btnPaginacionClienteIzquierda.style.display='none'
                         }
                         clientes.forEach(cliente => {
+                            console.log(cliente);
                                 templateCliente.querySelector('.clientesEncargado div h3:first-of-type').textContent=cliente.nombreEmpresa;
                                 templateCliente.querySelector('.clientesEncargado div h3:nth-of-type(2)').textContent=cliente.correoEmpresa;
-                                templateCliente.querySelector('.clientesEncargado div h3:nth-of-type(3)').textContent=cliente.rut;
+                                templateCliente.querySelector('.clientesEncargado div h3:nth-of-type(3)').textContent=cliente.idCliente;
                                 templateCliente.querySelector('.clientesEncargado div h3:nth-of-type(4)').textContent=cliente.activo==1? 'Cuenta Activada': 'Cuenta Desactivada';
                                 templateCliente.querySelector('.clientesEncargado div a.btnEliminarCliente').setAttribute('href', `modificarCliente.php?idCliente=${cliente.idCliente}&delete=true`);
                                 templateCliente.querySelector('.clientesEncargado div a.btnModificarCliente').setAttribute('href', `modificarCliente.php?idCliente=${cliente.idCliente}`);

@@ -29,21 +29,23 @@ const login = function(){
     
     if (email!='' && re.exec(email)) {
         if (passwd!='') {
-
             const data = {
                 email: email,
                 password: passwd
             }
             xml.onreadystatechange = function(){
                 if (this.status==200 && this.readyState==4) {
+                    console.log(this.response);
                     if (this.response==1) {
                         location.href='index.php';
-                        document.getElementById('loginDerecha').style.pointerEvents='none';
-                        setTimeout(function() {window.location="index.php";}, 4000);
                     }else if(this.response==2){
                         mostrarMensaje('Cuenta no activada.');
-                    }else if(this.response==3 || this.response==4){
-                        mostrarMensaje('Correo y/o contraseña equivocada.')
+                    }else if(this.response==3){
+                        mostrarMensaje('Correo y/o contraseña equivocada.', 4000)
+                    }else if(this.response==4) {
+                        mostrarMensaje('Correo no registrado', 4000);
+                    }else {
+                        mostrarMensaje('Correo y/o contraseña equivocada.', 4000);
                     }
                 }
             }
@@ -51,5 +53,5 @@ const login = function(){
             xml.send(JSON.stringify(data))
 
         }else{mostrarMensaje('No ha ingresado una contraseña.')}
-    }else{mostrarMensaje('No ha ingresado un email valido.')}
+    }else{mostrarMensaje('No ha ingresado un email válido.')}
 }

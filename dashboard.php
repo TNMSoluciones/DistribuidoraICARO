@@ -8,45 +8,44 @@
         $ganadoMesActual = $pdo->query("SELECT MONTH(pedido.Fecha) AS mes, SUM(pedido.PrecioTotal) AS total FROM pedido WHERE YEAR(pedido.Fecha) = YEAR(curdate()) AND MONTH(pedido.Fecha) = MONTH(curdate())")->fetch(PDO::FETCH_ASSOC);
         $ganadoYearActual = $pdo->query("SELECT SUM(pedido.PrecioTotal) AS total FROM pedido WHERE YEAR(pedido.Fecha) = YEAR(curdate())")->fetch(PDO::FETCH_ASSOC);
         $menosProductosStock = $pdo->query("SELECT producto.Nombre AS Nombre, producto.Stock AS Stock FROM producto ORDER BY producto.Stock limit 5"); 
-        $vendidoMesActual = $pdo->query("SELECT COUNT(idPedido) as cantidad FROM pedido WHERE Confirmacion=1")->fetch(PDO::FETCH_ASSOC);        
+        $vendidoMesActual = $pdo->query("SELECT MONTH(Fecha) as mes, COUNT(idPedido) as cantidad FROM pedido WHERE Confirmacion=1 AND MONTH(Fecha) = MONTH(curdate())")->fetch(PDO::FETCH_ASSOC);        
+        $productosMasFacturados = $pdo->query("SELECT producto.Nombre AS Nombre, SUM(items.Cantidad) as Cantidad FROM producto JOIN items ON items.idProducto = producto.idProducto GROUP BY producto.Nombre ORDER BY SUM(items.Cantidad) DESC LIMIT 5;");
+        
+        $mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"][date('m')-1];
     ?>
         <main>
             
             <div id="ganadoM" class="dashboard">
                 <?php if (isset($ganadoMesActual['mes'])) {
-                    $mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"][$ganadoMesActual['mes'] - 1];
                 ?>
-                <h1>Ganado en el mes de <?=$mes?></h1>
+                <h1>Facturado en el mes de <?=$mes?></h1>
                 <h1>$ <?=$ganadoMesActual['total']?></h1>
-                <select name="" id=""><option value="">Meses del año</option></select>
-            
                 <?php }else {?>
-                <h1>No ha vendido nada este mes</h1>
+                <h1>No ha facturado nada este mes</h1>
                 <?php }?>
             </div>
             <div id="ganadoY" class="dashboard">
             <?php if (isset($ganadoYearActual['total'])) {?>
-                <h1>Ganado en el año de <?=date('Y')?></h1>
+                <h1>Facturado en el año de <?=date('Y')?></h1>
                 <h1>$ <?=$ganadoYearActual['total']?></h1>
-                <select name="" id=""><option value="">Últimos cinco años</option></select>
                             
                 <?php }else {?>
                 <h1>No ha vendido nada este año</h1>
                 <?php }?>
             </div>
             <div id="pedidoM" class="dashboard">
-                <?php if (isset($vendidoMesActual['cantidad'])) {
+                <?php if (isset($vendidoMesActual['mes'])) {
                     ?>
-                    <h1>Total de pedidos Vendidos en <?date('m')?></h1>
-                    <?php
-                } 
-
-                ?>
+                    <h1>Total de pedidos facturados en <?=$mes?></h1>
+                    <h1><?=$vendidoMesActual['cantidad']?></h1>
+                <?php }else {?>
+                    <h1>No ha facturado nada este mes</h1>
+                <?php }?>
             </div>
             <div id="divGraficaPorMes">
                 <canvas id="myChart" style="width:100%;"></canvas>
             </div>
-            <div id="productosMenorStock" class="dashboard">
+            <div id="productosMenorStock" class="dashboard doble">
                 <h1>Menor stock</h1>
                 <table>
                     <tr>
@@ -63,6 +62,28 @@
                 <?php
                     }
                 ?>
+            </table>
+            </div>
+
+            <div id="productosMasFacturados" class="dashboard">
+                <h1>Más facturados</h1>
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                    </tr>
+                <?php
+                    while($fila = $productosMasFacturados->fetch(PDO::FETCH_ASSOC)) {
+                ?>
+                    <tr>
+                        <td><?=$fila['Nombre']?></td>
+                        <td><?=$fila['Cantidad']?></td>
+                    </tr>
+                <?php
+                    }
+                ?>
+            </table>
+            </div>
             </table>
             </div>
         </main>

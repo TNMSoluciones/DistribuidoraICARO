@@ -6,11 +6,11 @@
         $texto = $data->texto;
         $datosPorPagina = $data->datosPorPagina;
         $paginaActual= $data->paginaActual;
-        $sql=$pdo->prepare("SELECT cliente.NombreEmpresa, pedido.Fecha, pedido.idPedido, pedido.PrecioTotal, pedido.MetodoPago FROM pedido JOIN cliente ON pedido.idCliente=cliente.idCliente WHERE cliente.NombreEmpresa LIKE '%".$texto."%' OR cliente.NombreEmpresa IS NULL ORDER BY cliente.NombreEmpresa  LIMIT :paginaActual, :datosPorPagina");
+        $sql=$pdo->prepare("SELECT cliente.NombreEmpresa, pedido.Fecha, pedido.idPedido, pedido.PrecioTotal, pedido.MetodoPago FROM pedido JOIN cliente ON pedido.idCliente=cliente.RUT WHERE cliente.NombreEmpresa LIKE '%".$texto."%' OR cliente.NombreEmpresa IS NULL ORDER BY cliente.NombreEmpresa  LIMIT :paginaActual, :datosPorPagina");
         $sql->bindValue(':paginaActual', $paginaActual, PDO::PARAM_INT);
         $sql->bindValue(':datosPorPagina',$datosPorPagina, PDO::PARAM_INT);
         $sql->execute();
-        $sqlCantidad=$pdo->query("SELECT COUNT(idPedido) AS cantidad FROM pedido JOIN cliente ON cliente.idCliente = pedido.idCliente WHERE NombreEmpresa LIKE '%".$texto."%'")->fetch(PDO::FETCH_ASSOC);
+        $sqlCantidad=$pdo->query("SELECT COUNT(RUT) AS cantidad FROM pedido JOIN cliente ON cliente.RUT = pedido.idCliente WHERE NombreEmpresa LIKE '%".$texto."%'")->fetch(PDO::FETCH_ASSOC);
         $json = array();
         while ($fila = $sql->fetch(PDO::FETCH_ASSOC)) {
             $json[] = array(

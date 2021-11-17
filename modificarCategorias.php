@@ -10,7 +10,7 @@
         if ($idCatSeleccionada==0) { 
             ?>
                 <div id="actualizar" class="ingresarCategoria">
-                    <h2>Insertar Nueva Categoria</h2>
+                    <h2>Insertar Nueva Categoría</h2>
                     <div>
                         <label for="Name">Nombre:</label>
                         <input type="text" name="Categoria" placeholder="Nombre de Categoria" id="Name">
@@ -33,7 +33,7 @@
             if (!isset($_GET['delete'])) {   
                 ?>
                 <div id="actualizar" class="actualizarCategoria">
-                    <h2>Actualizar Categoria <?=$categoria['idCategoria']?></h2>
+                    <h2>Actualizar Categoría <?=$categoria['idCategoria']?></h2>
                     <div>
                         <label for="idCategoria">ID:</label>
                         <input type="text" name="idCategoria" placeholder="<?=$categoria['idCategoria']?>" value="<?=$categoria['idCategoria']?>" id="idCategoria" readonly>

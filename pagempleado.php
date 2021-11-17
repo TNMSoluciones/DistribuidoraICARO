@@ -20,8 +20,8 @@
             <div>
                 <h3>Nombre</h3>
                 <h3>Fecha</h3>
-                <h3>PrecioTotal</h3>
-                <h3>Metodo Pago</h3>
+                <h3>Precio total</h3>
+                <h3>Método pago</h3>
                 <h3 class="txtDerecha">Funciones</h3>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 <div>
                     <h3>Nombre de la empresa</h3>
                     <h3>Nombre del producto</h3>
-                    <h3>CostoTotal</h3>
+                    <h3>Costo total</h3>
                     <h3>Cantidad</h3>
                     <a class="btnDerecha btnEliminarVentas">Eliminar</a>
                     <a class="btnDerecha btnModificarVentas">Modificar</a>
@@ -60,7 +60,7 @@
         <div class="titulosTabla tituloproducto">
             <div>
                 <h3>Nombre</h3>
-                <h3>Categoria</h3>
+                <h3>Categoría</h3>
                 <h3>Precio</h3>
                 <h3>Stock Disponible</h3>
                 <h3 class="txtDerecha">Funciones</h3>
@@ -87,8 +87,8 @@
         
         <?php }
         if($_SESSION['user']['idRol']==5 || $_SESSION['user']['idRol']==1){
-            $sqlCantidadCliente=$pdo->query('SELECT COUNT(idCliente) FROM cliente')->fetch(PDO::FETCH_ASSOC);
-            $sqlCantidadCliente=$sqlCantidadCliente['COUNT(idCliente)'];
+            $sqlCantidadCliente=$pdo->query('SELECT COUNT(RUT) FROM cliente')->fetch(PDO::FETCH_ASSOC);
+            $sqlCantidadCliente=$sqlCantidadCliente['COUNT(RUT)'];
             $sqlCantidadSugerencias=$pdo->query('SELECT COUNT(idOpinion) FROM opiniones')->fetch(PDO::FETCH_ASSOC);
             $sqlCantidadSugerencias=$sqlCantidadSugerencias['COUNT(idOpinion)'];
             ?>
@@ -199,7 +199,7 @@
             ?>
     <div id="categoriasProduct" class="divPrincipal">
         <div>
-            <h1>Categorias</h1>
+            <h1>Categorías</h1>
             <a href="modificarCategorias.php?idCategoria=0" class="btnDerecha btnAdd">Agregar</a>
             <input type="text" class="searchEmpleados"  placeholder="Busca categoría">
         </div>

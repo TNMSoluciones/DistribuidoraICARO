@@ -20,7 +20,7 @@
                 </div>
                 <div class="divInfo">
                     <h1><?=$producto['Nombre']?></h1>
-                    <p>Stock Disponible: <?=$producto['Stock']?></p>
+                    <p>Stock Disponíble: <?=$producto['Stock']?></p>
                     <input min="0" max="100" type="text" placeholder="Cantidad" oninput="comprobarChar()" id="cantidad">
                     <p>$ <?=$producto['Precio']?></p>
                     <p><?=$producto['Categoria']?></p>

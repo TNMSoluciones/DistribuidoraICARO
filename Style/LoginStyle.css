@@ -1,4 +1,4 @@
-*{font-family: 'Roboto Condensed', sans-serif;box-sizing: border-box;}
+* {font-family: 'Roboto Condensed', sans-serif;box-sizing: border-box;}
 body{margin: 0; padding: 0;background-color: rgba(255,175,101,1);}
 #loginDerecha {
     width: 67%;

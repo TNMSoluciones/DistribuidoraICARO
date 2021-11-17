@@ -25,7 +25,7 @@
                     <h3>ID Pedido</h3>
                     <h3>Fecha</h3>
                     <h3>Precio total</h3>
-                    <h3>Metodo de pago</h3>
+                    <h3>Método de pago</h3>
                     <h3 class="txtDerecha">Funciones</h3>
                 </div>
             </div>

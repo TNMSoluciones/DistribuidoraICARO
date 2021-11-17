@@ -20,7 +20,7 @@
                         <input id="stockProduct" name="stockProduct" type="number" min="0" step="1" placeholder="Ingrese el stock del producto">
                         <label for="priceProduct">Precio:</label>
                         <input id="priceProduct" name="priceProduct" type="number" placeholder="Ingrese el precio del producto">
-                        <label for="catProduct">Categoria:</label>
+                        <label for="catProduct">Categoría:</label>
                         <select id="catProduct" name="catProduct">
                             <?php
                                 while ($val=$sqlCategorias->fetch(PDO::FETCH_ASSOC)) {
@@ -70,7 +70,7 @@
                                 <input id="stockProduct" name="stockProduct" value="<?=$producto['Stock']?>" type="number">
                                 <label for="priceProduct">Precio:</label>
                                 <input id="priceProduct" name="priceProduct" value="<?=$producto['Precio']?>" type="number">
-                                <label for="catProduct">Categoria:</label>
+                                <label for="catProduct">Categoría:</label>
                                 <select id="catProduct" name="catProduct">
                                     <option value="<?=$producto['idCategoria']?>"><?=$producto['Categoria']?></option>
                                     <?php
@@ -79,7 +79,7 @@
                                         }
                                     ?>
                                 </select>
-                                <label for="lastModProduct">Ultima Modificaciόn:</label>
+                                <label for="lastModProduct">Última Modificaciόn:</label>
                                 <p id="lastModProduct"><?=$nombreCompleto?></p>
                                 <label class="labelFile" for="imgProduct">Seleccione una imagen:</label>
                                 <input type="file" name="imgProduct" id="imgProduct" accept="image/*">
